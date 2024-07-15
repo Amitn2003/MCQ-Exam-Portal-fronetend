@@ -29,7 +29,8 @@ const AddQuestion = () => {
         };
 
         try {
-            await addQuestion(questionData, user.token);
+            let addQsResponce = await addQuestion(questionData, user.token);
+            console.log(addQsResponce)
             toast.success('Question added successfully!');
             // Clear form after submission
             setCategory('');

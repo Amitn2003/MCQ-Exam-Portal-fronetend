@@ -45,14 +45,20 @@ const ExamResults = () => {
     // </div>
     return (
         <div className="bg-white dark:bg-gray-800 shadow-md rounded-md p-6">
-            <h2 className="text-2xl font-bold mb-4">Your Exam Results</h2>
+            <h2 className="text-2xl font-bold mb-4 dark:text-white">Your Exam Results</h2>
             {results.length === 0 ? (
-                <p className="text-gray-600 dark:text-gray-400">No exam results available.</p>
+                <p className="text-gray-600 dark:text-white">No exam results available.</p>
             ) : (
                 <ul className="divide-y divide-gray-300 dark:divide-gray-600">
-                    {results.map((result) => (
+                    {results.map((result) => {
+                        let options = {
+                            day: '2-digit',
+                            month: 'long',
+                            year: 'numeric'
+                          };
+                        return(
                         <li key={result._id} className="py-4">
-                            <h3 className="text-xl font-semibold mb-2">Exam taken on {new Date(result.createdAt).toLocaleDateString()}</h3>
+                            <h3 className="text-xl font-semibold mb-2 dark:text-white">Exam taken on {new Date(result.createdAt).toLocaleDateString('en-GB', options)}</h3>
                             <p className="text-gray-600 dark:text-gray-400">Score: {result.score}/{result.totalQuestions}</p>
                             <p className="text-gray-600 dark:text-gray-400">Accuracy: {result.accuracy.toFixed(2)}%</p>
                             <Link
@@ -62,7 +68,7 @@ const ExamResults = () => {
                                 View Detailed Analysis
                             </Link>
                         </li>
-                    ))}
+                    )})}
                 </ul>
             )}
         </div>

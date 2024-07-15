@@ -11,12 +11,12 @@ const Navigation = () => {
     const [admin, setAdmin] = useState(false)
     useEffect(() => {
       const logInInfo = () => {
-        console.log(isLoggedIn())
+        // console.log(isLoggedIn())
         if (isLoggedIn()) {
             setUser(true)
-            console.log("user found")
+            // console.log("user found")
             if (isAdmin()) {
-                console.log("is admin")
+                // console.log("is admin")
                 setAdmin(true)
             }
         }
@@ -77,7 +77,7 @@ const Navigation = () => {
                     <li>
                         <button
                             onClick={handleLogout}
-                            className="bg-red-500 hover:bg-red-600 text-white px-4 py-2 rounded-md"
+                            className="text-gray-300 hover:text-white px-3 py-2 rounded-md"
                         >
                             Logout
                         </button>

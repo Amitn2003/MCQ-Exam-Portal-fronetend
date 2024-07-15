@@ -14,9 +14,11 @@ const Register = () => {
         e.preventDefault();
         toast.warn('Please wait 🙏!');
         try {
-            await register({ name, email, password });
+            let registrationRes = await register({ name, email, password });
             // If registration succeeds, show a success toast
-            toast.success('Registration successful!');
+            if (registrationRes)
+                toast.success('Registration successful!');
+            else toast.error('Registration failed. Please try again.');
         } catch (error) {
             // If registration fails, show an error toast
             toast.error('Registration failed. Please try again.');
@@ -63,7 +65,7 @@ const Register = () => {
                 id="name"
                 type="text"
                 className="py-2 px-3 border rounded-md shadow-sm focus:outline-none focus:border-blue-500 dark:bg-gray-700 dark:text-white"
-                value={name}
+                value={name} required
                 onChange={(e) => setName(e.target.value)}
             />
         </div>
@@ -73,7 +75,7 @@ const Register = () => {
                 id="email"
                 type="email"
                 className="py-2 px-3 border rounded-md shadow-sm focus:outline-none focus:border-blue-500 dark:bg-gray-700 dark:text-white"
-                value={email}
+                value={email} required
                 onChange={(e) => setEmail(e.target.value)}
             />
         </div>
@@ -83,7 +85,7 @@ const Register = () => {
                 id="password"
                 type="password"
                 className="py-2 px-3 border rounded-md shadow-sm focus:outline-none focus:border-blue-500 dark:bg-gray-700 dark:text-white"
-                value={password}
+                value={password} required
                 onChange={(e) => setPassword(e.target.value)}
             />
         </div>

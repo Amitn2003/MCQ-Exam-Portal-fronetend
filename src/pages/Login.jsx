@@ -14,9 +14,13 @@ const Login = () => {
         e.preventDefault();
         toast.warn('Please wait 🙏!');
         try {
-            await login({ email, password });
+            let loginRes = await login({ email, password });
             // If login succeeds, show a success toast
-            toast.success('Login successful!');
+            if (loginRes)
+                toast.success('Login successful!');
+            else {
+                toast.error('Login failed. Please check your credentials.');
+            }
         } catch (error) {
             // If login fails, show an error toast
             toast.error('Login failed. Please check your credentials.');
@@ -55,7 +59,7 @@ const Login = () => {
                 id="email"
                 type="email"
                 className="py-2 px-3 border rounded-md shadow-sm focus:outline-none focus:border-blue-500 dark:bg-gray-700 dark:text-white "
-                value={email}
+                value={email} required
                 onChange={(e) => setEmail(e.target.value)}
             />
         </div>
@@ -65,7 +69,7 @@ const Login = () => {
                 id="password"
                 type="password"
                 className="py-2 px-3 border rounded-md shadow-sm focus:outline-none focus:border-blue-500 dark:bg-gray-700 dark:text-white"
-                value={password}
+                value={password} required
                 onChange={(e) => setPassword(e.target.value)}
             />
         </div>

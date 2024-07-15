@@ -23,6 +23,7 @@ const AuthProvider = ({ children }) => {
                 navigate('/');
             } else {
                 console.error(data);
+                return false
             }
         } catch (error) {
             console.error(error);
@@ -45,6 +46,7 @@ const AuthProvider = ({ children }) => {
                 navigate('/');
             } else {
                 console.error(data);
+                return false;
             }
         } catch (error) {
             console.error(error);
@@ -65,13 +67,13 @@ const AuthProvider = ({ children }) => {
     }, []);
 
     const isAdmin = () => {
-        if (user && user.isAdmin === 'admin') {
-            console.log("UseAuth admin")
+        if (user && user.isAdmin) {
+            // console.log("UseAuth admin")
             return true;
         }
         else {
             console.log(user)
-            console.log("UseAuth not admin")
+            return false
         }
     };
     const isLoggedIn = () => !!user;
