@@ -36,19 +36,19 @@ const Home = () => {
                             <h2 className="text-xl font-semibold text-gray-800 mb-4">Categories</h2>
                             <ul>
                                 <li className="text-lg text-gray-700 mb-2">
-                                    <Link to="/practice/aptitude" className="hover:text-blue-600">Aptitude</Link>
+                                    <Link to="/questions" className="hover:text-blue-600">Aptitude</Link>
                                 </li>
                                 <li className="text-lg text-gray-700 mb-2">
-                                    <Link to="/practice/reasoning" className="hover:text-blue-600">Reasoning</Link>
+                                    <Link to="/questions" className="hover:text-blue-600">Reasoning</Link>
                                 </li>
                                 <li className="text-lg text-gray-700 mb-2">
-                                    <Link to="/practice/technical" className="hover:text-blue-600">Technical</Link>
+                                    <Link to="/questions" className="hover:text-blue-600">Technical</Link>
                                 </li>
                                 <li className="text-lg text-gray-700 mb-2">
-                                    <Link to="/practice/verbal" className="hover:text-blue-600">Verbal Ability</Link>
+                                    <Link to="/questions" className="hover:text-blue-600">Verbal Ability</Link>
                                 </li>
                                 <li className="text-lg text-gray-700 mb-2">
-                                    <Link to="/practice/general-awareness" className="hover:text-blue-600">General Awareness</Link>
+                                    <Link to="/questions" className="hover:text-blue-600">General Awareness</Link>
                                 </li>
                             </ul>
                         </div>
@@ -56,19 +56,19 @@ const Home = () => {
                             <h2 className="text-xl font-semibold text-gray-800 mb-4">Recent Exam Results</h2>
                             <ul>
                                 <li className="text-lg text-gray-700 mb-2">
-                                    <Link to="/results/1" className="hover:text-blue-600">Exam 1 - Aptitude</Link>
+                                    <Link to="/results" className="hover:text-blue-600">Exam 1 - Aptitude</Link>
                                 </li>
                                 <li className="text-lg text-gray-700 mb-2">
-                                    <Link to="/results/2" className="hover:text-blue-600">Exam 2 - Reasoning</Link>
+                                    <Link to="/results" className="hover:text-blue-600">Exam 2 - Reasoning</Link>
                                 </li>
                                 <li className="text-lg text-gray-700 mb-2">
-                                    <Link to="/results/3" className="hover:text-blue-600">Exam 3 - Technical</Link>
+                                    <Link to="/results" className="hover:text-blue-600">Exam 3 - Technical</Link>
                                 </li>
                                 <li className="text-lg text-gray-700 mb-2">
-                                    <Link to="/results/4" className="hover:text-blue-600">Exam 4 - Verbal Ability</Link>
+                                    <Link to="/results" className="hover:text-blue-600">Exam 4 - Verbal Ability</Link>
                                 </li>
                                 <li className="text-lg text-gray-700 mb-2">
-                                    <Link to="/results/5" className="hover:text-blue-600">Exam 5 - General Awareness</Link>
+                                    <Link to="/results" className="hover:text-blue-600">Exam 5 - General Awareness</Link>
                                 </li>
                             </ul>
                         </div>

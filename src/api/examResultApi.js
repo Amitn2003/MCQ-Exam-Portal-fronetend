@@ -1,4 +1,4 @@
-const API_URL = 'http://localhost:5000/api/examResults';
+const API_URL = 'https://mcq-portal-backend.onrender.com/api/examResults';
 
 export const addExamResult = async (resultData, token) => {
     console.log(resultData, token)

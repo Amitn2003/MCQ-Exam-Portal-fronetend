@@ -4,7 +4,7 @@ import './styles/tailwind.css'
 // import './app.css'
 import AddQuestion from './components/AddQuestion';
 // import GetQuestions from './components/GetQuestions';
-import GetQuestions from './components/GetQuestions';
+import GetQuestions from './pages/GetQuestions';
 // import Exam from './pages/Exam';
 import Register from './pages/Register';
 import Login from './pages/Login';

@@ -1,4 +1,4 @@
-const API_URL = 'http://localhost:5000/api/questions';
+const API_URL = 'https://mcq-portal-backend.onrender.com/api/questions';
 
 export const getQuestions = async (token, category = null, totalQs=10) => {
     let url = API_URL;
