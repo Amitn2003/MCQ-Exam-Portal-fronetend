@@ -2,6 +2,11 @@ import React, { useEffect, useState } from 'react';
 import { getUserExamResults } from '../api/examResultApi';
 import { useAuth } from '../hooks/useAuth';
 import { Link } from 'react-router-dom';
+import { toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
+
+
+
 
 const ExamResults = () => {
     const [results, setResults] = useState([]);
@@ -10,6 +15,7 @@ const ExamResults = () => {
     useEffect(() => {
         const fetchResults = async () => {
             try {
+                toast.warn('Wait! It could take few seconds');
                 const data = await getUserExamResults(user.token);
                 setResults(data);
             } catch (error) {

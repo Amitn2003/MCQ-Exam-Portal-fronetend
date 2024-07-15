@@ -14,7 +14,9 @@ const Navigation = () => {
         console.log(isLoggedIn())
         if (isLoggedIn()) {
             setUser(true)
+            console.log("user found")
             if (isAdmin()) {
+                console.log("is admin")
                 setAdmin(true)
             }
         }

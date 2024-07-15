@@ -3,6 +3,11 @@ import { getQuestionsByCategory } from '../api/questionApi';
 import { addExamResult } from '../api/examResultApi';
 import { useAuth } from '../hooks/useAuth';
 import { useNavigate } from 'react-router-dom';
+import { toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
+
+
+
 
 const GetQuestions = () => {
     const { user } = useAuth();
@@ -20,7 +25,8 @@ const GetQuestions = () => {
 
     useEffect(() => {
         const fetchQuestions = async () => {
-            if (selectedCategory) {
+            if (selectedCategory && examStarted) {
+                toast.success('Best of luck for your exam!');
                 try {
                     const data = await getQuestionsByCategory(selectedCategory, user.token, totalQuestions);
                     setQuestions(data);
@@ -32,10 +38,10 @@ const GetQuestions = () => {
             }
         };
 
-        if (selectedCategory) {
+        if (examStarted && selectedCategory) {
             fetchQuestions();
         }
-    }, [selectedCategory, user.token]);
+    }, [selectedCategory, user.token, examStarted]);
 
     const handleCategoryChange = (event) => {
         setSelectedCategory(event.target.value);
@@ -103,6 +109,7 @@ const GetQuestions = () => {
 
     const handleSubmitClick = () => {
         calculateScoreAndAccuracy();
+        toast.success('Hope your exam went well!');
     };
     const handleTotalQuestionsChange = (e) => {
         setTotalQuestions(parseInt(e.target.value, 10));

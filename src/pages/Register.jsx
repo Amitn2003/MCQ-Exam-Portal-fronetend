@@ -1,5 +1,8 @@
 import { useState } from 'react';
 import { useAuth } from '../hooks/useAuth';
+import { toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
+
 
 const Register = () => {
     const [name, setName] = useState('');
@@ -9,7 +12,15 @@ const Register = () => {
 
     const handleSubmit = async (e) => {
         e.preventDefault();
-        await register({ name, email, password });
+        toast.warn('Please wait 🙏!');
+        try {
+            await register({ name, email, password });
+            // If registration succeeds, show a success toast
+            toast.success('Registration successful!');
+        } catch (error) {
+            // If registration fails, show an error toast
+            toast.error('Registration failed. Please try again.');
+        }
     };
 
     // <div>
@@ -44,10 +55,10 @@ const Register = () => {
     // </div>
     return (
         <div className="p-6 max-w-md mx-auto bg-white dark:bg-gray-800 rounded-md shadow-md">
-    <h2 className="text-2xl font-bold mb-4">Register</h2>
+    <h2 className="text-2xl font-bold mb-4 dark:text-white">Register</h2>
     <form onSubmit={handleSubmit} className="space-y-4">
         <div className="flex flex-col">
-            <label htmlFor="name" className="mb-1 text-sm">Name</label>
+            <label htmlFor="name" className="mb-1 text-sm dark:text-white">Name</label>
             <input
                 id="name"
                 type="text"
@@ -57,7 +68,7 @@ const Register = () => {
             />
         </div>
         <div className="flex flex-col">
-            <label htmlFor="email" className="mb-1 text-sm">Email</label>
+            <label htmlFor="email" className="mb-1 text-sm dark:text-white">Email</label>
             <input
                 id="email"
                 type="email"
@@ -67,7 +78,7 @@ const Register = () => {
             />
         </div>
         <div className="flex flex-col">
-            <label htmlFor="password" className="mb-1 text-sm">Password</label>
+            <label htmlFor="password" className="mb-1 text-sm dark:text-white">Password</label>
             <input
                 id="password"
                 type="password"

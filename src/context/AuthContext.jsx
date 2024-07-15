@@ -64,7 +64,16 @@ const AuthProvider = ({ children }) => {
         }
     }, []);
 
-    const isAdmin = () => user && user.role === 'admin';
+    const isAdmin = () => {
+        if (user && user.isAdmin === 'admin') {
+            console.log("UseAuth admin")
+            return true;
+        }
+        else {
+            console.log(user)
+            console.log("UseAuth not admin")
+        }
+    };
     const isLoggedIn = () => !!user;
 
     return (
