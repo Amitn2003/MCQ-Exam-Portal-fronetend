@@ -1,12 +1,16 @@
 import React, { useEffect, useState } from 'react';
 import { getUserExamResults } from '../api/examResultApi';
+import { reportQuestion } from '../api/reportedQuestionApi';
 import { useAuth } from '../hooks/useAuth';
 import { useParams } from 'react-router-dom';
+import { toast } from 'react-toastify';
 
 const DetailedAnalysis = () => {
     const { resultId } = useParams();
     const [result, setResult] = useState(null);
     const { user } = useAuth();
+    const [reportReason, setReportReason] = useState('');
+    const [showReportInput, setShowReportInput] = useState(false);
 
     useEffect(() => {
         const fetchResult = async () => {
@@ -22,9 +26,35 @@ const DetailedAnalysis = () => {
         fetchResult();
     }, [resultId, user.token]);
 
+
+    const handleReportQuestion = async (questionId) => {
+        console.log(questionId)
+        if (!reportReason) {
+            toast.error('Please provide a reason for reporting the question');
+            return;
+        }
+
+        try {
+            await reportQuestion(questionId, reportReason, user.token);
+            toast.success('Question reported successfully');
+            setReportReason('');
+            setShowReportInput(false);
+        } catch (error) {
+            toast.error('Failed to report question');
+        }
+    };
+
+
+
+
+
+
+
     if (!result) {
         return <div>Loading...</div>;
     }
+
+
 
     // <div>
     //     <h2>Detailed Analysis</h2>
@@ -95,12 +125,12 @@ const DetailedAnalysis = () => {
             <p className="text-gray-600 dark:text-gray-300 mb-2">Score: {result.score}/{result.totalQuestions}</p>
             <p className="text-gray-600 dark:text-gray-300 mb-4">Accuracy:
                 {result.accuracy.toFixed(2)}%</p>
-                <div className="bg-gray-200 w-full h-8 rounded-lg overflow-hidden">
-                    <div className="bg-green-500 h-full text-center text-white font-bold" style={{ width: `${result.accuracy.toFixed(2)}%` }}>
-                        {result.accuracy.toFixed(2)}%
-                    </div>
+            <div className="bg-gray-200 w-full h-8 rounded-lg overflow-hidden">
+                <div className="bg-green-500 h-full text-center text-white font-bold" style={{ width: `${result.accuracy.toFixed(2)}%` }}>
+                    {result.accuracy.toFixed(2)}%
                 </div>
-                <br />
+            </div>
+            <br />
 
 
             <ul>
@@ -120,7 +150,25 @@ const DetailedAnalysis = () => {
                             {questionResult.question.explanation && (
                                 <p className="text-gray-600 dark:text-gray-300 mb-1">Explanation: {questionResult.question.explanation}</p>
                             )}
+                            {showReportInput ? (
+                                <div>
+                                    <input
+                                        type="text"
+                                        placeholder="Reason for reporting this question"
+                                        value={reportReason}
+                                        onChange={(e) => setReportReason(e.target.value)}
+                                    />
+                                    <button onClick={() => handleReportQuestion(questionResult.question._id)}>
+                                        Report Question
+                                    </button>
+                                </div>
+                            ) : (
+                                <button onClick={() => setShowReportInput(true)}>
+                                    Report Question
+                                </button>
+                            )}
                         </li>
+
                     );
                 })}
             </ul>

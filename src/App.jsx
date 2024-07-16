@@ -15,6 +15,7 @@ import AdminUsers from './pages/AdminUsers';
 import EditUser from './pages/EditUsers';
 import Dashboard from './pages/Dashboard';
 import Contact from './pages/Contact';
+import ReportedQuestions from './pages/ReportedQuestions';
 import { AuthProvider } from './context/AuthContext';
 import { ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
@@ -37,10 +38,11 @@ function App() {
             {/* <Route path="/exam" element={<Exam />} /> */}
             <Route path="/results" element={<ExamResults />} />
             <Route path="/results/:resultId" element={<DetailedAnalysis />} />
-            <Route path="/admin/users" element={<AdminUsers />} />
-            <Route path="/admin/users/:userId" element={<EditUser />} /> 
             <Route path="/dashboard" element={<Dashboard />} />
             <Route path="/contact" element={<Contact />} />
+            <Route path="/admin/users" element={<AdminUsers />} />
+            <Route path="/admin/users/:userId" element={<EditUser />} />  
+            <Route path="/admin/reported-questions" element={<ReportedQuestions />} />
             <Route path="*" element={<PageNotFound />} />
           </Routes>
         </AuthProvider>

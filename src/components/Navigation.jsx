@@ -130,6 +130,11 @@ const Navigation = () => {
                             Manage Users
                         </NavLink>
                     </li>
+                    <li>
+                            <NavLink to="/admin/reported-questions" className="text-gray-300 hover:text-white px-3 py-2 rounded-md">
+                                Reported Questions
+                            </NavLink>
+                        </li>
                 </>
             )}
             {!user && (
