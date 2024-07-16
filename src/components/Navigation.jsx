@@ -91,18 +91,89 @@ const Navigation = () => {
     //         )}
     //     </ul>
     // </div>
+    //     <div className="bg-gray-800 py-4">
+    //     <ul className="text-gray-300 flex space-x-4">
+    //         <li>
+    //             <NavLink to="/" className="text-gray-300 hover:text-white px-3 py-2 rounded-md">
+    //                 Home
+    //             </NavLink>
+    //         </li>
+    //         {user && (
+    //             <>
+    //                 <li>
+    //                     <NavLink to="/questions" className="text-gray-300 hover:text-white px-3 py-2 rounded-md">
+    //                         Start Exam
+    //                     </NavLink>
+    //                 </li>
+    //                 <li>
+    //                     <NavLink to="/results" className="text-gray-300 hover:text-white px-3 py-2 rounded-md">
+    //                         Exam Results
+    //                     </NavLink>
+    //                 </li>
+    //                 <li>
+    //                         <NavLink to="/dashboard" className="text-gray-300 hover:text-white px-3 py-2 rounded-md">
+    //                             Dashboard
+    //                         </NavLink>
+    //                     </li>
+    //             </>
+    //         )}
+    //         {user && admin && (
+    //             <>
+    //                 <li>
+    //                     <NavLink to="/add-question" className="text-gray-300 hover:text-white px-3 py-2 rounded-md">
+    //                         Add Question
+    //                     </NavLink>
+    //                 </li>
+    //                 <li>
+    //                     <NavLink to="/admin/users" className="text-gray-300 hover:text-white px-3 py-2 rounded-md">
+    //                         Manage Users
+    //                     </NavLink>
+    //                 </li>
+    //                 <li>
+    //                         <NavLink to="/admin/reported-questions" className="text-gray-300 hover:text-white px-3 py-2 rounded-md">
+    //                             Reported Questions
+    //                         </NavLink>
+    //                     </li>
+    //             </>
+    //         )}
+    //         {!user && (
+    //             <>
+    //                 <li>
+    //                     <NavLink to="/register" className="text-gray-300 hover:text-white px-3 py-2 rounded-md">
+    //                         Register
+    //                     </NavLink>
+    //                 </li>
+    //                 <li>
+    //                     <NavLink to="/login" className="text-gray-300 hover:text-white px-3 py-2 rounded-md">
+    //                         Login
+    //                     </NavLink>
+    //                 </li>
+    //             </>
+    //         )}
+    //         {user && (
+    //             <li>
+    //                 <button
+    //                     onClick={handleLogout}
+    //                     className="text-gray-300 hover:text-white px-3 py-2 rounded-md"
+    //                 >
+    //                     Logout
+    //                 </button>
+    //             </li>
+    //         )}
+    //     </ul>
+    // </div>
     return (
         <div className="bg-gray-800 py-4">
-        <ul className="text-gray-300 flex space-x-4">
-            <li>
+        <ul className="text-gray-300 flex space-x-4 justify-center">
+        {!user && (<li>
                 <NavLink to="/" className="text-gray-300 hover:text-white px-3 py-2 rounded-md">
                     Home
                 </NavLink>
-            </li>
+            </li>)}
             {user && (
                 <>
                     <li>
-                        <NavLink to="/questions" className="text-gray-300 hover:text-white px-3 py-2 rounded-md">
+                        <NavLink to="/questions" className="text-gray-300 hover:text-white px-3 py-2  rounded-md">
                             Start Exam
                         </NavLink>
                     </li>
@@ -112,13 +183,13 @@ const Navigation = () => {
                         </NavLink>
                     </li>
                     <li>
-                            <NavLink to="/dashboard" className="text-gray-300 hover:text-white px-3 py-2 rounded-md">
-                                Dashboard
-                            </NavLink>
-                        </li>
+                        <NavLink to="/dashboard" className="text-gray-300 hover:text-white px-3 py-2 rounded-md">
+                            Dashboard
+                        </NavLink>
+                    </li>
                 </>
             )}
-            {user && admin && (
+            {user && isAdmin && (
                 <>
                     <li>
                         <NavLink to="/add-question" className="text-gray-300 hover:text-white px-3 py-2 rounded-md">
@@ -131,10 +202,15 @@ const Navigation = () => {
                         </NavLink>
                     </li>
                     <li>
-                            <NavLink to="/admin/reported-questions" className="text-gray-300 hover:text-white px-3 py-2 rounded-md">
-                                Reported Questions
-                            </NavLink>
-                        </li>
+                        <NavLink to="/admin/reported-questions" className="text-gray-300 hover:text-white px-3 py-2 rounded-md">
+                            Reported Questions
+                        </NavLink>
+                    </li>
+                    {/* <li>
+                        <NavLink to="/admin/manage-questions" className="text-gray-300 hover:text-white px-3 py-2 rounded-md">
+                            Manage Questions
+                        </NavLink>
+                    </li> */}
                 </>
             )}
             {!user && (

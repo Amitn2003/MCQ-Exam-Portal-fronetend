@@ -158,12 +158,12 @@ const DetailedAnalysis = () => {
                                         value={reportReason}
                                         onChange={(e) => setReportReason(e.target.value)}
                                     />
-                                    <button onClick={() => handleReportQuestion(questionResult.question._id)}>
+                                    <button className='dark:text-white dark:bg-blue-600' onClick={() => handleReportQuestion(questionResult.question._id)}>
                                         Report Question
                                     </button>
                                 </div>
                             ) : (
-                                <button onClick={() => setShowReportInput(true)}>
+                                <button className='dark:text-white dark:bg-blue-500 p-1 rounded-lg' onClick={() => setShowReportInput(true)}>
                                     Report Question
                                 </button>
                             )}

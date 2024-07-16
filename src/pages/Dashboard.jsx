@@ -37,30 +37,9 @@ const Dashboard = () => {
   };
   return (
     <>
-     <div className="max-w-screen-lg mx-auto px-4 py-8">
-      <h2 className="text-3xl font-bold text-gray-800 mb-4">Exam Performance Analytics</h2>
-      <div className="bg-white rounded-lg shadow-md p-4 overflow-x-auto">
-        <div className="inline-block min-w-full">
-          <LineChart
-            width={600}
-            height={300}
-            data={analytics}
-            margin={{ top: 20, right: 20, left: 0, bottom: 5 }}
-          >
-            <CartesianGrid strokeDasharray="3 3" />
-            <XAxis dataKey="examDate" tickFormatter={formatDate} />
-            <YAxis />
-            <Tooltip />
-            <Legend />
-            <Line type="monotone" dataKey="scorePercentage" stroke="#8884d8" />
-          </LineChart>
-        </div>
-      </div>
-    </div>
-
-      <div className="max-w-screen-lg mx-auto px-4 py-8">
-        <h2 className="text-3xl font-bold text-gray-800 mb-4">Exam Performance Analytics</h2>
-        <div className="bg-white rounded-lg shadow-md p-4">
+      <div className="max-w-screen-lg mx-auto px-4 py-8 dark:bg-gray-800 dark:text-white">
+        <h2 className="text-3xl font-bold text-gray-800 mb-4 dark:text-white">Exam Performance Analytics</h2>
+        <div className="bg-white dark:bg-gray-800  rounded-lg shadow-md p-4">
           <div className="overflow-x-auto">
             <div className="inline-block min-w-full">
               <BarChart
@@ -81,6 +60,29 @@ const Dashboard = () => {
           </div>
         </div>
       </div>
+
+      <div className="max-w-screen-lg mx-auto px-4 py-8 dark:bg-slate-900">
+    <h2 className="text-3xl font-bold text-gray-800 dark:text-white mb-4">Exam Performance Analytics</h2>
+    <div className="bg-white dark:bg-gray-800 rounded-lg shadow-md p-4 overflow-x-auto">
+        <div className="inline-block min-w-full">
+            <LineChart
+                width={600}
+                height={300}
+                data={analytics}
+                margin={{ top: 20, right: 20, left: 0, bottom: 5 }}
+            >
+                <CartesianGrid strokeDasharray="3 3" stroke="#ccc" />
+                <XAxis dataKey="examDate" tickFormatter={formatDate} />
+                <YAxis />
+                <Tooltip />
+                <Legend />
+                <Line type="monotone" dataKey="scorePercentage" stroke="#8884d8" />
+            </LineChart>
+        </div>
+    </div>
+</div>
+
+      
 
 
     </>

@@ -16,6 +16,7 @@ export const getQuestions = async (token, category = null, totalQs=10) => {
             'Authorization': `Bearer ${token}`,
         },
     });
+    console.log(response)
 
     if (!response.ok) {
         throw new Error('Failed to fetch questions');
@@ -72,4 +73,46 @@ export const getQuestionsByCategory = async (selectedCategory,  token, totalQs =
         console.error('Failed to fetch questions by category:', error.message);
         throw error; // Re-throw the error to handle it further up the call stack if needed
     }
+};
+
+
+
+
+
+export const updateQuestion = async (questionId, questionData, token) => {
+    const response = await fetch(`${API_URL}/${questionId}`, {
+        method: 'PUT',
+        headers: {
+            'Content-Type': 'application/json',
+            'Authorization': `Bearer ${token}`,
+        },
+        body: JSON.stringify(questionData),
+    });
+
+    if (!response.ok) {
+        throw new Error('Failed to update question');
+    }
+
+    return await response.json();
+};
+
+
+
+
+
+
+export const deleteQuestion = async (questionId, token) => {
+    const response = await fetch(`${API_URL}/${questionId}`, {
+        method: 'DELETE',
+        headers: {
+            'Content-Type': 'application/json',
+            'Authorization': `Bearer ${token}`,
+        },
+    });
+
+    if (!response.ok) {
+        throw new Error('Failed to delete question');
+    }
+
+    return await response.json();
 };
