@@ -260,7 +260,7 @@ const Home = () => {
                         <h1 className="text-4xl font-bold text-center dark:text-white ">Campus Placement Exam Practice</h1>
                         <p className="mt-4 text-lg text-center dark:text-white">Prepare for your dream job with our curated MCQ practice tests.</p>
                     </header>
-                    <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 ">
+                    <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 mb-10">
                         <div className="bg-white rounded-lg shadow-md p-6">
                             <h2 className="text-xl font-semibold mb-4">Categories</h2>
                             <ul>

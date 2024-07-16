@@ -14,6 +14,7 @@ import Navigation from './components/Navigation';
 import { AuthProvider } from './context/AuthContext';
 import { ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
+import PageNotFound from './pages/PageNotFound';
 
 function App() {
 
@@ -32,6 +33,8 @@ function App() {
             {/* <Route path="/exam" element={<Exam />} /> */}
             <Route path="/results" element={<ExamResults />} />
             <Route path="/results/:resultId" element={<DetailedAnalysis />} />
+            <Route path="*" element={<PageNotFound />}
+                />
           </Routes>
         </AuthProvider>
       </BrowserRouter>

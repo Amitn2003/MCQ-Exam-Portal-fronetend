@@ -28,6 +28,7 @@ const Navigation = () => {
         setUser(false);
         setAdmin(false);
         navigate('/'); // Redirect to Home ("/")
+        toast.success('Logout successful!');
     };
     
     return (
