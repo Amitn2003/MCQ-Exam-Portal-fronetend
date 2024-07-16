@@ -11,6 +11,8 @@ import Login from './pages/Login';
 import ExamResults from './pages/ExamResults';
 import DetailedAnalysis from './pages/DetailedAnalysis';
 import Navigation from './components/Navigation';
+import AdminUsers from './pages/AdminUsers';
+import EditUser from './pages/EditUsers';
 import { AuthProvider } from './context/AuthContext';
 import { ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
@@ -33,8 +35,9 @@ function App() {
             {/* <Route path="/exam" element={<Exam />} /> */}
             <Route path="/results" element={<ExamResults />} />
             <Route path="/results/:resultId" element={<DetailedAnalysis />} />
-            <Route path="*" element={<PageNotFound />}
-                />
+            <Route path="/admin/users" element={<AdminUsers />} />
+            <Route path="/admin/users/:userId" element={<EditUser />} />
+            <Route path="*" element={<PageNotFound />} />
           </Routes>
         </AuthProvider>
       </BrowserRouter>
