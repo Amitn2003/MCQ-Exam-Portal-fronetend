@@ -2,6 +2,11 @@ import React, { useEffect, useState } from 'react';
 import { getUsers, deleteUser } from '../api/userApi';
 import { useAuth } from '../hooks/useAuth';
 import { Link, useNavigate } from 'react-router-dom';
+import { toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
+
+
+
 
 const AdminUsers = () => {
     const [users, setUsers] = useState([]);
@@ -10,7 +15,8 @@ const AdminUsers = () => {
 
     useEffect(() => {
         const fetchUsers = async () => {
-            try {
+            try {              
+                toast.warn('Wait! It could take few seconds');
                 const data = await getUsers(user.token);
                 setUsers(data);
             } catch (error) {

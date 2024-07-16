@@ -1,8 +1,7 @@
 import React from 'react'
 
 const Contact = () => {
-    const phoneNumber = '918910856469'; // Replace with your WhatsApp number
-
+    const phoneNumber = '918910856469'; 
     const openWhatsAppChat = () => {
       const whatsappURL = `https://wa.me/${phoneNumber}`;
       window.open(whatsappURL, '_blank');

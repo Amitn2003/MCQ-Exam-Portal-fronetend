@@ -7,7 +7,6 @@ import 'react-toastify/dist/ReactToastify.css';
 
 
 
-
 const ExamResults = () => {
     const [results, setResults] = useState([]);
     const { user } = useAuth();
