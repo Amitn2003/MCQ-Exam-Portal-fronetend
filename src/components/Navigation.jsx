@@ -111,6 +111,11 @@ const Navigation = () => {
                             Exam Results
                         </NavLink>
                     </li>
+                    <li>
+                            <NavLink to="/dashboard" className="text-gray-300 hover:text-white px-3 py-2 rounded-md">
+                                Dashboard
+                            </NavLink>
+                        </li>
                 </>
             )}
             {user && admin && (

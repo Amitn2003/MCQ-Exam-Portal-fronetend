@@ -453,10 +453,10 @@ const Home = () => {
         </div>
         <footer className="bg-gray-800 text-white py-6">
             <div className="max-w-4xl mx-auto px-4 flex justify-between items-center">
-                <p className="text-sm">&copy; <i>Made by</i> Amit. All rights reserved.</p>
+                <p className="text-sm">&copy; <i>Made by</i> Amit 😁. All rights reserved.</p>
                 <div>
                     <a href="/" className="px-3 py-1 text-gray-300 hover:text-white">About Us</a>
-                    <a href="/" className="px-3 py-1 text-gray-300 hover:text-white">Contact</a>
+                    <a href="/contact" className="px-3 py-1 text-gray-300 hover:text-white">Contact</a>
                     <a href="/" className="px-3 py-1 text-gray-300 hover:text-white">Privacy Policy</a>
                 </div>
             </div>

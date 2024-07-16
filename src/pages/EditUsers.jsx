@@ -37,36 +37,48 @@ const EditUser = () => {
     };
 
     return (
-        <div>
-            <h2>Edit User</h2>
-            <form onSubmit={handleSubmit}>
-                <div>
-                    <label>Name</label>
-                    <input
-                        type="text"
-                        value={name}
-                        onChange={(e) => setName(e.target.value)}
-                    />
-                </div>
-                <div>
-                    <label>Email</label>
-                    <input
-                        type="email"
-                        value={email}
-                        onChange={(e) => setEmail(e.target.value)}
-                    />
-                </div>
-                <div>
-                    <label>Admin</label>
-                    <input
-                        type="checkbox"
-                        checked={isAdmin}
-                        onChange={(e) => setIsAdmin(e.target.checked)}
-                    />
-                </div>
-                <button type="submit">Update User</button>
-            </form>
+        <div className="max-w-md mx-auto bg-white shadow-md rounded-lg overflow-hidden">
+      <h2 className="text-2xl font-bold text-gray-800 p-4 bg-gray-200">Edit User</h2>
+      <form className="p-4" onSubmit={handleSubmit}>
+        <div className="mb-4">
+          <label className="block text-gray-700 font-bold mb-2">Name</label>
+          <input
+            type="text"
+            value={name}
+            onChange={(e) => setName(e.target.value)}
+            className="block w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:border-blue-500"
+            required
+          />
         </div>
+        <div className="mb-4">
+          <label className="block text-gray-700 font-bold mb-2">Email</label>
+          <input
+            type="email"
+            value={email}
+            onChange={(e) => setEmail(e.target.value)}
+            className="block w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:border-blue-500"
+            required
+          />
+        </div>
+        <div className="mb-4">
+          <label className="block text-gray-700 font-bold mb-2">
+            <input
+              type="checkbox"
+              checked={isAdmin}
+              onChange={(e) => setIsAdmin(e.target.checked)}
+              className="mr-2 leading-tight"
+            />
+            Admin
+          </label>
+        </div>
+        <button
+          type="submit"
+          className="w-full bg-blue-500 hover:bg-blue-600 text-white font-bold py-2 px-4 rounded-md focus:outline-none focus:shadow-outline"
+        >
+          Update User
+        </button>
+      </form>
+    </div>
     );
 };
 

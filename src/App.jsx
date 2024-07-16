@@ -13,6 +13,8 @@ import DetailedAnalysis from './pages/DetailedAnalysis';
 import Navigation from './components/Navigation';
 import AdminUsers from './pages/AdminUsers';
 import EditUser from './pages/EditUsers';
+import Dashboard from './pages/Dashboard';
+import Contact from './pages/Contact';
 import { AuthProvider } from './context/AuthContext';
 import { ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
@@ -36,7 +38,9 @@ function App() {
             <Route path="/results" element={<ExamResults />} />
             <Route path="/results/:resultId" element={<DetailedAnalysis />} />
             <Route path="/admin/users" element={<AdminUsers />} />
-            <Route path="/admin/users/:userId" element={<EditUser />} />
+            <Route path="/admin/users/:userId" element={<EditUser />} /> 
+            <Route path="/dashboard" element={<Dashboard />} />
+            <Route path="/contact" element={<Contact />} />
             <Route path="*" element={<PageNotFound />} />
           </Routes>
         </AuthProvider>
