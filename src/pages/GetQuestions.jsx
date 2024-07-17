@@ -192,6 +192,7 @@ const GetQuestions = () => {
                             <option value="Aptitude">Aptitude</option>
                             <option value="Reasoning">Reasoning</option>
                             <option value="Campus Placement">Campus Placement</option>
+                            <option value="JECA">JECA Exam</option>
                         </select>
                     </div>
 
