@@ -9,7 +9,7 @@ const Home = () => {
     const [admin, setAdmin] = useState(false)
     useEffect(() => {
         const logInInfo = () => {
-            console.log(isLoggedIn())
+            // console.log(isLoggedIn())
             if (isLoggedIn()) {
                 setUser(true)
             }

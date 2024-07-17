@@ -13,6 +13,7 @@ const Login = () => {
     const handleSubmit = async (e) => {
         e.preventDefault();
         toast.warn('Please wait 🙏!');
+        toast.warn('It takes a few seconds 🙏!');
         try {
             let loginRes = await login({ email, password });
             // If login succeeds, show a success toast
@@ -21,6 +22,7 @@ const Login = () => {
             else {
                 toast.error('Login failed. Please check your credentials.');
             }
+            // toast.success(loginRes.message)
         } catch (error) {
             // If login fails, show an error toast
             toast.error('Login failed. Please check your credentials.');

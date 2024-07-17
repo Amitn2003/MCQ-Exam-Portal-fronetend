@@ -17,6 +17,7 @@ import Dashboard from './pages/Dashboard';
 import Contact from './pages/Contact';
 import ManageQuestions from './pages/ManageQuestions';
 import ReportedQuestions from './pages/ReportedQuestions';
+import Profile from './pages/Profile';
 import { AuthProvider } from './context/AuthContext';
 import { ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
@@ -41,6 +42,7 @@ function App() {
             <Route path="/results/:resultId" element={<DetailedAnalysis />} />
             <Route path="/dashboard" element={<Dashboard />} />
             <Route path="/contact" element={<Contact />} />
+            <Route path="/profile" element={<Profile />} />
             <Route path="/admin/users" element={<AdminUsers />} />
             <Route path="/admin/users/:userId" element={<EditUser />} />  
             <Route path="/admin/reported-questions" element={<ReportedQuestions />} />
