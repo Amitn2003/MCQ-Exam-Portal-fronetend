@@ -168,7 +168,7 @@ const GetQuestions = () => {
                         <select
                             id="totalQuestions"
                             name="totalQuestions"
-                            className="block w-full py-2 px-3 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm"
+                            className="block w-full py-2 px-3 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm text-black dark:text-gray-900"
                             value={totalQuestions}
                             onChange={handleTotalQuestionsChange}
                         >
@@ -184,7 +184,7 @@ const GetQuestions = () => {
                         <label htmlFor="category" className="block text-lg font-semibold text-gray-700 dark:text-white mb-2">Choose Exam Category:</label>
                         <select
                             id="category"
-                            className="block w-full py-2 px-3 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm"
+                            className="block w-full py-2 px-3 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm text-black dark:text-gray-900"
                             value={selectedCategory}
                             onChange={handleCategoryChange}
                         >
@@ -228,7 +228,7 @@ const GetQuestions = () => {
                                                 <label className="flex items-center ">
                                                     <input
                                                         type="radio"
-                                                        className="form-radio h-5 w-5 text-indigo-600"
+                                                        className="form-radio h-5 w-5 text-indigo-600 "
                                                         name={`question-${currentQuestionIndex}`}
                                                         value={optionIndex}
                                                         checked={userAnswers[currentQuestionIndex] === optionIndex}

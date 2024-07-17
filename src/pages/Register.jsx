@@ -25,38 +25,8 @@ const Register = () => {
         }
     };
 
-    // <div>
-    //     <h2>Register</h2>
-    //     <form onSubmit={handleSubmit}>
-    //         <div>
-    //             <label>Name</label>
-    //             <input
-    //                 type="text"
-    //                 value={name}
-    //                 onChange={(e) => setName(e.target.value)}
-    //             />
-    //         </div>
-    //         <div>
-    //             <label>Email</label>
-    //             <input
-    //                 type="email"
-    //                 value={email}
-    //                 onChange={(e) => setEmail(e.target.value)}
-    //             />
-    //         </div>
-    //         <div>
-    //             <label>Password</label>
-    //             <input
-    //                 type="password"
-    //                 value={password}
-    //                 onChange={(e) => setPassword(e.target.value)}
-    //             />
-    //         </div>
-    //         <button type="submit">Register</button>
-    //     </form>
-    // </div>
     return (
-        <div className="p-6 max-w-md mx-auto bg-white dark:bg-gray-800 rounded-md shadow-md">
+        <div className="p-6 max-w-md mx-auto bg-white text-black dark:bg-gray-800 rounded-md shadow-md">
     <h2 className="text-2xl font-bold mb-4 dark:text-white">Register</h2>
     <form onSubmit={handleSubmit} className="space-y-4">
         <div className="flex flex-col">

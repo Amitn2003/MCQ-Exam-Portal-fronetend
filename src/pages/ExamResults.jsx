@@ -25,25 +25,8 @@ const ExamResults = () => {
         fetchResults();
     }, [user.token]);
 
-    // <div>
-    //     <h2>Your Exam Results</h2>
-    //     {results.length === 0 ? (
-    //         <p>No exam results available.</p>
-    //     ) : (
-    //         <ul>
-    //             {results.map((result) => (
-    //                 <li key={result._id}>
-    //                     <h3>Exam taken on {new Date(result.createdAt).toLocaleDateString()}</h3>
-    //                     <p>Score: {result.score}/{result.totalQuestions}</p>
-    //                     <p>Accuracy: {result.accuracy.toFixed(2)}%</p>
-    //                     <Link to={`/results/${result._id}`}>View Detailed Analysis</Link>
-    //                 </li>
-    //             ))}
-    //         </ul>
-    //     )}
-    // </div>
     return (
-        <div className="bg-white dark:bg-gray-800 shadow-md rounded-md p-6">
+        <div className="bg-white text-black dark:bg-gray-800 shadow-md rounded-md p-6">
             <h2 className="text-2xl font-bold mb-4 dark:text-white">Your Exam Results</h2>
             {results.length === 0 ? (
                 <p className="text-gray-600 dark:text-white">No exam results available.</p>
