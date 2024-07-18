@@ -32,9 +32,9 @@ const Profile = () => {
 
   return (
     <>
-    <div className='dark:bg-slate-800 dark:text-white '>
+    <div className=' text-white bg-white dark:bg-slate-800 dark:text-white '>
 
-    <h2 className="text-2xl font-bold text-gray-800 dark:text-white mb-4">
+    <h2 className="text-2xl font-bold  text-gray-800 dark:text-white mb-4">
         User Profile
     </h2>
 
@@ -46,9 +46,14 @@ const Profile = () => {
         Email: {user.email}
     </p>
 
-
-    This website is in beta version. 
+    <p className="text-lg text-gray-600 dark:text-gray-300 mb-8">
+      This website is in beta version. 
+    </p>
+    
     <br />
+    <p className="text-lg text-gray-600 dark:text-gray-300 mb-8">
+    Suggest some features & improvements and give your honest feedback to me...
+    </p> 
 
     <button
       className="bg-green-500 hover:bg-green-600 text-white font-bold py-2 px-4 rounded-full shadow-md"

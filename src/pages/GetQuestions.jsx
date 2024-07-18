@@ -5,7 +5,8 @@ import { useAuth } from '../hooks/useAuth';
 import { useNavigate } from 'react-router-dom';
 import { toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
-
+import Skeleton from 'react-loading-skeleton';
+import 'react-loading-skeleton/dist/skeleton.css'
 
 
 
@@ -23,6 +24,9 @@ const GetQuestions = () => {
     const [accuracy, setAccuracy] = useState(0);
     const [examStarted, setExamStarted] = useState(false);
     const [timeLeft, setTimeLeft] = useState(100);
+    const [loading, setLoading] = useState(true)
+
+
 
     useEffect(() => {
         const fetchQuestions = async () => {
@@ -33,10 +37,12 @@ const GetQuestions = () => {
                     setQuestions(data);
                     setUserAnswers(new Array(data.length).fill(null));
                     setExamStarted(true); // Start the exam once questions are fetched
+                    setLoading(false);
                     setTimeLeft(totalQuestions * 2 * 60); // Set timer (in seconds)
                 } catch (error) {
                     console.error('Failed to fetch questions by category:', error.message);
                     toast.warn("Something went wrong!")
+                    setLoading(false);
                 }
             }
         };
@@ -207,8 +213,19 @@ const GetQuestions = () => {
             ) : (
                 <div className="max-w-lg mx-auto bg-white text-white dark:bg-gray-700 p-6 rounded-lg shadow-md">
                     <h2 className="text-2xl font-bold mb-4 text-gray-900 dark:text-gray-100">Exam Questions</h2>
-                    {questions.length === 0 ? (
-                        <p className="text-red-500">No questions available.</p>
+                    {questions.length === 0 ? (<>
+                        { loading && <>
+                        <div  className="py-4">
+                            <Skeleton height={40}  />
+                            <Skeleton height={10} width={200}  style={{ marginTop: '8px' }} />
+                            <Skeleton height={10} width={150} style={{ marginTop: '4px' }} />
+                            <Skeleton height={10} width={150} style={{ marginTop: '4px' }} />
+                            <Skeleton height={10} width={150} style={{ marginTop: '4px' }} />
+                        </div>
+                            <Skeleton height={10} width={40} style={{ marginTop: '4px' }} />
+                        </>
+                    }
+                    </>
                     ) : (
                         <div>
                             {!showReport ? (
@@ -243,7 +260,7 @@ const GetQuestions = () => {
                                     <div className="mt-4">
                                         {currentQuestionIndex < questions.length - 1 ? (
                                             <button
-                                                className="bg-blue-500 hover:bg-blue-600 text-white py-2 px-4 rounded-md mr-2"
+                                                className="bg-blue-500 hover:bg-blue-600 text-white py-2 px-4 rounded-md mr-2 "
                                                 onClick={handleNextClick}
                                             >
                                                 Next

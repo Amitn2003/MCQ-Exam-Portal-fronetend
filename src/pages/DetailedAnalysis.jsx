@@ -89,7 +89,7 @@ const DetailedAnalysis = () => {
                             {questionResult.question.explanation && (
                                 <p className="text-gray-600 dark:text-gray-300 mb-1">Explanation: {questionResult.question.explanation}</p>
                             )}
-                                                         {activeReportIndex === index ? (
+                            {activeReportIndex === index ? (
                                 <div className="flex flex-col space-y-4">
                                     <input
                                         type="text"
@@ -103,7 +103,7 @@ const DetailedAnalysis = () => {
                                     </button>
                                 </div>
                             ) : (
-                                <button className='bg-blue-500 text-white px-4 py-2 rounded-lg hover:bg-blue-600 transition' onClick={() => setActiveReportIndex(index)}>
+                                <button className=' text-blue-500 border border-blue-400 px-4 py-1 rounded-lg hover:bg-blue-600 hover:text-white transition' onClick={() => setActiveReportIndex(index)}>
                                     Report Question
                                 </button>
                             )}
@@ -111,8 +111,7 @@ const DetailedAnalysis = () => {
                     );
                 })}
 
-                    );
-                })}
+
             </ul>
         </div>
     );
