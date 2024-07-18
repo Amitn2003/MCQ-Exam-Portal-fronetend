@@ -2,11 +2,16 @@ import React, { useEffect, useState } from 'react';
 import { getReportedQuestions, updateReportedQuestion , deleteReportedQuestion } from '../api/reportedQuestionApi';
 import { useAuth } from '../hooks/useAuth';
 import { toast } from 'react-toastify';
+import Skeleton from 'react-loading-skeleton';
+import 'react-loading-skeleton/dist/skeleton.css'
+
+
 
 const ReportedQuestions = () => {
     const { user } = useAuth();
     const [reportedQuestions, setReportedQuestions] = useState([]);
     const [editingQuestion, setEditingQuestion] = useState(null);
+    const [loading , setLoading] = useState(true)
 
     useEffect(() => {
         const fetchReportedQuestions = async () => {
@@ -14,8 +19,10 @@ const ReportedQuestions = () => {
             try {
                 const data = await getReportedQuestions(user.token);
                 setReportedQuestions(data);
+                setLoading(false);
             } catch (error) {
                 toast.error('Failed to fetch reported questions');
+                setLoading(false);
             }
         };
 
@@ -209,7 +216,22 @@ const ReportedQuestions = () => {
     return (
         <div className="p-4 bg-white dark:bg-gray-800 shadow-md rounded-lg">
         <h2 className="text-xl font-bold mb-4 text-gray-800 dark:text-white">Reported Questions</h2>
-        {reportedQuestions.length === 0 ? (
+        {
+            loading ? (
+                <ul className="divide-y divide-gray-300 dark:divide-gray-600">
+                    {/* Render 5 skeleton items */}
+                    {[1, 2, 3, 4, 5 ,6].map((index) => (
+                        <li key={index} className="py-4">
+                            <Skeleton height={30}  />
+                            <Skeleton height={10} width={200}  style={{ marginTop: '8px' }} />
+                            <Skeleton height={10} width={150} style={{ marginTop: '4px' }} />
+                            <Skeleton height={10} width={150} style={{ marginTop: '4px' }} />
+                        </li>
+                    ))}
+                </ul>
+            ) :
+        
+        reportedQuestions.length === 0 ? (
             <p className="text-gray-600 dark:text-gray-400">No reported questions</p>
         ) : (
             <ul className="divide-y divide-gray-300 dark:divide-gray-700">

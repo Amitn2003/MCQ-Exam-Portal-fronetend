@@ -239,6 +239,7 @@ const GetQuestions = () => {
                                         </div>
                                         <p className="text-gray-600 dark:text-white">{questions[currentQuestionIndex].question}</p>
                                         <p className="text-sm text-gray-400 dark:text-gray-200">Category: {questions[currentQuestionIndex].category}</p>
+                                        {questions[currentQuestionIndex].subcategory }
                                     </div>
                                     <ul>
                                         {questions[currentQuestionIndex].options.map((option, optionIndex) => (

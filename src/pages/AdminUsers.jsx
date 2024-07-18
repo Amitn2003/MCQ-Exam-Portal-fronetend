@@ -4,6 +4,8 @@ import { useAuth } from '../hooks/useAuth';
 import { Link, useNavigate } from 'react-router-dom';
 import { toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
+import Skeleton from 'react-loading-skeleton';
+import 'react-loading-skeleton/dist/skeleton.css'
 
 
 
@@ -12,6 +14,7 @@ const AdminUsers = () => {
     const [users, setUsers] = useState([]);
     const { user } = useAuth();
     const navigate = useNavigate();
+    const [loading , setLoading] = useState(true)
 
     useEffect(() => {
         const fetchUsers = async () => {
@@ -19,8 +22,10 @@ const AdminUsers = () => {
                 toast.warn('Wait! It could take few seconds');
                 const data = await getUsers(user.token);
                 setUsers(data);
+                setLoading(false);
             } catch (error) {
                 console.error('Failed to fetch users');
+                setLoading(false);
             }
         };
 
@@ -86,7 +91,21 @@ const AdminUsers = () => {
     return (
       <div className="max-w-screen-lg mx-auto px-4 py-8 bg-white dark:bg-gray-800 dark:text-white">
     <h2 className="text-3xl font-bold text-black dark:text-gray-200 mb-4">Admin - Manage Users</h2>
-    {users.length === 0 ? (
+    {
+        loading ? (
+            <ul className="divide-y divide-gray-300 dark:divide-gray-600">
+                {/* Render 5 skeleton items */}
+                {[1, 2, 3, 4, 5 ,6].map((index) => (
+                    <li key={index} className="py-4">
+                        <Skeleton height={30}  />
+                        <Skeleton height={10} width={200}  style={{ marginTop: '6px' }} />
+                        <Skeleton height={10} width={150} style={{ marginTop: '4px' }} />
+                    </li>
+                ))}
+            </ul>
+        ) :
+        
+    users.length === 0 ? (
         <p className="text-gray-800 dark:text-gray-400">No users available.</p>
     ) : (
         <ul className="divide-y divide-gray-600 dark:divide-gray-700">

@@ -5,6 +5,7 @@ import { useEffect, useState } from 'react';
 import { toast } from 'react-toastify';
 import { Disclosure, DisclosureButton, DisclosurePanel, Menu, MenuButton, MenuItem, MenuItems } from '@headlessui/react'
 import { Bars3Icon, BellIcon, XMarkIcon } from '@heroicons/react/24/outline'
+// import '../../public/logo.png'
 
 const navigation = [
     { name: 'Home', href: '/', current: false },
@@ -78,10 +79,12 @@ const Navigation = () => {
           <div className="flex flex-1 items-center justify-center sm:items-stretch sm:justify-start">
             <div className="flex flex-shrink-0 items-center">
               <img
-                alt="Your Company"
-                src="https://tailwindui.com/img/logos/mark.svg?color=indigo&shade=500"
-                className="h-8 w-auto" 
+                alt="XaMawo"
+                src="logo2.png"
+                className="h-16 w-16 m-4 my-2 rounded-3xl" 
               />
+              {/* <img src="logo.png" alt="" srcset="" /> */}
+              <h2 className='m-4 text-2xl tracking-wider'><NavLink to='/'>XaMawo</NavLink></h2>
             </div>
             <div className="hidden sm:ml-6 sm:block">
               <div className="flex space-x-4">

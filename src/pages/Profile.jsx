@@ -9,6 +9,7 @@ const Profile = () => {
     const { user } = useAuth();
 
 
+
     useEffect(() => {
         const fetchUser = async () => {
             try {
@@ -37,9 +38,14 @@ const Profile = () => {
     <h2 className="text-2xl font-bold  text-gray-800 dark:text-white mb-4">
         User Profile
     </h2>
+    <img
+                    alt={user.name}
+                    src={`https://ui-avatars.com/api/?name=${user.name}&background=random&rounded=true&size=500`}
+                    className="h-10 w-12 m-4 rounded-full"
+                  />
 
     <p className="text-lg text-gray-600 dark:text-gray-300 mb-2">
-        Welcome back {user.name}
+        Welcome back to XaMawo : {user.name}. 😊
     </p>
 
     <p className="text-lg text-gray-600 dark:text-gray-300 mb-8">
