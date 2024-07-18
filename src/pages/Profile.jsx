@@ -32,7 +32,7 @@ const Profile = () => {
 
   return (
     <>
-    <div className=' text-white bg-white dark:bg-slate-800 dark:text-white '>
+    <div className=' p-24 text-white bg-white dark:bg-slate-800 dark:text-white '>
 
     <h2 className="text-2xl font-bold  text-gray-800 dark:text-white mb-4">
         User Profile
@@ -45,6 +45,16 @@ const Profile = () => {
     <p className="text-lg text-gray-600 dark:text-gray-300 mb-8">
         Email: {user.email}
     </p>
+
+    {
+      user && user.address && <p  className="text-lg text-gray-600 dark:text-gray-300 mb-8">{user.address}</p>
+    }
+    {
+      user && user.college && <p  className="text-lg text-gray-600 dark:text-gray-300 mb-8">{user.college}</p>
+    }
+    {
+      user && user.phone && <p  className="text-lg text-gray-600 dark:text-gray-300 mb-8">{user.phone}</p>
+    }
 
     <p className="text-lg text-gray-600 dark:text-gray-300 mb-8">
       This website is in beta version. 

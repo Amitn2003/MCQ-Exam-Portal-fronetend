@@ -7,7 +7,10 @@ import 'react-toastify/dist/ReactToastify.css';
 const Register = () => {
     const [name, setName] = useState('');
     const [email, setEmail] = useState('');
+    const [address, setAddress] = useState('');
     const [password, setPassword] = useState('');
+    const [college, setCollege] = useState('');
+    const [phone, setPhone] = useState('');
     const { register } = useAuth();
 
     const handleSubmit = async (e) => {
@@ -94,6 +97,33 @@ const Register = () => {
                         value={email}
                         required
                         onChange={(e) => setEmail(e.target.value)}
+                    />
+                    <input
+                        className="p-2 rounded-xl border w-full text-black"
+                        id="address"
+                        type="text"
+                        name="address"
+                        placeholder="Address (Optional)"
+                        value={address}
+                        onChange={(e) => setAddress(e.target.value)}
+                    />
+                    <input
+                        className="p-2 rounded-xl border w-full text-black"
+                        id="college"
+                        type="text"
+                        name="college"
+                        placeholder="College (Optional)"
+                        value={college}
+                        onChange={(e) => setCollege(e.target.value)}
+                    />
+                    <input
+                        className="p-2 rounded-xl border w-full text-black"
+                        id="phone"
+                        type="number"
+                        name="phone"
+                        placeholder="Phone (Optional)"
+                        value={phone}
+                        onChange={(e) => setPhone(e.target.value)}
                     />
                     <div className="relative">
                         <input

@@ -39,7 +39,7 @@ const AuthProvider = ({ children }) => {
                 },
                 body: JSON.stringify(userData),
             });
-            const data = await response.json();
+            const data = await response.json(); 
             if (response.ok) {
                 setUser(data);
                 localStorage.setItem('user', JSON.stringify(data));
