@@ -5,7 +5,7 @@ import { useEffect, useState } from 'react';
 import { toast } from 'react-toastify';
 import { Disclosure, DisclosureButton, DisclosurePanel, Menu, MenuButton, MenuItem, MenuItems } from '@headlessui/react'
 import { Bars3Icon, BellIcon, XMarkIcon } from '@heroicons/react/24/outline'
-// import '../../public/logo.png'
+import logo from "../assets/logo2.png" 
 
 const navigation = [
     { name: 'Home', href: '/', current: false },
@@ -80,7 +80,7 @@ const Navigation = () => {
             <div className="flex flex-shrink-0 items-center">
               <img
                 alt="XaMawo"
-                src="logo2.png"
+                src={logo}
                 className="h-16 w-16 m-4 my-2 rounded-3xl" 
               />
               {/* <img src="logo.png" alt="" srcset="" /> */}
