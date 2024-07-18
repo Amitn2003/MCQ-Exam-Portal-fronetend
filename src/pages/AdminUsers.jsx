@@ -84,28 +84,28 @@ const AdminUsers = () => {
     //     )}
     //   </div>
     return (
-      <div className="max-w-screen-lg mx-auto px-4 py-8 dark:bg-gray-800 dark:text-white">
-    <h2 className="text-3xl font-bold text-gray-800 dark:text-gray-200 mb-4">Admin - Manage Users</h2>
+      <div className="max-w-screen-lg mx-auto px-4 py-8 bg-white dark:bg-gray-800 dark:text-white">
+    <h2 className="text-3xl font-bold text-black dark:text-gray-200 mb-4">Admin - Manage Users</h2>
     {users.length === 0 ? (
-        <p className="text-gray-600 dark:text-gray-400">No users available.</p>
+        <p className="text-gray-800 dark:text-gray-400">No users available.</p>
     ) : (
         <ul className="divide-y divide-gray-600 dark:divide-gray-700">
             {users.map((user) => (
-                <li key={user._id} className="py-4 flex flex-col sm:flex-row items-center justify-between">
+                <li key={user._id} className="py-4 px-2 flex flex-col sm:flex-row items-center justify-between">
                     <div className="flex-1 mb-2 sm:mb-0">
-                        <p className="text-lg text-gray-800 dark:text-white">{user.name}</p>
-                        <p className="text-sm text-gray-600 dark:text-gray-400">{user.email} - {user.isAdmin ? 'Admin' : 'User'}</p>
+                        <p className="text-lg text-gray-900 dark:text-white">{user.name}</p>
+                        <p className="text-sm text-gray-800 dark:text-gray-400">{user.email} - {user.isAdmin ? 'Admin' : 'User'}</p>
                     </div>
                     <div className="flex items-center sm:space-x-4">
                         <Link
                             to={`/admin/users/${user._id}`}
-                            className="text-blue-500 hover:text-blue-600 dark:text-blue-300 dark:hover:text-blue-400 mr-4"
+                            className="inline-block px-4 py-2 leading-none border rounded text-blue-500 border-blue-500 hover:border-transparent hover:text-white hover:bg-blue-500 dark:text-blue-300 dark:border-blue-300 dark:hover:bg-blue-400 dark:hover:text-white mr-4"
                         >
                             Edit
                         </Link>
                         <button
                             onClick={() => handleDelete(user._id)}
-                            className="text-red-500 hover:text-red-600 dark:text-red-300 dark:hover:text-red-400"
+                            className="inline-block px-4 py-2 leading-none border rounded text-red-500 border-red-500 hover:border-transparent hover:text-white hover:bg-red-500 dark:text-red-300 dark:border-red-300 dark:hover:bg-red-400 dark:hover:text-white"
                         >
                             Delete
                         </button>

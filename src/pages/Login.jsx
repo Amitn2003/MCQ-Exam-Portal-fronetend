@@ -14,17 +14,20 @@ const Login = () => {
         e.preventDefault();
         toast.warn('Please wait 🙏!');
         toast.warn('It takes a few seconds 🙏!');
+        // let msg = null;
         try {
             let loginRes = await login({ email, password });
+            console.log(loginRes)
             // If login succeeds, show a success toast
-            if (loginRes)
-                toast.success('Login successful!');
+            // let loginMessage = await loginRes.message;
+            // msg = loginMessage
+            if (loginRes.ok){
+                toast.success("Log in successful")
+            }
             else {
                 toast.error('Login failed. Please check your credentials.');
             }
-            // toast.success(loginRes.message)
         } catch (error) {
-            // If login fails, show an error toast
             toast.error('Login failed. Please check your credentials.');
         }
     };
