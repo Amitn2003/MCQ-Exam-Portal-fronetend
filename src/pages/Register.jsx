@@ -17,7 +17,7 @@ const Register = () => {
         e.preventDefault();
         toast.warn('Please wait 🙏!');
         try {
-            let registrationRes = await register({ name, email, password });
+            let registrationRes = await register({ name, email, password , college, address, phone});
             // If registration succeeds, show a success toast
             if (registrationRes)
                 toast.success('Registration successful!');
