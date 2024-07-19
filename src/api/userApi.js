@@ -24,6 +24,7 @@ export const getUserById = async (userId, token) => {
             'Authorization': `Bearer ${token}`,
         },
     });
+    console.log(response)
 
     if (!response.ok) {
         throw new Error('Failed to fetch user');
@@ -41,6 +42,7 @@ export const updateUser = async (userId, userData, token) => {
         },
         body: JSON.stringify(userData),
     });
+    console.log(response)
 
     if (!response.ok) {
         throw new Error('Failed to update user');

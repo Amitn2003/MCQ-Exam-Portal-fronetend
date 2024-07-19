@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import { getQuestionsByCategory } from '../api/questionApi';
+import { getQuestionsByCategory} from '../api/questionApi';
 import { addExamResult } from '../api/examResultApi';
 import { useAuth } from '../hooks/useAuth';
 import { useNavigate } from 'react-router-dom';
@@ -25,6 +25,7 @@ const GetQuestions = () => {
     const [examStarted, setExamStarted] = useState(false);
     const [timeLeft, setTimeLeft] = useState(100);
     const [loading, setLoading] = useState(true)
+    const [limitExhaust, setLimitExhause] = useState(false);
 
 
 
@@ -35,14 +36,16 @@ const GetQuestions = () => {
                 try {
                     const data = await getQuestionsByCategory(selectedCategory, user.token, totalQuestions);
                     setQuestions(data);
-                    setUserAnswers(new Array(data.length).fill(null));
+                    setUserAnswers(new Array(data.length).fill(-1));
                     setExamStarted(true); // Start the exam once questions are fetched
                     setLoading(false);
                     setTimeLeft(totalQuestions * 2 * 60); // Set timer (in seconds)
                 } catch (error) {
+                    setLimitExhause(true)
                     console.error('Failed to fetch questions by category:', error.message);
+                    toast.error(error.message)
                     toast.warn("Something went wrong!")
-                    setLoading(false);
+                    // setLoading(false);
                 }
             }
         };
@@ -91,6 +94,16 @@ const GetQuestions = () => {
         }
     };
 
+
+    const moveToPreviousQuestion = () => {
+        if (currentQuestionIndex > 0) {
+            setCurrentQuestionIndex((prevIndex) => prevIndex - 1);
+        }
+    };
+
+
+
+
     const calculateScoreAndAccuracy = () => {
         const correctAnswers = questions.reduce((acc, question, index) => {
             return question.correctAnswer === userAnswers[index] ? acc + 1 : acc;
@@ -134,10 +147,15 @@ const GetQuestions = () => {
         setAccuracy(0);
         setExamStarted(false);
         setTimeLeft(0);
+        setLoading(true);
     };
 
     const handleNextClick = () => {
         moveToNextQuestion();
+    };
+
+    const handlePreviousClick = () => {
+        moveToPreviousQuestion();
     };
 
     const handleSubmitClick = () => {
@@ -213,6 +231,7 @@ const GetQuestions = () => {
             ) : (
                 <div className="max-w-lg mx-auto bg-white text-white dark:bg-gray-700 p-6 rounded-lg shadow-md">
                     <h2 className="text-2xl font-bold mb-4 text-gray-900 dark:text-gray-100">Exam Questions</h2>
+                    {limitExhaust && <p className='text-red-900 font-bold dark:text-red-300'>Daily limit exhausted!!</p>}
                     {questions.length === 0 ? (<>
                         { loading && <>
                         <div  className="py-4">
@@ -225,12 +244,13 @@ const GetQuestions = () => {
                             <Skeleton height={10} width={40} style={{ marginTop: '4px' }} />
                         </>
                     }
+                    
                     </>
                     ) : (
                         <div>
                             {!showReport ? (
                                 <div>
-                                    <div className="mb-4">
+                                    <div className="mb-4 text-gray-400">
                                         <h3 className="text-lg font-medium mb-2 text-gray-800 dark:text-gray-100">
                                             Question {currentQuestionIndex + 1}
                                         </h3>
@@ -239,7 +259,7 @@ const GetQuestions = () => {
                                         </div>
                                         <p className="text-gray-600 dark:text-white">{questions[currentQuestionIndex].question}</p>
                                         <p className="text-sm text-gray-400 dark:text-gray-200">Category: {questions[currentQuestionIndex].category}</p>
-                                        {questions[currentQuestionIndex].subcategory }
+                                        <span className="text-sm text-gray-300 dark:text-gray-600">{questions[currentQuestionIndex].subcategory }</span>
                                     </div>
                                     <ul>
                                         {questions[currentQuestionIndex].options.map((option, optionIndex) => (
@@ -259,6 +279,13 @@ const GetQuestions = () => {
                                         ))}
                                     </ul>
                                     <div className="mt-4">
+                                            <button
+                                            className="bg-blue-500 hover:bg-blue-600 text-white py-2 px-4 rounded-md"
+                                            onClick={handlePreviousClick}
+                                            disabled={currentQuestionIndex === 0}
+                                        >
+                                            Previous
+                                        </button>
                                         {currentQuestionIndex < questions.length - 1 ? (
                                             <button
                                                 className="bg-blue-500 hover:bg-blue-600 text-white py-2 px-4 rounded-md mr-2 "

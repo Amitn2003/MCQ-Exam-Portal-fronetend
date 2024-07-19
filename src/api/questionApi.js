@@ -19,7 +19,10 @@ export const getQuestions = async (token, category = null, totalQs=10) => {
     console.log(response)
 
     if (!response.ok) {
-        throw new Error('Failed to fetch questions');
+        if (response.status === 403) {
+            throw new Error('Normal users can only take 5 exams per day. Upgrade to premium for unlimited exams.');
+    }
+    throw new Error('Failed to fetch questions');
     }
 
     return await response.json();

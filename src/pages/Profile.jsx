@@ -41,12 +41,19 @@ const Profile = () => {
     <img
                     alt={user.name}
                     src={`https://ui-avatars.com/api/?name=${user.name}&background=random&rounded=true&size=500`}
-                    className="h-10 w-12 m-4 rounded-full"
+                    className="h-12 w-12 m-4 rounded-full"
                   />
 
     <p className="text-lg text-gray-600 dark:text-gray-300 mb-2">
         Welcome back to XaMawo : {user.name}. 😊
     </p>
+    {
+      user.isPremium ? <p className="text-lg text-gray-600 dark:text-gray-300 mb-2 mt-4">
+      You are a Premium user. 👑
+  </p> : <p className="text-lg text-gray-600 dark:text-gray-300 mb-2  mt-4">
+       Upgrade to <span className='font-bold tracking-wider text-xl '> premium plan </span> for unlimited mock test exams and exclusive support and help from our professional skilled soft. dev. 👈
+    </p>
+    }
 
     <p className="text-lg text-gray-600 dark:text-gray-300 mb-8">
         Email: {user.email}
@@ -68,7 +75,7 @@ const Profile = () => {
     
     <br />
     <p className="text-lg text-gray-600 dark:text-gray-300 mb-8">
-    Suggest some features & improvements and give your honest feedback to me...
+    Suggest some features & improvements and send your honest feedback personally to me...
     </p> 
 
     <button
