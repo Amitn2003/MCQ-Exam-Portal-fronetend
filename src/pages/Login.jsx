@@ -67,6 +67,9 @@ const Login = () => {
         <section className="bg-gray-50 min-h-screen flex items-center justify-center">
             {/* login container */}
             <div className="bg-gray-100 flex rounded-2xl shadow-lg max-w-3xl p-5 items-center">
+                <div className="md:block hidden w-1/2">
+                    <img className="rounded-2xl" src="https://images.unsplash.com/photo-1557989048-03456d01a26e?q=80&w=1335&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" />
+                </div>
                 {/* form */}
                 <div className="md:w-1/2 px-8 md:px-16">
                     <h2 className="font-bold text-2xl text-[#002D74]">Login</h2>
@@ -96,9 +99,6 @@ const Login = () => {
                     </div>
                 </div>
                 {/* image */}
-                <div className="md:block hidden w-1/2">
-                    <img className="rounded-2xl" src="https://images.unsplash.com/photo-1557989048-03456d01a26e?q=80&w=1335&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" />
-                </div>
             </div>
         </section>
 

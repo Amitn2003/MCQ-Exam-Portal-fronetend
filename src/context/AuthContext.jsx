@@ -23,10 +23,11 @@ const AuthProvider = ({ children }) => {
                 navigate('/');
             } else {
                 console.error(data);
-                return false
+                throw data
             }
         } catch (error) {
             console.error(error);
+            throw error
         }
     };
 
@@ -72,7 +73,7 @@ const AuthProvider = ({ children }) => {
             return true;
         }
         else {
-            console.log(user)
+            // console.log(user)
             return false
         }
     };

@@ -63,6 +63,9 @@ const Home = () => {
                                         <a href="/questions" className="hover:text-blue-600">Technical</a>
                                     </li>
                                     <li className="text-lg mb-2">
+                                        <a href="/questions" className="hover:text-blue-600">JECA</a>
+                                    </li>
+                                    <li className="text-lg mb-2">
                                         <a href="/questions" className="hover:text-blue-600">Verbal Ability (Coming soon...)</a>
                                     </li>
                                     <li className="text-lg mb-2">
@@ -122,7 +125,7 @@ const Home = () => {
                                 </div>
                             </div>
                         </div>
-                        <div className="bg-white py-12 dark:bg-gray-800 dark:text-white">
+                        <div className="bg-white text-black py-12 dark:bg-gray-800 dark:text-white">
                             <div className="max-w-4xl mx-auto px-4">
                                 <h2 className="text-3xl font-semibold mb-6 text-center">Partnered with Leading Tech Companies</h2>
                                 <div className="grid grid-cols-1 md:grid-cols-3 gap-8 text-gray-950">
@@ -140,7 +143,7 @@ const Home = () => {
                                 <p className="text-lg mt-6 text-center  text-gray-900 dark:text-gray-100">
                                     Our platform is trusted by top tech companies for preparing candidates with industry-relevant skills and knowledge.
                                 </p>
-                                <p className="text-lg mt-2 text-center  text-gray-900 dark:text-gra-100">
+                                <p className="text-lg mt-2 text-center  text-gray-900 dark:text-gray-100 ">
                                     Join us to access exclusive opportunities and insights from industry leaders.
                                 </p>
                             </div>

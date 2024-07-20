@@ -233,7 +233,61 @@ const ReportedQuestions = () => {
         
         reportedQuestions.length === 0 ? (
             <p className="text-gray-600 dark:text-gray-400">No reported questions</p>
-        ) : (
+        ) : (<>
+                {editingQuestion && (
+            <div className="mt-4 p-4 bg-gray-100 dark:bg-gray-900 rounded-lg shadow-md">
+                <h3 className="text-lg font-bold mb-2 text-gray-800 dark:text-white">Edit Reported Question</h3>
+                <textarea
+                    className="w-full p-2 mb-2 border border-gray-300 rounded-md dark:border-gray-700 text-black "
+                    value={editingQuestion.reason}
+                    onChange={(e) => setEditingQuestion({ ...editingQuestion, reason: e.target.value })}
+                />
+                <input
+                    type="text"
+                    className="w-full p-2 mb-2 border border-gray-300 rounded-md dark:border-gray-700 text-black "
+                    value={editingQuestion.question.question}
+                    onChange={(e) => setEditingQuestion({ ...editingQuestion, question: { ...editingQuestion.question, question: e.target.value } })}
+                />
+                { editingQuestion.question.options ? editingQuestion.question.options.map((option, index) => (
+                    <input
+                        key={index}
+                        type="text"
+                        className="w-full p-2 mb-2 border border-gray-300 rounded-md dark:border-gray-700 text-black "
+                        value={option}
+                        onChange={(e) => {
+                            const newOptions = [...editingQuestion.question.options];
+                            newOptions[index] = e.target.value;
+                            setEditingQuestion({ ...editingQuestion, question: { ...editingQuestion.question, options: newOptions } });
+                        }}
+                    />
+                )) : ""}
+                <input
+                    type="text"
+                    className="w-full p-2 mb-2 border border-gray-300 rounded-md dark:border-gray-700 text-black "
+                    value={editingQuestion.question.correctAnswer}
+                    onChange={(e) => setEditingQuestion({ ...editingQuestion, question: { ...editingQuestion.question, correctAnswer: e.target.value } })}
+                />
+                <textarea
+                    className="w-full p-2 mb-2 border border-gray-300 rounded-md dark:border-gray-700 text-black "
+                    value={editingQuestion.question.explanation}
+                    onChange={(e) => setEditingQuestion({ ...editingQuestion, question: { ...editingQuestion.question, explanation: e.target.value } })}
+                />
+                <div className="flex space-x-2">
+                    <button
+                        onClick={handleUpdate}
+                        className="px-3 py-1 rounded-md text-sm font-semibold text-white bg-green-500 hover:bg-green-600"
+                    >
+                        Update
+                    </button>
+                    <button
+                        onClick={() => setEditingQuestion(null)}
+                        className="px-3 py-1 rounded-md text-sm font-semibold text-white bg-gray-500 hover:bg-gray-600"
+                    >
+                        Cancel
+                    </button>
+                </div>
+            </div>
+        )}
             <ul className="divide-y divide-gray-300 dark:divide-gray-700">
                 {reportedQuestions.map((reportedQuestion) => (
                     <li key={reportedQuestion._id} className="py-4 flex flex-col md:flex-row items-start md:items-center justify-between">
@@ -273,62 +327,9 @@ const ReportedQuestions = () => {
                         </div>
                     </li>
                 ))}
-            </ul>
+            </ul> </>
         )}
-        {editingQuestion && (
-            <div className="mt-4 p-4 bg-gray-100 dark:bg-gray-900 rounded-lg shadow-md">
-                <h3 className="text-lg font-bold mb-2 text-gray-800 dark:text-white">Edit Reported Question</h3>
-                <textarea
-                    className="w-full p-2 mb-2 border border-gray-300 rounded-md dark:border-gray-700"
-                    value={editingQuestion.reason}
-                    onChange={(e) => setEditingQuestion({ ...editingQuestion, reason: e.target.value })}
-                />
-                <input
-                    type="text"
-                    className="w-full p-2 mb-2 border border-gray-300 rounded-md dark:border-gray-700"
-                    value={editingQuestion.question.question}
-                    onChange={(e) => setEditingQuestion({ ...editingQuestion, question: { ...editingQuestion.question, question: e.target.value } })}
-                />
-                {editingQuestion.question.options.map((option, index) => (
-                    <input
-                        key={index}
-                        type="text"
-                        className="w-full p-2 mb-2 border border-gray-300 rounded-md dark:border-gray-700"
-                        value={option}
-                        onChange={(e) => {
-                            const newOptions = [...editingQuestion.question.options];
-                            newOptions[index] = e.target.value;
-                            setEditingQuestion({ ...editingQuestion, question: { ...editingQuestion.question, options: newOptions } });
-                        }}
-                    />
-                ))}
-                <input
-                    type="text"
-                    className="w-full p-2 mb-2 border border-gray-300 rounded-md dark:border-gray-700"
-                    value={editingQuestion.question.correctAnswer}
-                    onChange={(e) => setEditingQuestion({ ...editingQuestion, question: { ...editingQuestion.question, correctAnswer: e.target.value } })}
-                />
-                <textarea
-                    className="w-full p-2 mb-2 border border-gray-300 rounded-md dark:border-gray-700"
-                    value={editingQuestion.question.explanation}
-                    onChange={(e) => setEditingQuestion({ ...editingQuestion, question: { ...editingQuestion.question, explanation: e.target.value } })}
-                />
-                <div className="flex space-x-2">
-                    <button
-                        onClick={handleUpdate}
-                        className="px-3 py-1 rounded-md text-sm font-semibold text-white bg-green-500 hover:bg-green-600"
-                    >
-                        Update
-                    </button>
-                    <button
-                        onClick={() => setEditingQuestion(null)}
-                        className="px-3 py-1 rounded-md text-sm font-semibold text-white bg-gray-500 hover:bg-gray-600"
-                    >
-                        Cancel
-                    </button>
-                </div>
-            </div>
-        )}
+
     </div>
     );
 };

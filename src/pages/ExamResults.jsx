@@ -17,7 +17,7 @@ const ExamResults = () => {
     useEffect(() => {
         const fetchResults = async () => {
             try {
-                toast.warn('Wait! It could take few seconds');
+                // toast.warn('Wait! It could take few seconds');
                 const data = await getUserExamResults(user.token);
                 setResults(data);
                 setLoading(false); // Set loading to false once data is fetched
@@ -32,7 +32,7 @@ const ExamResults = () => {
 
 
 
-    let options = {     // Date format
+    let options = {    
         day: '2-digit',
         month: 'long',
         year: 'numeric'

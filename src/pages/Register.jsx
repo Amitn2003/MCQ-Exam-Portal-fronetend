@@ -18,13 +18,16 @@ const Register = () => {
         toast.warn('Please wait 🙏!');
         try {
             let registrationRes = await register({ name, email, password , college, address, phone});
+            console.log(registrationRes)
             // If registration succeeds, show a success toast
             if (registrationRes)
                 toast.success('Registration successful!');
             else toast.error('Registration failed. Please try again.');
         } catch (error) {
+            console.log(error)
             // If registration fails, show an error toast
-            toast.error('Registration failed. Please try again.');
+            // toast.error('Registration failed. Please try again.');
+            toast.error(error.message)
         }
     };
 

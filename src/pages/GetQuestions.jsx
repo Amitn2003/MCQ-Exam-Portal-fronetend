@@ -171,7 +171,7 @@ const GetQuestions = () => {
         setExamStarted(true);
         setTimeLeft(100);
         // Example fetch logic (replace with actual fetch or API call)
-        fetchQuestions(selectedCategory, totalQuestions);
+        // fetchQuestions(selectedCategory, totalQuestions);
     };
 
     const formatTime = (seconds) => {
@@ -231,7 +231,8 @@ const GetQuestions = () => {
             ) : (
                 <div className="max-w-lg mx-auto bg-white text-white dark:bg-gray-700 p-6 rounded-lg shadow-md">
                     <h2 className="text-2xl font-bold mb-4 text-gray-900 dark:text-gray-100">Exam Questions</h2>
-                    {limitExhaust && <p className='text-red-900 font-bold dark:text-red-300'>Daily limit exhausted!!</p>}
+                    {limitExhaust && <p className='text-red-900 font-bold dark:text-red-300'>Daily limit exhausted!! Please upgrade to premium plan.<span className='text-gray-500 '> Or wait for tomorrow 🙂</span>
+                    </p>}
                     {questions.length === 0 ? (<>
                         { loading && <>
                         <div  className="py-4">
@@ -259,7 +260,7 @@ const GetQuestions = () => {
                                         </div>
                                         <p className="text-gray-600 dark:text-white">{questions[currentQuestionIndex].question}</p>
                                         <p className="text-sm text-gray-400 dark:text-gray-200">Category: {questions[currentQuestionIndex].category}</p>
-                                        <span className="text-sm text-gray-300 dark:text-gray-600">{questions[currentQuestionIndex].subcategory }</span>
+                                        <span className="text-sm text-gray-300 dark:text-gray-500">{questions[currentQuestionIndex].subcategory }</span>
                                     </div>
                                     <ul>
                                         {questions[currentQuestionIndex].options.map((option, optionIndex) => (

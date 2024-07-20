@@ -32,7 +32,7 @@ const Contact = () => {
   <p className="text-lg">Follow me on social media:</p>
   
   <div className="flex justify-center space-x-4">
-    <a href="https://https://www.linkedin.com/in/amit-naskar" target="_blank" className="text-blue-500 hover:text-blue-700">LinkedIn</a>
+    <a href="https://www.linkedin.com/in/amit-naskar" target="_blank" className="text-blue-500 hover:text-blue-700">LinkedIn</a>
     <a href="https://fb.com/amitnaskar2003" target="_blank"  className="text-blue-500 hover:text-blue-700">Facebook</a>
     <a href="#" className="text-blue-500 hover:text-blue-700">Instagram</a>
   </div>
