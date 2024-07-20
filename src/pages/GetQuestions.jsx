@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react';
 import { getQuestionsByCategory } from '../api/questionApi';
 import { addExamResult } from '../api/examResultApi';
 import { useAuth } from '../hooks/useAuth';
-import { useNavigate } from 'react-router-dom';
+import { useNavigate, Link } from 'react-router-dom';
 import toast, { Toaster } from 'react-hot-toast';
 import Skeleton from 'react-loading-skeleton';
 import 'react-loading-skeleton/dist/skeleton.css'
@@ -24,7 +24,7 @@ const GetQuestions = () => {
     const [examStarted, setExamStarted] = useState(false);
     const [timeLeft, setTimeLeft] = useState(100);
     const [loading, setLoading] = useState(true)
-    const [limitExhaust, setLimitExhause] = useState(false);
+    const [limitExhaust, setLimitExhaust] = useState(false);
 
 
 
@@ -40,7 +40,7 @@ const GetQuestions = () => {
                     setLoading(false);
                     setTimeLeft(totalQuestions * 2 * 60); // Set timer (in seconds)
                 } catch (error) {
-                    setLimitExhause(true)
+                    setLimitExhaust(true)
                     console.error('Failed to fetch questions by category:', error.message);
                     toast.error(error.message)
                     toast.error("Something went wrong!")
@@ -230,8 +230,12 @@ const GetQuestions = () => {
             ) : (
                 <div className="max-w-lg mx-auto bg-white text-white dark:bg-gray-700 p-6 rounded-lg shadow-md">
                     <h2 className="text-2xl font-bold mb-4 text-gray-900 dark:text-gray-100">Exam Questions</h2>
-                    {limitExhaust && <p className='text-red-900 font-bold dark:text-red-300'>Daily limit exhausted!! Please upgrade to premium plan.<span className='text-gray-500 '> Or wait for tomorrow 🙂</span>
-                    </p>}
+                    {limitExhaust && <><p className='text-red-900 font-bold dark:text-red-300'>Daily limit exhausted!! Please upgrade to premium plan.<span className='text-gray-500 '> Or wait for tomorrow 🙂</span>
+                    </p> <Link to="/subscription">
+      <span className="inline-block bg-blue-500 hover:bg-blue-600 text-white font-bold py-2 px-4 rounded-md border border-blue-700 transition duration-300 ease-in-out transform hover:scale-105">
+        Check out our premium pricing
+      </span>
+    </Link></> }
                     {questions.length === 0 ? (<>
                         {loading && <>
                             <div className="py-4">

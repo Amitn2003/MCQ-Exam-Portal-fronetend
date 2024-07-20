@@ -1,4 +1,5 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 
 const About = () => {
   return (
@@ -21,12 +22,18 @@ const About = () => {
       <p className="mb-4">
         Be a part of our growing community. Together, we can make learning accessible and enjoyable for everyone!
       </p>
-      <a
-        href="/register"
+      <Link
+        to="/register"
         className="mt-6 bg-blue-500 text-white px-4 py-2 rounded hover:bg-blue-600 transition"
       >
         Get Started
-      </a>
+      </Link>
+      <Link
+        to="/login"
+        className="mt-6 bg-blue-500 text-white px-4 py-2 rounded hover:bg-blue-600 transition"
+      >
+        Already User?
+      </Link>
     </div>
   );
 };

@@ -9,7 +9,7 @@ const Question = ({ question, onSubmit }) => {
 
     const handleSubmit = (e) => {
         e.preventDefault();
-        onSubmit(selectedOption);
+        onSubmit(question._id, selectedOption);
     };
 
     return (

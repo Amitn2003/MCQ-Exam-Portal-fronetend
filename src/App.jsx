@@ -20,9 +20,17 @@ import About from './pages/AboutUs';
 import ManageQuestions from './pages/ManageQuestions';
 import ReportedQuestions from './pages/ReportedQuestions';
 import Profile from './pages/Profile';
+import AdminPushExam from './pages/AdminPushExam';
 import { AuthProvider } from './context/AuthContext';
 import toast, { Toaster } from 'react-hot-toast';
 import PageNotFound from './pages/PageNotFound';
+import AvailableExams from './pages/AvailableExams';
+import StartExam from './pages/StartExam';
+import Results from './pages/Results';
+import PremiumSubscriptionPage from './pages/PremiumSubscriptionPage';
+
+
+
 
 function App() {
 
@@ -44,13 +52,18 @@ function App() {
               <Route path="/questions" element={<GetQuestions />} />
               {/* <Route path="/exam" element={<Exam />} /> */}
               <Route path="/results" element={<ExamResults />} />
+              <Route path="/exam-results" element={<Results />} />
               <Route path="/results/:resultId" element={<DetailedAnalysis />} />
               <Route path="/dashboard" element={<Dashboard />} />
               <Route path="/profile" element={<Profile />} />
+              <Route path="/exam" element={<AvailableExams />} />
+              <Route path="/subscription" element={<PremiumSubscriptionPage />} />
+              <Route path="/exam/:examId" element={<StartExam />} />
               <Route path="/admin/users" element={<AdminUsers />} />
               <Route path="/admin/users/:userId" element={<EditUser />} />
               <Route path="/admin/reported-questions" element={<ReportedQuestions />} />
               <Route path="/admin/manage-questions" element={<ManageQuestions />} />
+              <Route path="/admin/create-exam" element={<AdminPushExam />} />
               <Route path="/*" element={<PageNotFound />} />
               <Route path="*" element={<PageNotFound />} />
               <Route element={<PageNotFound />} />

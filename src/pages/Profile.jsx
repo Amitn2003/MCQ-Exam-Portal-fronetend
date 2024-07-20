@@ -1,6 +1,6 @@
 import React, {useEffect} from 'react'
 import { useAuth } from '../hooks/useAuth';
-
+import { Link } from 'react-router-dom';
 
 
 
@@ -52,6 +52,11 @@ const Profile = () => {
       You are a Premium user. 👑
   </p> : <p className="text-lg text-gray-600 dark:text-gray-300 mb-2  mt-4">
        Upgrade to <span className='font-bold tracking-wider text-xl '> premium plan </span> for unlimited mock test exams and exclusive support and help from our professional skilled soft. dev. 👈
+       <Link to="/subscription">
+      <span className="inline-block bg-blue-500 hover:bg-blue-600 text-white font-bold py-2 px-4 rounded-md border border-blue-700 transition duration-300 ease-in-out transform hover:scale-105">
+        Check out our premium pricing
+      </span>
+    </Link>
     </p>
     }
 
