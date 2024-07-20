@@ -1,14 +1,13 @@
 import React, { useEffect, useState } from 'react';
-import { getQuestionsByCategory} from '../api/questionApi';
+import { getQuestionsByCategory } from '../api/questionApi';
 import { addExamResult } from '../api/examResultApi';
 import { useAuth } from '../hooks/useAuth';
 import { useNavigate } from 'react-router-dom';
-import { toast } from 'react-toastify';
-import 'react-toastify/dist/ReactToastify.css';
+import toast, { Toaster } from 'react-hot-toast';
 import Skeleton from 'react-loading-skeleton';
 import 'react-loading-skeleton/dist/skeleton.css'
 
-
+// const notify = (text) => toast('Here is your toast.');
 
 const GetQuestions = () => {
     const { user } = useAuth();
@@ -44,7 +43,7 @@ const GetQuestions = () => {
                     setLimitExhause(true)
                     console.error('Failed to fetch questions by category:', error.message);
                     toast.error(error.message)
-                    toast.warn("Something went wrong!")
+                    toast.error("Something went wrong!")
                     // setLoading(false);
                 }
             }
@@ -52,7 +51,7 @@ const GetQuestions = () => {
 
 
         if (examStarted && selectedCategory) {
-            setTimeLeft(totalQuestions * 2 * 60); 
+            setTimeLeft(totalQuestions * 2 * 60);
             fetchQuestions();
         }
     }, [selectedCategory, user.token, examStarted]);
@@ -61,7 +60,7 @@ const GetQuestions = () => {
         if (timeLeft <= 0) {
             if (examStarted) {
                 handleSubmitClick();
-                toast.info('Time is up! Submitting your exam...');
+                toast.success('Time is up! Submitting your exam...');
             }
             return;
         }
@@ -234,18 +233,18 @@ const GetQuestions = () => {
                     {limitExhaust && <p className='text-red-900 font-bold dark:text-red-300'>Daily limit exhausted!! Please upgrade to premium plan.<span className='text-gray-500 '> Or wait for tomorrow 🙂</span>
                     </p>}
                     {questions.length === 0 ? (<>
-                        { loading && <>
-                        <div  className="py-4">
-                            <Skeleton height={40}  />
-                            <Skeleton height={10} width={200}  style={{ marginTop: '8px' }} />
-                            <Skeleton height={10} width={150} style={{ marginTop: '4px' }} />
-                            <Skeleton height={10} width={150} style={{ marginTop: '4px' }} />
-                            <Skeleton height={10} width={150} style={{ marginTop: '4px' }} />
-                        </div>
+                        {loading && <>
+                            <div className="py-4">
+                                <Skeleton height={40} />
+                                <Skeleton height={10} width={200} style={{ marginTop: '8px' }} />
+                                <Skeleton height={10} width={150} style={{ marginTop: '4px' }} />
+                                <Skeleton height={10} width={150} style={{ marginTop: '4px' }} />
+                                <Skeleton height={10} width={150} style={{ marginTop: '4px' }} />
+                            </div>
                             <Skeleton height={10} width={40} style={{ marginTop: '4px' }} />
                         </>
-                    }
-                    
+                        }
+
                     </>
                     ) : (
                         <div>
@@ -260,7 +259,7 @@ const GetQuestions = () => {
                                         </div>
                                         <p className="text-gray-600 dark:text-white">{questions[currentQuestionIndex].question}</p>
                                         <p className="text-sm text-gray-400 dark:text-gray-200">Category: {questions[currentQuestionIndex].category}</p>
-                                        <span className="text-sm text-gray-300 dark:text-gray-500">{questions[currentQuestionIndex].subcategory }</span>
+                                        <span className="text-sm text-gray-300 dark:text-gray-500">{questions[currentQuestionIndex].subcategory}</span>
                                     </div>
                                     <ul>
                                         {questions[currentQuestionIndex].options.map((option, optionIndex) => (
@@ -280,7 +279,7 @@ const GetQuestions = () => {
                                         ))}
                                     </ul>
                                     <div className="mt-4">
-                                            <button
+                                        <button
                                             className="bg-blue-500 hover:bg-blue-600 text-white py-2 px-4 rounded-md"
                                             onClick={handlePreviousClick}
                                             disabled={currentQuestionIndex === 0}

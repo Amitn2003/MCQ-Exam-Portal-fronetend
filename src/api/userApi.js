@@ -8,6 +8,7 @@ export const getUsers = async (token) => {
             'Authorization': `Bearer ${token}`,
         },
     });
+    console.log(response)
 
     if (!response.ok) {
         throw new Error('Failed to fetch users');

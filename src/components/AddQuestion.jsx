@@ -1,7 +1,7 @@
 import { useState } from 'react';
 import { addQuestion } from '../api/questionApi';
 import { useAuth } from '../hooks/useAuth';
-import { toast } from 'react-toastify';
+import toast, { Toaster } from 'react-hot-toast';
 
 const AddQuestion = () => {
     const [category, setCategory] = useState('');

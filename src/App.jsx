@@ -21,8 +21,7 @@ import ManageQuestions from './pages/ManageQuestions';
 import ReportedQuestions from './pages/ReportedQuestions';
 import Profile from './pages/Profile';
 import { AuthProvider } from './context/AuthContext';
-import { ToastContainer } from 'react-toastify';
-import 'react-toastify/dist/ReactToastify.css';
+import toast, { Toaster } from 'react-hot-toast';
 import PageNotFound from './pages/PageNotFound';
 
 function App() {
@@ -31,7 +30,7 @@ function App() {
     <>
       <BrowserRouter>
         <AuthProvider>
-          <ToastContainer />
+        <Toaster />
           <div className="flex flex-col min-h-screen bg-gray-900 text-white">
           <Navigation />
           <div className="flex-grow">

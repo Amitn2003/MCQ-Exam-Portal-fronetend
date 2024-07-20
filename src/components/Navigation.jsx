@@ -257,7 +257,7 @@
 import React, { useEffect, useState } from 'react';
 import { NavLink, useNavigate, useLocation } from 'react-router-dom';
 import { useAuth } from '../context/AuthContext';
-import { toast } from 'react-toastify';
+import toast, { Toaster } from 'react-hot-toast';
 import { Disclosure, DisclosureButton, DisclosurePanel, Menu, MenuButton, MenuItem, MenuItems } from '@headlessui/react';
 import { Bars3Icon, BellIcon, XMarkIcon } from '@heroicons/react/24/outline';
 import logo from "../assets/logo2.png";
@@ -330,7 +330,7 @@ const Navigation = () => {
                             <div className="hidden sm:ml-6 sm:block">
                                 <div className="flex space-x-4">
                                     {navigation.map((item) => {
-                                        if (!userAvailable && (item.name === 'Dashboard' || item.name === 'Exam Result' || item.name === 'Add Questions' || item.name === 'Manage Users' || item.name === 'Reported Questions' || item.name === 'Logout')) {
+                                        if (!userAvailable && (item.name === 'Dashboard' || item.name === 'Exam Result' || item.name === 'Add Questions' || item.name === 'Manage Users' || item.name === 'Reported Questions' || item.name === 'Logout'|| item.name === 'Start Exam')) {
                                             return null;
                                         }
                                         if (userAvailable && (item.name === 'Home' || item.name === 'Login' || item.name === 'Register'|| item.name === 'Logout')) {
@@ -349,7 +349,7 @@ const Navigation = () => {
                                                     location.pathname === item.href && 'bg-gray-900 text-white'
                                                 )}
                                             >
-                                                {item.name}
+                                               {item.name}
                                             </NavLink>
                                         );
                                     })}
@@ -358,7 +358,7 @@ const Navigation = () => {
                         </div>
                         <div className="absolute inset-y-0 right-0 flex items-center pr-2 sm:static sm:inset-auto sm:ml-6 sm:pr-0">
                             <Menu as="div" className="relative ml-3">
-                                <div>
+                               { user && <div>
                                     <MenuButton className="relative flex rounded-full bg-gray-800 text-sm focus:outline-none focus:ring-2 focus:ring-white focus:ring-offset-2 focus:ring-offset-gray-800">
                                         <span className="sr-only m-1">Open Users menu</span>
                                         {userAvailable ? (
@@ -375,7 +375,7 @@ const Navigation = () => {
                                             />
                                         )}
                                     </MenuButton>
-                                </div>
+                                </div>}
                                 <MenuItems
                                     transition
                                     className="absolute right-0 z-10 mt-2 w-48 origin-top-right rounded-md bg-white py-1 shadow-lg ring-1 ring-black ring-opacity-5 transition focus:outline-none data-[closed]:scale-95 data-[closed]:transform data-[closed]:opacity-0 data-[enter]:duration-100 data-[leave]:duration-75 data-[enter]:ease-out data-[leave]:ease-in"

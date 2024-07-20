@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react';
 import { getUserById, updateUser } from '../api/userApi';
 import { useAuth } from '../hooks/useAuth';
 import { useParams, useNavigate } from 'react-router-dom';
-import { toast } from 'react-toastify';
+import toast, { Toaster } from 'react-hot-toast';
 
 
 

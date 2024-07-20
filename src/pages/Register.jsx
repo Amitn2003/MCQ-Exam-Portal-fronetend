@@ -1,7 +1,6 @@
 import { useState } from 'react';
 import { useAuth } from '../hooks/useAuth';
-import { toast } from 'react-toastify';
-import 'react-toastify/dist/ReactToastify.css';
+import toast, { Toaster } from 'react-hot-toast';
 
 
 const Register = () => {
@@ -15,14 +14,16 @@ const Register = () => {
 
     const handleSubmit = async (e) => {
         e.preventDefault();
-        toast.warn('Please wait 🙏!');
+        toast('Please wait!', {
+            icon: '👏',
+          });
         try {
             let registrationRes = await register({ name, email, password , college, address, phone});
             console.log(registrationRes)
             // If registration succeeds, show a success toast
             if (registrationRes)
                 toast.success('Registration successful!');
-            else toast.error('Registration failed. Please try again.');
+            else toast.error('Please try again.');
         } catch (error) {
             console.log(error)
             // If registration fails, show an error toast

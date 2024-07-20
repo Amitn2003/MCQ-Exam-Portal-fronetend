@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { getQuestions, updateQuestion, deleteQuestion } from '../api/questionApi';
 import { useAuth } from '../hooks/useAuth';
-import { toast } from 'react-toastify';
+import toast, { Toaster } from 'react-hot-toast';
 
 const ManageQuestions = () => {
     const { user } = useAuth();

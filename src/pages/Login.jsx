@@ -1,7 +1,6 @@
 import { useState } from 'react';
 import { useAuth } from '../hooks/useAuth';
-import { toast } from 'react-toastify';
-import 'react-toastify/dist/ReactToastify.css';
+import toast, { Toaster } from 'react-hot-toast';
 
 
 
@@ -12,8 +11,10 @@ const Login = () => {
 
     const handleSubmit = async (e) => {
         e.preventDefault();
-        toast.warn('Please wait 🙏!');
-        toast.warn('It takes a few seconds 🙏!');
+        toast('Please wait!', {
+            icon: '👏',
+          });
+        // toast.error('It takes a few seconds 🙏!');
         // let msg = null;
         try {
             let loginRes = await login({ email, password });
@@ -25,7 +26,7 @@ const Login = () => {
                 toast.success("Log in successful")
             }
             else {
-                toast.error('Login failed. Please check your credentials.');
+                toast.error('Please try again');
             }
         } catch (error) {
             toast.error('Login failed. Please check your credentials.');

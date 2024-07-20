@@ -2,8 +2,7 @@ import React, { useEffect, useState } from 'react';
 import { getUsers, deleteUser, updateUser } from '../api/userApi';
 import { useAuth } from '../hooks/useAuth';
 import { Link, useNavigate } from 'react-router-dom';
-import { toast } from 'react-toastify';
-import 'react-toastify/dist/ReactToastify.css';
+import toast, { Toaster } from 'react-hot-toast';
 import Skeleton from 'react-loading-skeleton';
 import 'react-loading-skeleton/dist/skeleton.css'
 
@@ -19,8 +18,11 @@ const AdminUsers = () => {
     useEffect(() => {
         const fetchUsers = async () => {
             try {              
-                toast.warn('Wait! It could take a few seconds');
+                toast('Please wait!', {
+                    icon: '👏',
+                  });
                 const data = await getUsers(user.token);
+                console.log(data)
                 setUsers(data);
                 setLoading(false);
             } catch (error) {

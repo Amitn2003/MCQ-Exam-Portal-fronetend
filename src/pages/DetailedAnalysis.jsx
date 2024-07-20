@@ -203,7 +203,7 @@ import { getUserExamResults } from '../api/examResultApi';
 import { reportQuestion } from '../api/reportedQuestionApi';
 import { useAuth } from '../hooks/useAuth';
 import { useParams } from 'react-router-dom';
-import { toast } from 'react-toastify';
+import toast, { Toaster } from 'react-hot-toast';
 import Skeleton from 'react-loading-skeleton';
 import 'react-loading-skeleton/dist/skeleton.css';
 

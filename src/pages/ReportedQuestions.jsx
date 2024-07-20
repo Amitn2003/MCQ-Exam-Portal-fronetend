@@ -1,8 +1,8 @@
 import React, { useEffect, useState } from 'react';
 import { getReportedQuestions, updateReportedQuestion , deleteReportedQuestion } from '../api/reportedQuestionApi';
 import { useAuth } from '../hooks/useAuth';
-import { toast } from 'react-toastify';
 import Skeleton from 'react-loading-skeleton';
+import toast, { Toaster } from 'react-hot-toast';
 import 'react-loading-skeleton/dist/skeleton.css'
 
 

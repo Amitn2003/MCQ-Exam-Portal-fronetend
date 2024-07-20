@@ -2,8 +2,7 @@ import React, { useEffect, useState } from 'react';
 import { getUserExamResults } from '../api/examResultApi';
 import { useAuth } from '../hooks/useAuth';
 import { Link } from 'react-router-dom';
-import { toast } from 'react-toastify';
-import 'react-toastify/dist/ReactToastify.css';
+import toast, { Toaster } from 'react-hot-toast';
 import Skeleton from 'react-loading-skeleton';
 import 'react-loading-skeleton/dist/skeleton.css'
 
@@ -17,7 +16,6 @@ const ExamResults = () => {
     useEffect(() => {
         const fetchResults = async () => {
             try {
-                // toast.warn('Wait! It could take few seconds');
                 const data = await getUserExamResults(user.token);
                 setResults(data);
                 setLoading(false); // Set loading to false once data is fetched
