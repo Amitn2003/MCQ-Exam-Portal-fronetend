@@ -1,4 +1,4 @@
-const API_URL = 'https://mcq-portal-backend.onrender.com/api/auth/exams';
+const API_URL = 'http://localhost:5000/api/auth/exams';
 
 export const createExam = async (examData, token) => {
     const response = await fetch(API_URL, {
@@ -136,6 +136,23 @@ export const getAvailableExams = async (token) => {
 
     if (!response.ok) {
         throw new Error('Failed to fetch available exams');
+    }
+
+    return await response.json();
+};
+
+
+export const getUserExamAttemptsByDate = async (userId, token) => {
+    const response = await fetch(`${API_URL}/user/${userId}/attempts`, {
+        method: 'GET',
+        headers: {
+            'Content-Type': 'application/json',
+            'Authorization': `Bearer ${token}`,
+        },
+    });
+
+    if (!response.ok) {
+        throw new Error('Failed to fetch user exam attempts');
     }
 
     return await response.json();

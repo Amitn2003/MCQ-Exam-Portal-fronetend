@@ -8,7 +8,8 @@ const PremiumSubscriptionPage = () => {
             benefits: [
                 'Access to basic features',
                 'No updates',
-                'Only 5 Mock test per day.'
+                'Only 5 Mock test per day.',
+                'Access 1500+ questions'
             ],
             text: "I want free plan of XaMawo."
         },
@@ -19,7 +20,8 @@ const PremiumSubscriptionPage = () => {
                 'Access to basic features',
                 'Monthly updates',
                 'Email support',
-                'Unlimited test'
+                'Unlimited test',
+                'Access 5000+ questions'
             ],
             text: "I want basic 30₹ per month plan of XaMawo."
         },
@@ -31,6 +33,7 @@ const PremiumSubscriptionPage = () => {
                 'Weekly updates',
                 'Email and phone support',
                 'Unlimited test',
+                'Access 5000+ questions',
                 'Access to permium community'
             ],
             text: "I want standard 60₹ per 3 months plan of XaMawo."
@@ -42,6 +45,7 @@ const PremiumSubscriptionPage = () => {
                 'Access to premium features',
                 'Daily updates',
                 'Unlimited test',
+                'Access 5000+ questions',
                 'Premium support (24/7)',
                 'Access to permium community'
             ],
@@ -63,48 +67,13 @@ const PremiumSubscriptionPage = () => {
         location.href = whatsappLink
     }
 
-    // <div className="bg-gray-100 min-h-screen py-12 px-4 sm:px-6 lg:px-8 text-black dark:bg-gray-900 dark:text-white">
-    //     <div className="max-w-7xl mx-auto text-black">
-    //         <h1 className="text-3xl font-bold text-center mb-8 dark:text-white">Choose Your Plan</h1>
-    //         <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-8">
-    //             {plans.map((plan, index) => (
-    //                 <div key={index} className="bg-white rounded-lg shadow-md p-6">
-    //                     <h2 className="text-xl font-bold mb-4">{plan.title}</h2>
-    //                     <p className="text-gray-600 mb-4">{plan.price}</p>
-    //                     <ul className="text-left mb-4">
-    //                         {plan.benefits.map((benefit, idx) => (
-    //                             <li key={idx} className="flex items-center gap-2">
-    //                                 <svg
-    //                                     className="w-4 h-4 text-green-500"
-    //                                     fill="currentColor"
-    //                                     viewBox="0 0 20 20"
-    //                                     xmlns="http://www.w3.org/2000/svg"
-    //                                 >
-    //                                     <path
-    //                                         fillRule="evenodd"
-    //                                         d="M8.65 15.65a1 1 0 01-1.414 0l-5-5a1 1 0 111.414-1.414L8 13.586l6.293-6.293a1 1 0 111.414 1.414l-7 7z"
-    //                                         clipRule="evenodd"
-    //                                     />
-    //                                 </svg>
-    //                                 <span>{benefit}</span>
-    //                             </li>
-    //                         ))}
-    //                     </ul>
-    //                     <button className="block w-full py-2 bg-blue-500 text-white rounded-md font-semibold hover:bg-blue-600 transition duration-300">
-    //                         Subscribe
-    //                     </button>
-    //                 </div>
-    //             ))}
-    //         </div>
-    //     </div>
-    // </div>
     return (
-        <div className="bg-gradient-to-br from-gray-900 to-gray-800 dark:from-gray-800 dark:to-gray-700 min-h-screen py-12 px-4 sm:px-6 lg:px-8">
-
-            <div className="bg-gradient-to-br from-gray-900 to-gray-800 dark:from-gray-800 dark:to-gray-700  py-12 px-4 sm:px-6 lg:px-8">
+        <div className="bg-gradient-to-br from-gray-400 to-gray-200  dark:from-gray-800 dark:to-gray-700 min-h-screen py-12 px-4 sm:px-6 lg:px-8">
+{/* from-gray-900 to-gray-800 dark:from-gray-800 dark:to-gray-700 */}
+            <div className="   py-12 px-4 sm:px-6 lg:px-8">
                 <div className="max-w-3xl mx-auto">
-                    <div className="bg-white dark:bg-gray-900 rounded-lg shadow-md p-6 ">
-                        <p className="text-white text-left mb-8">
+                    <div className="bg-white text-black  dark:bg-gray-900 rounded-lg shadow-md p-6 ">
+                        <p className="text-black dark:text-white text-left mb-8">
                             Dear Valued Users,
                             <br /><br />
                             We hope this message finds you well. As we strive to ensure the continued operation and stability of our website for years to come, we kindly request your invaluable support through our premium membership plans. Your contributions will directly fund essential aspects such as hosting, maintenance, and operational costs.
@@ -123,7 +92,7 @@ const PremiumSubscriptionPage = () => {
 
 
             <div className="max-w-7xl mx-auto">
-                <h1 className="text-3xl font-bold text-center text-white dark:text-gray-200 mb-8">Choose Your Plan</h1>
+                <h1 className="text-3xl font-bold text-center text-black dark:text-gray-200 mb-8">Choose Your Plan</h1>
                 <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-8">
                     {plans.map((plan, index) => (
                         <div key={index} className="bg-white dark:bg-gray-900 rounded-lg shadow-md p-6">

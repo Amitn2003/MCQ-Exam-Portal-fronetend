@@ -108,7 +108,7 @@ const StartExam = () => {
     const handleSubmitClick = () => {
         const { userScore, userAccuracy } = calculateScoreAndAccuracy();
         saveExamResult(userScore, userAccuracy);
-        navigate('/results');
+        navigate('/exam-results');
     };
 
     return (

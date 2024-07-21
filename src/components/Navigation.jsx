@@ -548,7 +548,6 @@ const Navigation = () => {
                                             <NavLink
                                                 key={item.name}
                                                 to={item.href}
-                                                activeClassName="bg-gray-900 text-white"
                                                 className={classNames(
                                                     'text-gray-300 hover:bg-gray-700 hover:text-white rounded-md px-3 py-2 text-sm font-medium',
                                                     location.pathname === item.href && 'bg-gray-900 text-white'
@@ -592,7 +591,7 @@ const Navigation = () => {
                                                     {user.name ? user.name : ""}
                                                 </NavLink>
                                             </MenuItem>
-                                            <MenuItem>
+                                            <MenuItem> 
                                                 <NavLink to="/profile" className="block px-4 py-2 text-sm text-gray-700 data-[focus]:bg-gray-100">
                                                     {user.email ? user.email : ""}
                                                 </NavLink>
@@ -631,7 +630,7 @@ const Navigation = () => {
                             if (userAvailable && item.name === 'Logout') {
                                 return (<button key={item.name} className="text-gray-300 hover:bg-gray-700 hover:text-white rounded-md px-3 py-2 text-sm font-medium" onClick={handleLogout}>Logout</button>);
                             }
-                            if (!userAvailable && (item.name === 'Start Exam' || item.name === 'Dashboard' || item.name === 'Exam Result' || item.name === 'Add Questions' || item.name === 'Manage Users' || item.name === 'Reported Questions')) {
+                            if (!userAvailable && (item.name === 'Start Exam' || item.name === 'Dashboard' || item.name === 'Exam Result' || item.name === 'Add Questions' || item.name === 'Manage Users' || item.name === 'Reported Questions' || item.name === 'Practical Exam' || item.name === 'Practice Exam' || item.name === 'Practice Result' || item.name === 'Exam' || item.name === 'Result' || item.name === 'Create Exam' )) {
                                 return null;
                             }
                             if (userAvailable && (item.name === 'Home' || item.name === 'Login' || item.name === 'Register')) {
