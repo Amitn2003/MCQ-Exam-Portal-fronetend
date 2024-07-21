@@ -3,53 +3,49 @@ import React from 'react';
 const PremiumSubscriptionPage = () => {
     const plans = [
         {
-            title: 'Free Plan',
+            title: 'Free Trial Plan',
             price: '₹0/month',
             benefits: [
                 'Access to basic features',
                 'No updates',
-                'Only 5 Mock test per day.',
-                'Access 1500+ questions'
+                'Enjoy essential features at no cost',
+                'Start your learning journey with 5 Mock tests per day',
+                'Access to a wide array of 1500+ questions'
             ],
-            text: "I want free plan of XaMawo."
+            text: "Discover the world of XaMawo with our complimentary Free Trial Plan. Start learning today!"
         },
         {
             title: 'Basic Plan',
             price: '₹30/month',
             benefits: [
-                'Access to basic features',
-                'Monthly updates',
-                'Email support',
-                'Unlimited test',
-                'Access 5000+ questions'
+                'Access to core features with monthly updates',
+                'Email support for personalized assistance',
+                'Unlimited tests to track your progress',
+                'Dive deeper with access to over 5000+ questions'
             ],
-            text: "I want basic 30₹ per month plan of XaMawo."
+            text: "Upgrade to our Basic Plan at just ₹30 per month and unlock unlimited learning potential. Get started with XaMawo!"
         },
         {
             title: 'Standard Plan',
             price: '₹60 every 3 months',
             benefits: [
-                'Access to standard features',
-                'Weekly updates',
-                'Email and phone support',
-                'Unlimited test',
-                'Access 5000+ questions',
-                'Access to permium community'
+                'Enhanced features with weekly updates',
+                'Comprehensive support via email and phone',
+                'Exclusive access to our premium community',
+                'Master your skills with unlimited tests and 5000+ questions'
             ],
-            text: "I want standard 60₹ per 3 months plan of XaMawo."
+            text: "Elevate your learning experience with our Standard Plan. For only ₹60 every 3 months, enjoy premium support and join our vibrant community at XaMawo."
         },
         {
             title: 'Premium Plan',
             price: '₹100/year',
             benefits: [
-                'Access to premium features',
-                'Daily updates',
-                'Unlimited test',
-                'Access 5000+ questions',
-                'Premium support (24/7)',
-                'Access to permium community'
+                'Premium features with daily updates',
+                'Priority support available 24/7',
+                'Access to our elite community and exclusive content',
+                'Unlimited tests to sharpen your knowledge with 5000+ questions',
             ],
-            text: "I want premium 100₹ per year plan of XaMawo."
+            text: "Experience the pinnacle of learning with our Premium Plan. For just ₹100 per year, enjoy daily updates, priority support, and immerse yourself in our premium community at XaMawo."
         },
     ];
 

@@ -1,0 +1,131 @@
+import React, { useEffect, useState } from 'react';
+import { getExams, deleteExam, updateExam } from '../api/examApi';
+import { useAuth } from '../hooks/useAuth';
+import { toast } from 'react-hot-toast';
+
+const AdminManageExams = () => {
+    const { user } = useAuth();
+    const [exams, setExams] = useState([]);
+    const [editingExam, setEditingExam] = useState(null);
+    const [formData, setFormData] = useState({
+        title: '',
+        category: '',
+        questions: '',
+        dueDate: ''
+    });
+
+    useEffect(() => {
+        const fetchExams = async () => {
+            try {
+                const data = await getExams(user.token);
+                setExams(data);
+            } catch (error) {
+                toast.error('Failed to fetch exams');
+            }
+        };
+
+        fetchExams();
+    }, [user.token]);
+
+    const handleDelete = async (id) => {
+        try {
+            await deleteExam(id, user.token);
+            setExams(exams.filter((exam) => exam._id !== id));
+            toast.success('Exam deleted successfully');
+        } catch (error) {
+            toast.error('Failed to delete exam');
+        }
+    };
+
+    const handleEdit = (exam) => {
+        setEditingExam(exam._id);
+        setFormData({
+            title: exam.title,
+            category: exam.category,
+            questions: exam.questions.join(','),
+            dueDate: exam.dueDate.split('T')[0]
+        });
+    };
+
+    const handleUpdate = async (e) => {
+        e.preventDefault();
+        try {
+            const updatedExam = {
+                ...formData,
+                questions: formData.questions.split(',').map(q => q.trim())
+            };
+            await updateExam(editingExam, updatedExam, user.token);
+            setExams(exams.map(exam => (exam._id === editingExam ? { ...exam, ...updatedExam } : exam)));
+            setEditingExam(null);
+            toast.success('Exam updated successfully');
+        } catch (error) {
+            toast.error('Failed to update exam');
+        }
+    };
+
+    return (
+        <div className="max-w-3xl mx-auto p-4 bg-white min-w-full text-black">
+            <h2 className="text-2xl font-bold mb-4">Manage Exams</h2>
+            {editingExam ? (
+                <form onSubmit={handleUpdate} className="mb-4">
+                    <input
+                        type="text"
+                        placeholder="Title"
+                        value={formData.title}
+                        onChange={(e) => setFormData({ ...formData, title: e.target.value })}
+                        className="block w-full mb-2 p-2 border"
+                        required
+                    />
+                    <input
+                        type="text"
+                        placeholder="Category"
+                        value={formData.category}
+                        onChange={(e) => setFormData({ ...formData, category: e.target.value })}
+                        className="block w-full mb-2 p-2 border"
+                        required
+                    />
+                    <input
+                        type="text"
+                        placeholder="Questions (comma separated IDs)"
+                        value={formData.questions}
+                        onChange={(e) => setFormData({ ...formData, questions: e.target.value })}
+                        className="block w-full mb-2 p-2 border"
+                        required
+                    />
+                    <input
+                        type="date"
+                        value={formData.dueDate}
+                        onChange={(e) => setFormData({ ...formData, dueDate: e.target.value })}
+                        className="block w-full mb-2 p-2 border"
+                        required
+                    />
+                    <button type="submit" className="bg-blue-500 text-white p-2 rounded">Update Exam</button>
+                </form>
+            ) : (
+                <ul>
+                    {exams.map((exam) => (
+                        <li key={exam._id} className="mb-2">
+                            <h3 className="font-bold">{exam.title}</h3>
+                            <p>Category: {exam.category}</p>
+                            <p>Due Date: {new Date(exam.dueDate).toLocaleDateString()}</p>
+                            <button
+                                onClick={() => handleEdit(exam)}
+                                className="bg-yellow-500 text-white p-2 rounded mr-2"
+                            >
+                                Edit
+                            </button>
+                            <button
+                                onClick={() => handleDelete(exam._id)}
+                                className="bg-red-500 text-white p-2 rounded"
+                            >
+                                Delete
+                            </button>
+                        </li>
+                    ))}
+                </ul>
+            )}
+        </div>
+    );
+};
+
+export default AdminManageExams;

@@ -84,6 +84,8 @@ function convertAnswers(data) {
 
     return convertedData;
 }
+
+
 export const submitExam = async (examId, answers, token) => {
     console.log({examId, answers, token})
     console.log(JSON.stringify({ answers }))
@@ -150,9 +152,47 @@ export const getUserExamAttemptsByDate = async (userId, token) => {
             'Authorization': `Bearer ${token}`,
         },
     });
+    console.log(response)
 
     if (!response.ok) {
         throw new Error('Failed to fetch user exam attempts');
+    }
+
+    return await response.json();
+};
+
+
+
+export const updateExam = async (examId, examData, token) => {
+    const response = await fetch(`${API_URL}/${examId}`, {
+        method: 'PUT',
+        headers: {
+            'Content-Type': 'application/json',
+            'Authorization': `Bearer ${token}`,
+        },
+        body: JSON.stringify(examData),
+    });
+
+    if (!response.ok) {
+        throw new Error('Failed to update exam');
+    }
+
+    return await response.json();
+};
+
+
+
+export const getAllUsersResults = async (token) => {
+    const response = await fetch(`${API_URL}/results`, {
+        method: 'GET',
+        headers: {
+            'Content-Type': 'application/json',
+            'Authorization': `Bearer ${token}`,
+        },
+    });
+
+    if (!response.ok) {
+        throw new Error('Failed to fetch all users results');
     }
 
     return await response.json();

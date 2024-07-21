@@ -10,7 +10,7 @@ const Footer = () => {
         <div className="flex mt-4 sm:mt-0">
             <Link to="/about" className="px-3 py-1 text-sm text-gray-300 hover:text-white">About Us</Link>
             <Link to="/contact" className="px-3 py-1 text-sm text-gray-300 hover:text-white">Contact</Link>
-            <Link to="/" className="px-3 py-1 text-sm text-gray-300 hover:text-white">Privacy Policy</Link>
+            <Link to="/privacy" className="px-3 py-1 text-sm text-gray-300 hover:text-white">Privacy Policy</Link>
         </div>
     </div>
 </footer>

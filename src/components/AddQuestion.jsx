@@ -91,7 +91,7 @@ const AddQuestion = () => {
     //         <button type="submit">Add Question</button>
     //     </form>
     // </div>
-    return (<div className="max-w-md mx-auto bg-white dark:bg-gray-800 shadow-md rounded-lg overflow-hidden p-6 my-4">
+    return (<div className="max-w-md mx-auto bg-white text-black dark:bg-gray-800 shadow-md rounded-lg overflow-hidden p-6 my-4">
         <h2 className="text-2xl font-bold mb-4 dark:text-white">Add Question</h2>
         <form onSubmit={handleSubmit} className="space-y-4">
             <div>

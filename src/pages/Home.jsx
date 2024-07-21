@@ -54,22 +54,22 @@ const Home = () => {
                                 <h2 className="text-xl font-semibold mb-4">Categories</h2>
                                 <ul>
                                     <li className="text-lg mb-2">
-                                        <a href="/questions" className="hover:text-blue-600">Aptitude</a>
+                                        <p href="/" className="hover:text-blue-600">Aptitude</p>
                                     </li>
                                     <li className="text-lg mb-2">
-                                        <a href="/questions" className="hover:text-blue-600">Reasoning</a>
+                                        <p href="/" className="hover:text-blue-600">Reasoning</p>
                                     </li>
                                     <li className="text-lg mb-2">
-                                        <a href="/questions" className="hover:text-blue-600">Technical</a>
+                                        <p href="/" className="hover:text-blue-600">Technical</p>
                                     </li>
                                     <li className="text-lg mb-2">
-                                        <a href="/questions" className="hover:text-blue-600">JECA</a>
+                                        <p href="/" className="hover:text-blue-600">JECA</p>
                                     </li>
                                     <li className="text-lg mb-2">
-                                        <a href="/questions" className="hover:text-blue-600">Verbal Ability (Coming soon...)</a>
+                                        <p href="/" className="hover:text-blue-600">Verbal Ability (Coming soon...)</p>
                                     </li>
                                     <li className="text-lg mb-2">
-                                        <a href="/questions" className="hover:text-blue-600">General Awareness (Coming soon...)</a>
+                                        <p href="/" className="hover:text-blue-600">General Awareness (Coming soon...)</p>
                                     </li>
                                 </ul>
                             </div>
@@ -77,19 +77,19 @@ const Home = () => {
                                 <h2 className="text-xl font-semibold mb-4">Recent Exam Results</h2>
                                 <ul>
                                     <li className="text-lg mb-2">
-                                        <a href="/results" className="hover:text-blue-600">Exam 1 - Aptitude</a>
+                                        <p href="/" className="hover:text-blue-600">Exam 1 - Aptitude</p>
                                     </li>
                                     <li className="text-lg mb-2">
-                                        <a href="/results" className="hover:text-blue-600">Exam 2 - Reasoning</a>
+                                        <p href="/" className="hover:text-blue-600">Exam 2 - Reasoning</p>
                                     </li>
                                     <li className="text-lg mb-2">
-                                        <a href="/results" className="hover:text-blue-600">Exam 3 - Technical</a>
+                                        <p href="/" className="hover:text-blue-600">Exam 3 - Technical</p>
                                     </li>
                                     <li className="text-lg mb-2">
-                                        <a href="/results" className="hover:text-blue-600">Exam 4 - Verbal Ability (Coming soon...)</a>
+                                        <p href="/" className="hover:text-blue-600">Exam 4 - Verbal Ability (Coming soon...)</p>
                                     </li>
                                     <li className="text-lg mb-2">
-                                        <a href="/results" className="hover:text-blue-600">Exam 5 - General Awareness (Coming soon...)</a>
+                                        <p href="/" className="hover:text-blue-600">Exam 5 - General Awareness (Coming soon...)</p>
                                     </li>
                                 </ul>
                             </div>

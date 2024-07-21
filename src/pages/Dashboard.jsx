@@ -29,9 +29,9 @@ const Dashboard = () => {
     };
     const fetchAnalytics = async () => {
       try {
-        toast('Please wait!', {
-          icon: '👏',
-        });
+        // toast('Please wait!', {
+        //   icon: '👏',
+        // });
         const data = await getUserAnalytics(user.token);
         // console.log(data)
         setAnalytics(data);

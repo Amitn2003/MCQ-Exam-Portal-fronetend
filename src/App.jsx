@@ -28,6 +28,9 @@ import AvailableExams from './pages/AvailableExams';
 import StartExam from './pages/StartExam';
 import Results from './pages/Results';
 import PremiumSubscriptionPage from './pages/PremiumSubscriptionPage';
+import AdminManageExams from './pages/AdminManageExams';
+import AdminViewResults from './pages/AdminViewResults';
+import PrivacyPolicy from './pages/PrivacyPolicy';
 
 
 
@@ -48,6 +51,7 @@ function App() {
               <Route path="/register" element={<Register />} />
               <Route path="/about" element={<About />} />
               <Route path="/login" element={<Login />} />
+              <Route path="/privacy" element={<PrivacyPolicy />} />
               <Route path="/add-question" element={<AddQuestion />} />
               <Route path="/questions" element={<GetQuestions />} />
               {/* <Route path="/exam" element={<Exam />} /> */}
@@ -60,6 +64,8 @@ function App() {
               <Route path="/subscription" element={<PremiumSubscriptionPage />} />
               <Route path="/exam/:examId" element={<StartExam />} />
               <Route path="/admin/users" element={<AdminUsers />} />
+              <Route path="/admin/manage-exams" element={<AdminManageExams />} />
+              <Route path="/admin/manage-results" element={<AdminViewResults />} />
               <Route path="/admin/users/:userId" element={<EditUser />} />
               <Route path="/admin/reported-questions" element={<ReportedQuestions />} />
               <Route path="/admin/manage-questions" element={<ManageQuestions />} />

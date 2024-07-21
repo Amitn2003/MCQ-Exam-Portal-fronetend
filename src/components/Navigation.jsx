@@ -474,6 +474,8 @@ const navigation = [
     { name: 'Result', href: '/exam-results' },
     { name: 'Add Questions', href: '/add-question' },
     { name: 'Manage Users', href: '/admin/users' },
+    { name: 'Manage Exams', href: '/admin/manage-exams' },
+    { name: 'Manage Results', href: '/admin/manage-results' },
     { name: 'Reported Questions', href: '/admin/reported-questions' },
     { name: 'Create Exam', href: '/admin/create-exam' },
     { name: 'Logout', href: '/' },
@@ -535,13 +537,13 @@ const Navigation = () => {
                                 <div className="flex space-x-4">
                                     {navigation.map((item) => {
                                         // Conditionally render navigation items based on user role
-                                        if (!userAvailable && (item.name === 'Dashboard' || item.name === 'Exam Result' || item.name === 'Add Questions' || item.name === 'Manage Users' || item.name === 'Reported Questions' || item.name === 'Logout'|| item.name === 'Start Exam'|| item.name === 'Practice Exam' || item.name === 'Practice Result' || item.name === 'Exam' || item.name === 'Result' || item.name === 'Create Exam')) {
+                                        if (!userAvailable && (item.name === 'Dashboard' || item.name === 'Exam Result' || item.name === 'Add Questions' || item.name === 'Manage Users' || item.name === 'Reported Questions' || item.name === 'Logout'|| item.name === 'Start Exam'|| item.name === 'Practice Exam' || item.name === 'Practice Result' || item.name === 'Exam' || item.name === 'Result' || item.name === 'Create Exam' || item.name === 'Manage Exams' || item.name === 'Manage Results')) {
                                             return null;
                                         }
                                         if (userAvailable && (item.name === 'Home' || item.name === 'Login' || item.name === 'Register'|| item.name === 'Logout')) {
                                             return null;
                                         }
-                                        if (userAvailable && !admin && (item.name === 'Add Questions' || item.name === 'Manage Users' || item.name === 'Reported Questions' || item.name === 'Create Exam')) {
+                                        if (userAvailable && !admin && (item.name === 'Add Questions' || item.name === 'Manage Users' || item.name === 'Reported Questions' || item.name === 'Create Exam'  || item.name === 'Manage Exams' || item.name === 'Manage Results')) {
                                             return null;
                                         }
                                         return (
@@ -630,16 +632,16 @@ const Navigation = () => {
                             if (userAvailable && item.name === 'Logout') {
                                 return (<button key={item.name} className="text-gray-300 hover:bg-gray-700 hover:text-white rounded-md px-3 py-2 text-sm font-medium" onClick={handleLogout}>Logout</button>);
                             }
-                            if (!userAvailable && (item.name === 'Start Exam' || item.name === 'Dashboard' || item.name === 'Exam Result' || item.name === 'Add Questions' || item.name === 'Manage Users' || item.name === 'Reported Questions' || item.name === 'Practical Exam' || item.name === 'Practice Exam' || item.name === 'Practice Result' || item.name === 'Exam' || item.name === 'Result' || item.name === 'Create Exam' )) {
+                            if (!userAvailable && (item.name === 'Start Exam' || item.name === 'Dashboard' || item.name === 'Exam Result' || item.name === 'Add Questions' || item.name === 'Manage Users' || item.name === 'Reported Questions' || item.name === 'Practical Exam' || item.name === 'Practice Exam' || item.name === 'Practice Result' || item.name === 'Exam' || item.name === 'Result' || item.name === 'Create Exam'  || item.name === 'Manage Exams' || item.name === 'Manage Results' )) {
                                 return null;
                             }
                             if (userAvailable && (item.name === 'Home' || item.name === 'Login' || item.name === 'Register')) {
                                 return null;
                             }
-                            if (!isAdmin && (item.name === 'Add Questions' || item.name === 'Manage Users' || item.name === 'Reported Questions')) {
+                            if (!isAdmin && (item.name === 'Add Questions' || item.name === 'Manage Users' || item.name === 'Reported Questions' )) {
                                 return null;
                             }
-                            if (userAvailable && !admin && (item.name === 'Add Questions' || item.name === 'Manage Users' || item.name === 'Reported Questions' || item.name === 'Create Exam')) {
+                            if (userAvailable && !admin && (item.name === 'Add Questions' || item.name === 'Manage Users' || item.name === 'Reported Questions' || item.name === 'Create Exam'   || item.name === 'Manage Exams' || item.name === 'Manage Results')) {
                                 return null;
                             }
                             return (
