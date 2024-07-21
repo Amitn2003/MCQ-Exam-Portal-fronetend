@@ -59,7 +59,7 @@ const Dashboard = () => {
       // console.log(typeof dateString)
       const yesterdayDate = getYesterdayDate(dateString);
       
-      return examAttempts[yesterdayDate] ? 'bg-green-400 rounded-full text-white' : 'bg-gray-200';
+      return examAttempts[yesterdayDate] ? 'bg-green-400 rounded-full text-white dark:text-gray-200 dark:bg-cyan-600' : 'bg-gray-400 text-gray-200 dark:text-black dark:bg-red-200 rounded-full';
     }
   };
 
@@ -75,7 +75,7 @@ const Dashboard = () => {
   return (
     <>
 
-      <div className='w-full h-full text-blue-800 mb-4 dark:text-white '>
+      <div className='w-full h-full  text-blue-800 mb-4 dark:text-white '>
         <div className="px-4 py-8 bg-white dark:bg-gray-800 dark:text-white">
           <h2 className="text-3xl font-bold text-gray-800 mb-4 dark:text-white">Exam Performance Analytics</h2>
           <div className="bg-white dark:bg-gray-800 rounded-lg shadow-md p-4">
@@ -121,7 +121,10 @@ const Dashboard = () => {
           </div>
         </div>
       </div>
-      <div className='bg-white text-black dark:bg-gray-800 rounded-lg shadow-md p-4 overflow-x-auto'>
+      <div className='bg-white text-black dark:bg-gray-800 rounded-lg shadow-md p-4 overflow-x-auto flex flex-col justify-center items-center'>
+      <h2 className="text-3xl font-bold text-gray-800 dark:text-white mb-4">
+        Daily Stick: 
+      </h2>
         
       <Calendar tileClassName={tileClassName} />
       </div>

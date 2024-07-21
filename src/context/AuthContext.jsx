@@ -1,7 +1,7 @@
 import { createContext, useState, useEffect, useContext } from 'react';
 import { useNavigate } from 'react-router-dom';
-
 const AuthContext = createContext();
+const URL = "http://localhost:5000"
 
 const AuthProvider = ({ children }) => {
     const [user, setUser] = useState(JSON.parse(localStorage.getItem('user')) || null);
@@ -9,7 +9,7 @@ const AuthProvider = ({ children }) => {
 
     const register = async (userData) => {
         try {
-            const response = await fetch('https://mcq-portal-backend.onrender.com/api/auth/register', {
+            const response = await fetch(`${URL}/api/auth/register`, {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json',
@@ -33,7 +33,7 @@ const AuthProvider = ({ children }) => {
 
     const login = async (userData) => {
         try {
-            const response = await fetch('https://mcq-portal-backend.onrender.com/api/auth/login', {
+            const response = await fetch(`${URL}/api/auth/login`, {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json',
@@ -46,11 +46,14 @@ const AuthProvider = ({ children }) => {
                 localStorage.setItem('user', JSON.stringify(data));
                 navigate('/');
             } else {
-                console.error(data);
+                console.error(data.issues);
+                throw data.issues
                 return false;
             }
         } catch (error) {
-            console.error(error);
+            console.error(error.message);
+            return error.message
+            // throw new error.issues[0]
         }
     };
 

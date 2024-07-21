@@ -23,12 +23,19 @@ const Register = () => {
             // If registration succeeds, show a success toast
             if (registrationRes)
                 toast.success('Registration successful!');
-            else toast.error('Please try again.');
+            else {
+                toast.error('Please try again.');
+            }
         } catch (error) {
             console.log(error)
+            console.log(error.message)
+            console.log(error.issues[0].message)
+            // console.log(JSON.parse(error.message)[0].message)
             // If registration fails, show an error toast
             // toast.error('Registration failed. Please try again.');
+            // toast.error(error.message)
             toast.error(error.message)
+            toast.error(error.issues[0].message)
         }
     };
 
@@ -125,7 +132,7 @@ const Register = () => {
                         id="phone"
                         type="number"
                         name="phone"
-                        placeholder="Phone (Optional)"
+                        placeholder="Phone Number"
                         value={phone}
                         onChange={(e) => setPhone(e.target.value)}
                     />
