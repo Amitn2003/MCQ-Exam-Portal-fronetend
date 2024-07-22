@@ -1,7 +1,7 @@
 import { createContext, useState, useEffect, useContext } from 'react';
 import { useNavigate } from 'react-router-dom';
 const AuthContext = createContext();
-const URL = "http://localhost:5000"
+const URL = "https://mcq-portal-backend.onrender.com"
 
 const AuthProvider = ({ children }) => {
     const [user, setUser] = useState(JSON.parse(localStorage.getItem('user')) || null);
@@ -40,6 +40,7 @@ const AuthProvider = ({ children }) => {
                 },
                 body: JSON.stringify(userData),
             });
+            console.log(response)
             const data = await response.json(); 
             if (response.ok) {
                 setUser(data);

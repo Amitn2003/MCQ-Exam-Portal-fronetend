@@ -190,6 +190,7 @@ export const getAllUsersResults = async (token) => {
             'Authorization': `Bearer ${token}`,
         },
     });
+    console.log(response)
 
     if (!response.ok) {
         throw new Error('Failed to fetch all users results');

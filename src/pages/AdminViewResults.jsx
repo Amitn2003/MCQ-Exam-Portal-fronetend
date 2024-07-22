@@ -12,12 +12,14 @@ const AdminViewResults = () => {
         const fetchResults = async () => {
             try {
                 const data = await getAllUsersResults(user.token);
+                console.log(data)
                 const calculatedResults = data.map(result => calculateResultMetrics(result));
                 setResults(data);
                 setLoading(false); // Set loading to false after data is fetched
                 console.log(data)
             } catch (error) {
                 toast.error('Failed to fetch results');
+                console.log(error)
             }
         };
 

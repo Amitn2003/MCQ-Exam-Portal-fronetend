@@ -261,7 +261,9 @@ const GetQuestions = () => {
                                         <div className="mb-4">
                                             <h3 className="text-lg font-medium mb-2 text-gray-800 dark:text-gray-100">Time Left: {formatTime(timeLeft)}</h3>
                                         </div>
-                                        <pre className="text-gray-600 dark:text-white">{questions[currentQuestionIndex].question}</pre>
+                                        <p className=''>
+                                        <pre className="text-gray-600 dark:text-white font-sans whitespace-pre-wrap">{questions[currentQuestionIndex].question}</pre>
+                                        </p>
                                         <p className="text-sm text-gray-400 dark:text-gray-200">Category: {questions[currentQuestionIndex].category}</p>
                                         <span className="text-sm text-gray-300 dark:text-gray-500">{questions[currentQuestionIndex].subcategory}</span>
                                     </div>
