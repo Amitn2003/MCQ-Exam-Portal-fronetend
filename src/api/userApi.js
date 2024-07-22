@@ -1,4 +1,4 @@
-const API_URL = 'https://mcq-portal-backend.onrender.com/api/users';
+const API_URL = 'https://mcq-portal-vercel.vercel.app/api/users';
 
 export const getUsers = async (token) => {
     const response = await fetch(API_URL, {

@@ -1,4 +1,4 @@
-const API_URL = 'https://mcq-portal-backend.onrender.com/api/auth/exams';
+const API_URL = 'https://mcq-portal-vercel.vercel.app/api/auth/exams';
 
 export const createExam = async (examData, token) => {
     const response = await fetch(API_URL, {

@@ -1,7 +1,7 @@
 import { createContext, useState, useEffect, useContext } from 'react';
 import { useNavigate } from 'react-router-dom';
 const AuthContext = createContext();
-const URL = "https://mcq-portal-backend.onrender.com"
+const URL = "https://mcq-portal-vercel.vercel.app"
 
 const AuthProvider = ({ children }) => {
     const [user, setUser] = useState(JSON.parse(localStorage.getItem('user')) || null);
@@ -46,6 +46,8 @@ const AuthProvider = ({ children }) => {
                 setUser(data);
                 localStorage.setItem('user', JSON.stringify(data));
                 navigate('/');
+                console.log(data.message)
+                return data.message
             } else {
                 console.error(data.issues);
                 throw data.issues

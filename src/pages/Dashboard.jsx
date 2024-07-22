@@ -59,7 +59,7 @@ const Dashboard = () => {
       // console.log(typeof dateString)
       const yesterdayDate = getYesterdayDate(dateString);
       
-      return examAttempts[yesterdayDate] ? 'bg-green-400 rounded-full text-white dark:text-gray-200 dark:bg-cyan-600' : 'bg-gray-400 text-gray-200 dark:text-black dark:bg-red-200 rounded-full';
+      return examAttempts[yesterdayDate] ? 'bg-green-400 rounded-full text-white dark:text-gray-200 dark:bg-cyan-600 underline' : 'bg-gray-400 text-gray-200 dark:text-black dark:bg-red-200 rounded-full';
     }
   };
 
@@ -125,6 +125,9 @@ const Dashboard = () => {
       <h2 className="text-3xl font-bold text-gray-800 dark:text-white mb-4">
         Daily Stick: 
       </h2>
+      <p className=" text-gray-800 dark:text-white mb-4">
+        Consistency is the <span className='font-bold'>KEY 🗝️</span>
+      </p>
         
       <Calendar tileClassName={tileClassName} />
       </div>

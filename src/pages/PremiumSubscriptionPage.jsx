@@ -16,6 +16,7 @@ const PremiumSubscriptionPage = () => {
         },
         {
             title: 'Basic Plan',
+            strikeThroughPrice: "₹250/month",
             price: '₹30/month',
             benefits: [
                 'Access to core features with monthly updates',
@@ -26,7 +27,8 @@ const PremiumSubscriptionPage = () => {
             text: "Upgrade to our Basic Plan at just ₹30 per month and unlock unlimited learning potential. Get started with XaMawo!"
         },
         {
-            title: 'Standard Plan',
+            title: 'Standard Plan',            
+            strikeThroughPrice: "₹700/3months",
             price: '₹60 every 3 months',
             benefits: [
                 'Enhanced features with weekly updates',
@@ -38,6 +40,7 @@ const PremiumSubscriptionPage = () => {
         },
         {
             title: 'Premium Plan',
+            strikeThroughPrice: "₹2500/year",
             price: '₹100/year',
             benefits: [
                 'Premium features with daily updates',
@@ -93,7 +96,10 @@ const PremiumSubscriptionPage = () => {
                     {plans.map((plan, index) => (
                         <div key={index} className="bg-white dark:bg-gray-900 rounded-lg shadow-md p-6">
                             <h2 className="text-xl font-bold mb-4 text-black dark:text-white">{plan.title}</h2>
-                            <p className="text-gray-600 dark:text-gray-300 mb-4">{plan.price}</p>
+                            <p className="text-gray-600 dark:text-gray-300 mb-4"> {plan.strikeThroughPrice ? (
+                <span className="text-red-500 line-through mr-2">{plan.strikeThroughPrice}</span>
+            ) : null}
+            {plan.price}</p>
                             <ul className="text-left mb-4">
                                 {plan.benefits.map((benefit, idx) => (
                                     <li key={idx} className="flex items-center gap-2 text-gray-600 dark:text-gray-300">

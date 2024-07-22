@@ -19,16 +19,19 @@ const Login = () => {
         try {
             let loginRes = await login({ email, password });
             console.log(loginRes)
+            toast.success(loginRes)
+            
             // If login succeeds, show a success toast
             // let loginMessage = await loginRes.message;
             // msg = loginMessage
-            if (loginRes.ok) {
-                toast.success("Log in successful")
-            }
-            else {
-                toast.error('Please try again');
-            }
+            // if (loginRes.message == "User logged in successfully") {
+            //     toast.success("Log in successful")
+            // }
+            // else {
+            //     toast.error('Please try again');
+            // }
         } catch (error) {
+            console.error(error)
             toast.error('Login failed. Please check your credentials.');
         }
     };

@@ -1,4 +1,4 @@
-const API_URL = 'https://mcq-portal-backend.onrender.com/api/reportedQuestions';
+const API_URL = 'https://mcq-portal-vercel.vercel.app/api/reportedQuestions';
 
 export const reportQuestion = async (questionId, reason, token) => {
     console.log(JSON.stringify({ questionId, reason }))
