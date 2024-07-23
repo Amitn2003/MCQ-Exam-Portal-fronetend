@@ -31,6 +31,7 @@ import PremiumSubscriptionPage from './pages/PremiumSubscriptionPage';
 import AdminManageExams from './pages/AdminManageExams';
 import AdminViewResults from './pages/AdminViewResults';
 import PrivacyPolicy from './pages/PrivacyPolicy';
+import AdminViewAllResults from './pages/AdminViewAllResults';
 
 
 
@@ -66,6 +67,7 @@ function App() {
               <Route path="/admin/users" element={<AdminUsers />} />
               <Route path="/admin/manage-exams" element={<AdminManageExams />} />
               <Route path="/admin/manage-results" element={<AdminViewResults />} />
+              <Route path="/admin/manage-results/mock" element={<AdminViewAllResults />} />
               <Route path="/admin/users/:userId" element={<EditUser />} />
               <Route path="/admin/reported-questions" element={<ReportedQuestions />} />
               <Route path="/admin/manage-questions" element={<ManageQuestions />} />

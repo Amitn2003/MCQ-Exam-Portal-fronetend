@@ -199,3 +199,22 @@ export const getAllUsersResults = async (token) => {
 
     return await response.json();
 };
+
+
+
+
+export const getAllUserExamResults = async (token) => {
+    const response = await fetch(`${API_URL}/results/mock`, {
+        method: 'GET',
+        headers: {
+            'Content-Type': 'application/json',
+            'Authorization': `Bearer ${token}`,
+        },
+    });
+
+    if (!response.ok) {
+        throw new Error('Failed to fetch all users exam results');
+    }
+
+    return await response.json();
+};
