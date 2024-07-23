@@ -1,4 +1,5 @@
-const API_URL = 'https://mcq-portal-vercel.vercel.app/api/questions';
+// const API_URL = 'https://mcq-portal-vercel.vercel.app/api/questions';
+const API_URL = `${import.meta.env.REACT_APP_BACKEND_URL}/api/questions`;
 
 export const getQuestions = async (token, category = null, totalQs=10) => {
     let url = API_URL;

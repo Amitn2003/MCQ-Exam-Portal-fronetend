@@ -1,4 +1,5 @@
-const API_URL = 'https://mcq-portal-vercel.vercel.app/api/users/notifications';
+// const API_URL = 'https://mcq-portal-vercel.vercel.app/api/users/notifications';
+const API_URL = `${import.meta.env.REACT_APP_BACKEND_URL}/api/users/notifications`;
 
 export const getNotifications = async (token) => {
     const response = await fetch(API_URL, {

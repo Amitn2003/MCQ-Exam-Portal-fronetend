@@ -1,4 +1,5 @@
-const API_URL = 'https://mcq-portal-vercel.vercel.app/api/reportedQuestions';
+// const API_URL = 'https://mcq-portal-vercel.vercel.app/api/reportedQuestions';
+const API_URL = `${import.meta.env.REACT_APP_BACKEND_URL}/api/reportedQuestions`;
 
 export const reportQuestion = async (questionId, reason, token) => {
     console.log(JSON.stringify({ questionId, reason }))

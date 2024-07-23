@@ -289,11 +289,13 @@ const ReportedQuestions = () => {
             </div>
         )}
             <ul className="divide-y divide-gray-300 dark:divide-gray-700">
-                {reportedQuestions.map((reportedQuestion) => (
+                {reportedQuestions.map((reportedQuestion) => {
+                    if (reportedQuestion.user == null ) reportedQuestion.user = "DELETED USER"                    
+                    return(
                     <li key={reportedQuestion._id} className="py-4 flex flex-col md:flex-row items-start md:items-center justify-between">
                         <div className="md:w-3/4">
                             <h4 className="text-lg font-semibold mb-2 text-gray-800 dark:text-white">{reportedQuestion.question.question}</h4>
-                            <p className="text-gray-600 dark:text-gray-400">Reported by: {reportedQuestion.user.name} ({reportedQuestion.user.email})</p>
+                            <p className="text-gray-600 dark:text-gray-400">Reported by: {reportedQuestion.user.name } ({reportedQuestion.user.email})</p>
                             <p className="text-gray-600 dark:text-gray-400">Reason: {reportedQuestion.reason}</p>
                             <p className={`text-gray-600 dark:text-gray-400 ${reportedQuestion.status === 'resolved' ? 'text-green-600 dark:text-green-400' : 'text-red-600 dark:text-red-400'}`}>Status: {reportedQuestion.status}</p>
                         </div>
@@ -326,7 +328,7 @@ const ReportedQuestions = () => {
                             </button>
                         </div>
                     </li>
-                ))}
+                )})}
             </ul> </>
         )}
 

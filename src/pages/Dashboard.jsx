@@ -11,7 +11,6 @@ import toast, { Toaster } from 'react-hot-toast';
 
 
 
-
 const Dashboard = () => {
   const [analytics, setAnalytics] = useState([]);
   const { user } = useAuth();
@@ -78,7 +77,7 @@ const Dashboard = () => {
       <div className='w-full h-full  text-blue-800 mb-4 dark:text-white '>
         <div className="px-4 py-8 bg-white dark:bg-gray-800 dark:text-white">
           <h2 className="text-3xl font-bold text-gray-800 mb-4 dark:text-white">Exam Performance Analytics</h2>
-          <div className="bg-white dark:bg-gray-800 rounded-lg shadow-md p-4">
+          <div className="bg-white dark:bg-gray-800 rounded-lg shadow-md p-4  overflow-x-auto">
             <div className="overflow-x-auto">
               <div className="inline-block min-w-full">
                 <BarChart
@@ -86,7 +85,7 @@ const Dashboard = () => {
                   height={300}
                   data={analytics}
                   margin={{ top: 20, right: 20, left: 0, bottom: 5 }} // Adjusted margin for better responsiveness
-                  style={{ minWidth: '100%' }} // Ensures the chart fills the container
+                  // style={{ minWidth: '100%' }} // Ensures the chart fills the container
                 >
                   <CartesianGrid strokeDasharray="3 3" />
                   <XAxis dataKey="examDate" tickFormatter={formatDate} />
@@ -100,7 +99,7 @@ const Dashboard = () => {
           </div>
         </div>
 
-        <div className="px-4 py-8 bg-white dark:bg-slate-900">
+        <div className="px-4 py-8 bg-white dark:bg-slate-900 dark:text-white">
           <h2 className="text-3xl font-bold text-gray-800 dark:text-white mb-4">Exam Performance Analytics</h2>
           <div className="bg-white dark:bg-gray-800 rounded-lg shadow-md p-4 overflow-x-auto">
             <div className="inline-block min-w-full">
