@@ -17,10 +17,7 @@ const AdminUsers = () => {
 
     useEffect(() => {
         const fetchUsers = async () => {
-            try {              
-                toast('Please wait!', {
-                    icon: '👏',
-                  });
+            try { 
                 const data = await getUsers(user.token);
                 console.log(data)
                 setUsers(data);
@@ -37,9 +34,11 @@ const AdminUsers = () => {
     const handleDelete = async (userId) => {
         try {
             await deleteUser(userId, user.token);
+            toast.success("User deleted successfully")
             setUsers(users.filter(user => user._id !== userId));
         } catch (error) {
             console.error('Failed to delete user');
+            toast.error("Something went wrong!")
         }
     };
 

@@ -1,4 +1,5 @@
-const API_URL = 'https://mcq-portal-vercel.vercel.app/api/users';
+// const API_URL = 'https://mcq-portal-vercel.vercel.app/api/users';
+const API_URL = `${import.meta.env.REACT_APP_BACKEND_URL}/api/users`;
 
 export const getUsers = async (token) => {
     const response = await fetch(API_URL, {

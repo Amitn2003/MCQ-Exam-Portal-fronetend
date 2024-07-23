@@ -1,4 +1,5 @@
-const API_URL = 'https://mcq-portal-vercel.vercel.app/api/examResults';
+// const API_URL = 'https://mcq-portal-vercel.vercel.app/api/examResults';
+const API_URL = `${import.meta.env.REACT_APP_BACKEND_URL}/api/examResults`;
 
 export const addExamResult = async (resultData, token) => {
     console.log(resultData, token)

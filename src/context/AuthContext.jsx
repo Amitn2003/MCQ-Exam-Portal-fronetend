@@ -1,7 +1,9 @@
 import { createContext, useState, useEffect, useContext } from 'react';
 import { useNavigate } from 'react-router-dom';
 const AuthContext = createContext();
-const URL = "https://mcq-portal-vercel.vercel.app"
+// const URL = "https://mcq-portal-vercel.vercel.app"
+
+const URL = import.meta.env.REACT_APP_BACKEND_URL
 
 const AuthProvider = ({ children }) => {
     const [user, setUser] = useState(JSON.parse(localStorage.getItem('user')) || null);

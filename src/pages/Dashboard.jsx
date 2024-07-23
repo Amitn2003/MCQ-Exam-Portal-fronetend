@@ -11,7 +11,6 @@ import toast, { Toaster } from 'react-hot-toast';
 
 
 
-
 const Dashboard = () => {
   const [analytics, setAnalytics] = useState([]);
   const { user } = useAuth();

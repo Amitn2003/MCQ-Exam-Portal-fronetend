@@ -8,7 +8,7 @@ const Profile = () => {
 
     const { user } = useAuth();
 
-
+    
 
     useEffect(() => {
         const fetchUser = async () => {
