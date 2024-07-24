@@ -7,8 +7,7 @@ const Contact = () => {
       window.open(whatsappURL, '_blank');
     };
   return (
-    <>
-    <div className="text-center p-6">
+    <div className="text-center p-6 text-black bg-gray-50 dark:bg-gray-800 dark:text-white">
   <h1 className="text-3xl font-bold mb-4">Contact Me</h1>
   <p className="mb-8">For any inquiries or collaborations.</p>
   
@@ -37,8 +36,6 @@ const Contact = () => {
     <a href="#" className="text-blue-500 hover:text-blue-700">Instagram</a>
   </div>
 </div>
-
-    </>
   )
 }
 

@@ -20,7 +20,7 @@ const Dashboard = () => {
     const fetchExamAttempts = async () => {
       try {
         const data = await getUserExamAttemptsByDate(user._id, user.token);
-        console.log("Fetch exam attempts ",data)
+        console.log("Fetch exam attempts ", data)
         setExamAttempts(data);
       } catch (error) {
         toast.error('Failed to fetch exam attempts');
@@ -47,19 +47,47 @@ const Dashboard = () => {
   function getYesterdayDate(dateString) {
     const currentDate = new Date(dateString);
     const previousDate = new Date(currentDate);
-    previousDate.setDate(currentDate.getDate() +1); // Subtract 1 day
+    previousDate.setDate(currentDate.getDate() + 1); // Subtract 1 day
     return previousDate.toISOString().split('T')[0];
-}
-  
+  }
+
   const tileClassName = ({ date, view }) => {
+    const LOW_CONSISTENCY_CLASS = 'bg-gray-200 text-gray-600 hover:text-black';
+const MEDIUM_CONSISTENCY_CLASS = 'bg-blue-200 text-blue-600 hover:text-black';
+const HIGH_CONSISTENCY_CLASS = 'bg-green-400 text-white dark:text-gray-200 dark:bg-cyan-600 underline hover:text-black';
+const DEFAULT_CLASS = 'bg-gray-400 text-gray-200 dark:text-black dark:bg-red-200 rounded-full hover:text-black';
+
+    // Example Tailwind CSS classes for consistency levels
+
     if (view === 'month') {
       const dateString = date.toISOString().split('T')[0];
-      
+
       // console.log(typeof dateString)
       const yesterdayDate = getYesterdayDate(dateString);
-      
-      return examAttempts[yesterdayDate] ? 'bg-green-400 rounded-full text-white dark:text-gray-200 dark:bg-cyan-600 underline' : 'bg-gray-400 text-gray-200 dark:text-black dark:bg-red-200 rounded-full';
+      if (examAttempts && examAttempts[yesterdayDate]) {
+        const consistencyLevel = examAttempts[yesterdayDate]; // Adjust based on your data structure
+  
+        if (consistencyLevel < 2 ) {
+          return LOW_CONSISTENCY_CLASS;
+        } else if (consistencyLevel == 3) {
+          return MEDIUM_CONSISTENCY_CLASS;
+        } else if (consistencyLevel > 3) {
+          return HIGH_CONSISTENCY_CLASS;
+        } else {
+          return DEFAULT_CLASS; // Fallback to default class if consistency level is not recognized
+        }
+      } else {
+        return DEFAULT_CLASS; // Return default class if no data found
+      }
+
+      // Assuming examAttempts is accessible in your component
+      // if (examAttempts && examAttempts[yesterdayDate]) {
+      //   return 'bg-green-400 rounded-full text-white dark:text-gray-200 dark:bg-cyan-600 underline';
+      // } else {
+      //   return 'bg-gray-400 text-gray-200 dark:text-black dark:bg-red-200 rounded-full';
+      // }
     }
+    return '';
   };
 
 
@@ -85,7 +113,7 @@ const Dashboard = () => {
                   height={300}
                   data={analytics}
                   margin={{ top: 20, right: 20, left: 0, bottom: 5 }} // Adjusted margin for better responsiveness
-                  // style={{ minWidth: '100%' }} // Ensures the chart fills the container
+                // style={{ minWidth: '100%' }} // Ensures the chart fills the container
                 >
                   <CartesianGrid strokeDasharray="3 3" />
                   <XAxis dataKey="examDate" tickFormatter={formatDate} />
@@ -121,14 +149,13 @@ const Dashboard = () => {
         </div>
       </div>
       <div className='bg-white text-black dark:bg-gray-800 rounded-lg shadow-md p-4 overflow-x-auto flex flex-col justify-center items-center'>
-      <h2 className="text-3xl font-bold text-gray-800 dark:text-white mb-4">
-        Daily Stick: 
-      </h2>
-      <p className=" text-gray-800 dark:text-white mb-4">
-        Consistency is the <span className='font-bold'>KEY 🗝️</span>
-      </p>
-        
-      <Calendar tileClassName={tileClassName} />
+        <h2 className="text-3xl font-bold text-gray-800 dark:text-white mb-4">
+          Daily Stick:
+        </h2>
+        <p className=" text-gray-800 dark:text-white mb-4">
+          Consistency is the <span className='font-bold'>KEY 🗝️</span>
+        </p>
+          <Calendar tileClassName={tileClassName} />
       </div>
 
     </>

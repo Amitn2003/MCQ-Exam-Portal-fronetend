@@ -6,7 +6,7 @@ const PrivacyPolicy = () => {
       <h2 className="text-2xl font-bold mb-6">Privacy Policy</h2>
 
       <p className="text-base mb-4">
-        Effective Date: [Date (Pore debo)]
+        Effective Date: 27/7/2024
       </p>
 
       <p className="text-base mb-4">
@@ -102,7 +102,7 @@ const PrivacyPolicy = () => {
         </p>
       </div>
 
-      <p className="text-sm text-gray-600">
+      <p className="text-sm text-gray-600 dark:text-gray-400">
         Copyright © XaMawo 🐱 All rights reserved.
       </p>
     </div>
