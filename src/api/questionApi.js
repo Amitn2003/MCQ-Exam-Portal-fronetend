@@ -1,14 +1,28 @@
 // const API_URL = 'https://mcq-portal-vercel.vercel.app/api/questions';
 const API_URL = `${import.meta.env.REACT_APP_BACKEND_URL}/api/questions`;
 
-export const getQuestions = async (token, category = null, totalQs=10) => {
+export const getQuestions = async (  category = null, subcategory = "All",  token , totalQs=10) => {
     let url = API_URL;
+    const params = new URLSearchParams();
+    // if (category) {
+    //     url += `?category=${category}`;
+    //     if (totalQs) {
+    //         url += `&totalQuestions=${totalQs}`;
+    //     }
+    // }
     if (category) {
-        url += `?category=${category}`;
-        if (totalQs) {
-            url += `&totalQuestions=${totalQs}`;
-        }
+        params.append('category', category);
     }
+
+    if (subcategory) {
+        params.append('subcategory', subcategory);
+    }
+
+    if (totalQs) {
+        params.append('totalQuestions', totalQs);
+    }
+    console.log(params.toString())
+    url += `?${params.toString()}`;
 
     const response = await fetch(url, {
         method: 'GET',
@@ -22,8 +36,8 @@ export const getQuestions = async (token, category = null, totalQs=10) => {
     if (!response.ok) {
         if (response.status === 403) {
             throw new Error('Normal users can only take 5 exams per day. Upgrade to premium for unlimited exams.');
-    }
-    throw new Error('Failed to fetch questions');
+        }
+        throw new Error('Failed to fetch questions');
     }
 
     return await response.json();
@@ -65,11 +79,11 @@ export const getRandomQuestions = async (totalQs, token) => {
 
 
 
-export const getQuestionsByCategory = async (selectedCategory,  token, totalQs = 10) => {
+export const getQuestionsByCategory = async (selectedCategory,  selectedSubcategory = "All", token, totalQs = 10 ) => {
     try {
-        console.log(selectedCategory, token, totalQs)
+        console.log(selectedCategory,selectedSubcategory, token, totalQs)
         // Call getQuestions function with the selectedCategory and token
-        const data = await getQuestions(token, selectedCategory, totalQs);
+        const data = await getQuestions(selectedCategory, selectedSubcategory, token,  totalQs);
         
         // If totalQs is specified, slice the array to return only the required number of questions
         return totalQs ? data.slice(0, totalQs) : data;

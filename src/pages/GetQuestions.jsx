@@ -14,6 +14,7 @@ const GetQuestions = () => {
     const navigate = useNavigate();
 
     const [selectedCategory, setSelectedCategory] = useState('');
+    const [selectedSubcategory, setSelectedSubcategory] = useState('All');
     const [questions, setQuestions] = useState([]);
     const [totalQuestions, setTotalQuestions] = useState(10)
     const [currentQuestionIndex, setCurrentQuestionIndex] = useState(0);
@@ -27,13 +28,23 @@ const GetQuestions = () => {
     const [limitExhaust, setLimitExhaust] = useState(false);
 
 
+    const subcategories = {
+        Aptitude: ['Average', 'Algebra', 'Profit and Loss', "LCM and HCF", "Work and Wages","Pipes and Cisterns","Time Speed Distance","Trains, Boats and Streams", "Percentages", "Ratio Proportion and Partnership", "Age", 'All'],
+        Reasoning: ['Logical', 'Verbal', 'Non-Verbal', 
+            "Fill in the Blanks", "Comprehension Passages","Series: Missing Numbers", "Odd One Out",'All'],
+        'Campus Placement': ['All'],
+        JECA: ['DSA', 'C', 'C++','OOPS', 'Networking', 'OS','Machine Learning', 'DBMS', 'Software Engineering', 'UNIX' , "All"],
+    };
+
+
+
 
     useEffect(() => {
         const fetchQuestions = async () => {
             if (selectedCategory && examStarted) {
                 toast.success('Best of luck for your exam!');
                 try {
-                    const data = await getQuestionsByCategory(selectedCategory, user.token, totalQuestions);
+                    const data = await getQuestionsByCategory(selectedCategory, selectedSubcategory, user.token, totalQuestions);
                     setQuestions(data);
                     setUserAnswers(new Array(data.length).fill(-1));
                     setExamStarted(true); // Start the exam once questions are fetched
@@ -77,6 +88,11 @@ const GetQuestions = () => {
 
     const handleCategoryChange = (event) => {
         setSelectedCategory(event.target.value);
+        setSelectedSubcategory('All'); 
+    };
+
+    const handleSubcategoryChange = (event) => {
+        setSelectedSubcategory(event.target.value);
     };
 
     const handleAnswerSelection = (selectedOptionIndex) => {
@@ -218,6 +234,26 @@ const GetQuestions = () => {
                             <option value="JECA">JECA Exam</option>
                         </select>
                     </div>
+
+                    {selectedCategory && (
+                <div className="mb-4">
+                    <label htmlFor="subcategory" className="block text-lg font-semibold text-gray-700 dark:text-white mb-2">
+                        Choose Subcategory:
+                    </label>
+                    <select
+                        id="subcategory"
+                        className="block w-full py-2 px-3 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm text-black dark:text-gray-900"
+                        value={selectedSubcategory}
+                        onChange={handleSubcategoryChange}
+                    >
+                        {subcategories[selectedCategory].map((subcategory) => (
+                            <option key={subcategory} value={subcategory}>
+                                {subcategory}
+                            </option>
+                        ))}
+                    </select>
+                </div>
+            )}
 
                     <button
                         className="bg-blue-500 hover:bg-blue-600 text-white py-2 px-4 rounded-md mt-4"
