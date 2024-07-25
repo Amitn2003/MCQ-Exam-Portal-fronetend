@@ -106,6 +106,7 @@ export const updateQuestion = async (questionId, questionData, token) => {
         },
         body: JSON.stringify(questionData),
     });
+    console.log(response)
 
     if (!response.ok) {
         throw new Error('Failed to update question');
@@ -130,6 +131,31 @@ export const deleteQuestion = async (questionId, token) => {
 
     if (!response.ok) {
         throw new Error('Failed to delete question');
+    }
+
+    return await response.json();
+};
+
+
+// api/questionApi.js
+
+export const getQuestionsSearch = async (category = 'All', subcategory = 'All', searchTerm = '', token) => {
+    let url = `${API_URL}/search?category=${category}&subcategory=${subcategory}`;
+    
+    if (searchTerm) {
+        url += `&search=${encodeURIComponent(searchTerm)}`;
+    }
+
+    const response = await fetch(url, {
+        method: 'GET',
+        headers: {
+            'Content-Type': 'application/json',
+            'Authorization': `Bearer ${token}`,
+        },
+    });
+
+    if (!response.ok) {
+        throw new Error('Failed to fetch questions');
     }
 
     return await response.json();

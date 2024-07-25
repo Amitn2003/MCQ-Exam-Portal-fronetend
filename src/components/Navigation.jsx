@@ -18,6 +18,7 @@ const navigation = [
     { name: 'Mock Results', href: '/admin/manage-results/mock' },
     { name: 'Add Questions', href: '/add-question' },
     { name: 'Manage Users', href: '/admin/users' },
+    { name: 'Manage Questions', href: '/admin/manage-questions' },
     { name: 'Manage Exams', href: '/admin/manage-exams' },
     { name: 'Manage Results', href: '/admin/manage-results' },
     { name: 'Reported Questions', href: '/admin/reported-questions' },
@@ -81,13 +82,13 @@ const Navigation = () => {
                                 <div className="flex space-x-4">
                                     {navigation.map((item) => {
                                         // Conditionally render navigation items based on user role
-                                        if (!userAvailable && (item.name === 'Dashboard' || item.name === 'Exam Result' || item.name === 'Add Questions' || item.name === 'Manage Users' || item.name === 'Reported Questions' || item.name === 'Logout'|| item.name === 'Start Exam'|| item.name === 'Practice Exam' || item.name === 'Practice Result' || item.name === 'Exam' || item.name === 'Result' || item.name === 'Create Exam' || item.name === 'Manage Exams' || item.name === 'Manage Results' || item.name =='Mock Results')) {
+                                        if (!userAvailable && (item.name === 'Dashboard' || item.name === 'Exam Result' || item.name === 'Add Questions' || item.name === 'Manage Users' || item.name === 'Reported Questions' || item.name === 'Logout'|| item.name === 'Start Exam'|| item.name === 'Practice Exam' || item.name === 'Practice Result' || item.name === 'Exam' || item.name === 'Result' || item.name === 'Create Exam' || item.name === 'Manage Exams' || item.name === 'Manage Results' || item.name =='Mock Results' || item.name =='Manage Questions')) {
                                             return null;
                                         }
                                         if (userAvailable && (item.name === 'Home' || item.name === 'Login' || item.name === 'Register'|| item.name === 'Logout')) {
                                             return null;
                                         }
-                                        if (userAvailable && !admin && (item.name === 'Add Questions' || item.name === 'Manage Users' || item.name === 'Reported Questions' || item.name === 'Create Exam'  || item.name === 'Manage Exams' || item.name === 'Manage Results'|| item.name === 'Mock Results')) {
+                                        if (userAvailable && !admin && (item.name === 'Add Questions' || item.name === 'Manage Users' || item.name === 'Reported Questions' || item.name === 'Create Exam'  || item.name === 'Manage Exams' || item.name === 'Manage Results'|| item.name === 'Mock Results' || item.name =='Manage Questions')) {
                                             return null;
                                         }
                                         return (
@@ -176,7 +177,7 @@ const Navigation = () => {
                             if (userAvailable && item.name === 'Logout') {
                                 return (<button key={item.name} className="text-gray-300 hover:bg-gray-700 hover:text-white rounded-md px-3 py-2 text-sm font-medium" onClick={handleLogout}>Logout</button>);
                             }
-                            if (!userAvailable && (item.name === 'Start Exam' || item.name === 'Dashboard' || item.name === 'Exam Result' || item.name === 'Add Questions' || item.name === 'Manage Users' || item.name === 'Reported Questions' || item.name === 'Practical Exam' || item.name === 'Practice Exam' || item.name === 'Practice Result' || item.name === 'Exam' || item.name === 'Result' || item.name === 'Create Exam'  || item.name === 'Manage Exams' || item.name === 'Manage Results' )) {
+                            if (!userAvailable && (item.name === 'Start Exam' || item.name === 'Dashboard' || item.name === 'Exam Result' || item.name === 'Add Questions' || item.name === 'Manage Users' || item.name === 'Reported Questions' || item.name === 'Practical Exam' || item.name === 'Practice Exam' || item.name === 'Practice Result' || item.name === 'Exam' || item.name === 'Result' || item.name === 'Create Exam'  || item.name === 'Manage Exams' || item.name === 'Manage Results'|| item.name =='Manage Questions' )) {
                                 return null;
                             }
                             if (userAvailable && (item.name === 'Home' || item.name === 'Login' || item.name === 'Register')) {
@@ -185,7 +186,7 @@ const Navigation = () => {
                             if (!isAdmin && (item.name === 'Add Questions' || item.name === 'Manage Users' || item.name === 'Reported Questions' )) {
                                 return null;
                             }
-                            if (userAvailable && !admin && (item.name === 'Add Questions' || item.name === 'Manage Users' || item.name === 'Reported Questions' || item.name === 'Create Exam'   || item.name === 'Manage Exams' || item.name === 'Manage Results' || item.name === 'Mock Results')) {
+                            if (userAvailable && !admin && (item.name === 'Add Questions' || item.name === 'Manage Users' || item.name === 'Reported Questions' || item.name === 'Create Exam'   || item.name === 'Manage Exams' || item.name === 'Manage Results' || item.name === 'Mock Results' || item.name =='Mock Questions' || item.name =='Manage Questions')) {
                                 return null;
                             }
                             return (

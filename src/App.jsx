@@ -32,6 +32,7 @@ import AdminManageExams from './pages/AdminManageExams';
 import AdminViewResults from './pages/AdminViewResults';
 import PrivacyPolicy from './pages/PrivacyPolicy';
 import AdminViewAllResults from './pages/AdminViewAllResults';
+import AdminQuestionManagement from './pages/AdminQuestionManagement';
 
 
 
@@ -66,6 +67,7 @@ function App() {
               <Route path="/exam/:examId" element={<StartExam />} />
               <Route path="/admin/users" element={<AdminUsers />} />
               <Route path="/admin/manage-exams" element={<AdminManageExams />} />
+              <Route path="/admin/manage-questions" element={<AdminQuestionManagement />} />
               <Route path="/admin/manage-results" element={<AdminViewResults />} />
               <Route path="/admin/manage-results/mock" element={<AdminViewAllResults />} />
               <Route path="/admin/users/:userId" element={<EditUser />} />
