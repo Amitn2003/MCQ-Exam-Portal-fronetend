@@ -16,8 +16,8 @@ const PremiumSubscriptionPage = () => {
         },
         {
             title: 'Basic Plan',
-            strikeThroughPrice: "₹250",
-            price: '₹30/month',
+            strikeThroughPrice: "₹1000",
+            price: '₹100/month',
             benefits: [
                 'Access to core features with monthly updates',
                 'Email support for personalized assistance',
@@ -28,8 +28,8 @@ const PremiumSubscriptionPage = () => {
         },
         {
             title: 'Standard Plan',            
-            strikeThroughPrice: "₹700",
-            price: '₹60 every 3 months',
+            strikeThroughPrice: "₹2500",
+            price: '₹250 every 3 months',
             benefits: [
                 'Enhanced features with weekly updates',
                 'Comprehensive support via email and phone',
@@ -40,8 +40,8 @@ const PremiumSubscriptionPage = () => {
         },
         {
             title: 'Premium Plan',
-            strikeThroughPrice: "₹2500",
-            price: '₹100/year',
+            strikeThroughPrice: "₹5000",
+            price: '₹365/year',
             benefits: [
                 'Premium features with daily updates',
                 'Priority support available 24/7',

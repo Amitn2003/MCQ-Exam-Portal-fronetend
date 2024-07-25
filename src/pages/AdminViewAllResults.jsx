@@ -2,19 +2,27 @@ import React, { useEffect, useState } from 'react';
 import { getAllUserExamResults } from '../api/examApi';
 import { useAuth } from '../hooks/useAuth';
 import { toast } from 'react-hot-toast';
+import Skeleton from 'react-loading-skeleton';
+import 'react-loading-skeleton/dist/skeleton.css';
+
+
 
 const AdminViewAllResults = () => {
     const { user } = useAuth();
     const [results, setResults] = useState([]);
     const [visibleDetails, setVisibleDetails] = useState({});
+    const [loading, setLoading] = useState(true); // State to manage loading state
+    
 
     useEffect(() => {
         const fetchResults = async () => {
             try {
                 const data = await getAllUserExamResults(user.token);
                 setResults(data);
+                setLoading(false);
             } catch (error) {
                 toast.error('Failed to fetch all users exam results');
+                setLoading(false);
             }
         };
 
@@ -28,14 +36,51 @@ const AdminViewAllResults = () => {
         }));
     };
 
+
+
+    const calculateScore = (questions) => {
+        let score = 0;
+
+        if (!questions) return score; // Handle cases where questions is null or undefined
+
+        questions.forEach(q => {
+            // Ensure q.question and q.question.correctAnswer exist before accessing
+            if (q.question && typeof q.question.correctAnswer === 'number') {
+                if (q.selectedAnswer === q.question.correctAnswer) {
+                    score++;
+                }
+            }
+        });
+
+        return score;
+    };   
+
     return (
         <div className="max-w-4xl mx-auto p-4 text-black bg-white dark:bg-gray-800 dark:text-gray-100">
             <h2 className="text-2xl font-bold mb-4">All Users' Exam Results</h2>
-            {results.length === 0 ? (
+            {
+            loading ? (
+                <ul className="space-y-4">
+                    {[1, 2, 3, 4, 5, 6].map((index) => (
+                        <li key={index} className="bg-white p-4 rounded-lg shadow-md dark:bg-gray-600">
+                            <Skeleton height={50} width={300} />
+                            <Skeleton height={10} width={200} style={{ marginTop: '8px' }} />
+                            <Skeleton height={10} width={150} style={{ marginTop: '4px' }} />
+                            <Skeleton height={10} width={150} style={{ marginTop: '4px' }} />
+                        </li>
+                    ))}
+                </ul>
+            ) 
+            :
+            results.length === 0 ? (
                 <p>No results found.</p>
-            ) : (
+            ) 
+            :
+            (
                 <ul className="space-y-4">
                     {results.map((result) => {
+                        if (!result || !result.user) return ;
+                        let accuracy = (calculateScore(result.questions) / result.totalQuestions) * 100;
                         if (result && result.user)
                         return(
                         <li key={result._id} className="bg-white p-4 rounded-lg shadow-md dark:bg-gray-600">
@@ -43,8 +88,9 @@ const AdminViewAllResults = () => {
                                 <div>
                                     <p className='font-bold'>User: {result.user.name}</p>
                                     <p>Email: {result.user.email}</p>
-                                    <p>Score: {result.score}/{result.totalQuestions}</p>
-                                    <p>Accuracy: {result.accuracy.toFixed(2)}%</p>
+                                    <p>Score: {calculateScore(result.questions)}/{result.totalQuestions}</p>
+                                    <p>Accuracy: {accuracy.toFixed(2)}%</p>
+                                    {result.timeTaken ? <p>Time : {result.timeTaken.toFixed(2)} seconds</p> : ""}
                                 </div>
                                 <button
                                     className="text-blue-500"

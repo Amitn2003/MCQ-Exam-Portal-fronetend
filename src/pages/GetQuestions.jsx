@@ -26,6 +26,7 @@ const GetQuestions = () => {
     const [timeLeft, setTimeLeft] = useState(100);
     const [loading, setLoading] = useState(true)
     const [limitExhaust, setLimitExhaust] = useState(false);
+    const [startTime, setStartTime] = useState(new Date());
 
 
     const subcategories = {
@@ -50,6 +51,7 @@ const GetQuestions = () => {
                     setExamStarted(true); // Start the exam once questions are fetched
                     setLoading(false);
                     setTimeLeft(totalQuestions * 2 * 60); // Set timer (in seconds)
+                    setStartTime(new Date());
                 } catch (error) {
                     setLimitExhaust(true)
                     console.error('Failed to fetch questions by category:', error.message);
@@ -136,11 +138,14 @@ const GetQuestions = () => {
     };
 
     const saveExamResult = async (score, totalQuestions, accuracy) => {
+        const endTime = new Date();
+        const timeTaken = (endTime - startTime) / 1000; // Calculate time in seconds
         const resultData = {
             questions: questions.map((q, index) => ({ question: q._id, selectedAnswer: userAnswers[index] })),
             score,
             totalQuestions,
             accuracy,
+            timeTaken,  // Include time taken in submission
         };
 
         try {
@@ -148,7 +153,7 @@ const GetQuestions = () => {
             toast.success("Exam completed😊")
         } catch (error) {
             console.error('Failed to save exam result');
-            // toast.error("Failed to store your exam result😢")
+            toast.error("Failed to store your exam result😢")
         }
     };
 
@@ -185,6 +190,7 @@ const GetQuestions = () => {
         // Logic to start the exam, fetch questions based on selectedCategory and totalQuestions
         setExamStarted(true);
         setTimeLeft(100);
+        setStartTime(new Date());
         // Example fetch logic (replace with actual fetch or API call)
         // fetchQuestions(selectedCategory, totalQuestions);
     };

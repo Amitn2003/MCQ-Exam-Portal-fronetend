@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react';
 import { getUserExamResults } from '../api/examResultApi';
 import { useAuth } from '../hooks/useAuth';
 import { Link } from 'react-router-dom';
-import toast, { Toaster } from 'react-hot-toast';
+import toast from 'react-hot-toast';
 import Skeleton from 'react-loading-skeleton';
 import 'react-loading-skeleton/dist/skeleton.css'
 
@@ -10,7 +10,7 @@ import 'react-loading-skeleton/dist/skeleton.css'
 
 const ExamResults = () => {
     const [results, setResults] = useState([]);
-    const [loading, setLoading] = useState(true); // State to manage loading state
+    const [loading, setLoading] = useState(true);  
     const { user } = useAuth();
 
     useEffect(() => {
@@ -21,6 +21,7 @@ const ExamResults = () => {
                 setLoading(false); // Set loading to false once data is fetched
             } catch (error) { 
                 console.error('Failed to fetch exam results');
+                toast.error('Failed to fetch exam results');
                 setLoading(false); // Set loading to false on error as well
             }
         };
@@ -28,6 +29,31 @@ const ExamResults = () => {
         fetchResults();
     }, [user.token]);
 
+
+    // Function to calculate score based on questions array
+    const calculateScore = (questions) => {
+        let score = 0;
+
+        if (!questions) return score; // Handle cases where questions is null or undefined
+
+        questions.forEach(q => {
+            // Ensure q.question and q.question.correctAnswer exist before accessing
+            if (q.question && typeof q.question.correctAnswer === 'number') {
+                if (q.selectedAnswer === q.question.correctAnswer) {
+                    score++;
+                }
+            }
+        });
+
+        return score;
+    };  
+
+    // Function to calculate accuracy based on questions array
+    const calculateAccuracy = (questions) => {
+        if (questions.length === 0) return 0;
+        const score = calculateScore(questions);
+        return (score / questions.length) * 100;
+    };
 
 
     let options = {    
@@ -37,38 +63,7 @@ const ExamResults = () => {
     };
 
 
-
-
-
-
-    // <div className="bg-white text-black dark:bg-gray-800 shadow-md rounded-md p-6">
-    //     <h2 className="text-2xl font-bold mb-4 dark:text-white">Your Exam Results</h2>
-    //     {results.length === 0 ? (
-    //         <p className="text-gray-600 dark:text-white">No exam results available.</p>
-    //     ) : (
-    //         <ul className="divide-y divide-gray-300 dark:divide-gray-600">
-    //             {results.map((result) => {
-    //                 let options = {
-    //                     day: '2-digit',
-    //                     month: 'long',
-    //                     year: 'numeric'
-    //                   };
-    //                 return(
-    //                 <li key={result._id} className="py-4">
-    //                     <h3 className="text-xl font-semibold mb-2 dark:text-white">Exam taken on {new Date(result.createdAt).toLocaleDateString('en-GB', options)}</h3>
-    //                     <p className="text-gray-600 dark:text-gray-400">Score: {result.score}/{result.totalQuestions}</p>
-    //                     <p className="text-gray-600 dark:text-gray-400">Accuracy: {result.accuracy.toFixed(2)}%</p>
-    //                     <Link
-    //                         to={`/results/${result._id}`}
-    //                         className="text-blue-500 hover:text-blue-600 transition duration-300"
-    //                     >
-    //                         View Detailed Analysis
-    //                     </Link>
-    //                 </li>
-    //             )})}
-    //         </ul>
-    //     )}
-    // </div>
+    
     return (
         <div className="bg-white text-black dark:bg-gray-800 shadow-md rounded-md p-6">
             <h2 className="text-2xl font-bold mb-4 dark:text-white">Your Exam Results</h2>
@@ -96,10 +91,10 @@ const ExamResults = () => {
                                     Exam taken on {new Date(result.createdAt).toLocaleDateString('en-GB', options)}
                                 </h3>
                                 <p className="text-gray-600 dark:text-gray-400">
-                                    Score: {result.score}/{result.totalQuestions}
+                                    Score: {calculateScore(result.questions)}/{result.totalQuestions}
                                 </p>
                                 <p className="text-gray-600 dark:text-gray-400">
-                                    Accuracy: {result.accuracy.toFixed(2)}%
+                                    Accuracy: {calculateAccuracy(result.questions).toFixed(2)}%
                                 </p>
                                 <Link
                                     to={`/results/${result._id}`}
