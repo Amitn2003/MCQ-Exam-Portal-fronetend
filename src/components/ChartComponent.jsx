@@ -1,5 +1,7 @@
 import React, { useEffect, useState, useRef } from 'react';
 import { Bar } from 'react-chartjs-2';
+import Skeleton from 'react-loading-skeleton';
+import 'react-loading-skeleton/dist/skeleton.css'; 
 import { getAverageTimePerQuestion } from '../api/examResultApi';
 import { useAuth } from '../hooks/useAuth';
 import { toast } from 'react-hot-toast';
@@ -86,7 +88,7 @@ const AverageTimeChart = () => {
 
       </>
                 ) : (
-                    <p>Loading...</p>
+                    <Skeleton height={400}  /> 
                 )}
             </div>
         </div>

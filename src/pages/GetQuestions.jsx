@@ -30,8 +30,8 @@ const GetQuestions = () => {
 
 
     const subcategories = {
-        Aptitude: ['Average', 'Algebra', 'Profit and Loss', "LCM and HCF", "Work and Wages","Pipes and Cisterns","Time Speed Distance","Trains, Boats and Streams", "Percentages", "Ratio Proportion and Partnership", "Age", 'All'],
-        Reasoning: ['Logical', 'Verbal', 'Non-Verbal', 
+        Aptitude: ['Average', 'Algebra', 'Profit and Loss', "LCM and HCF", "Work and Wages","Pipes and Cisterns","Time Speed Distance","Trains, Boats and Streams", "Percentages", "Ratio", "Age", 'All'],
+        Reasoning: ['Logical', 'Verbal', 'Non-Verbal', "English", "Puzzles",
             "Fill in the Blanks", "Comprehension Passages","Series: Missing Numbers", "Odd One Out",'All'],
         'Campus Placement': ['All'],
         JECA: ['DSA', 'C', 'C++','OOPS', 'Networking', 'OS','Machine Learning', 'DBMS', 'Software Engineering', 'UNIX' , "All"],
