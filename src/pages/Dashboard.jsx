@@ -5,6 +5,7 @@ import { Calendar } from 'react-calendar';
 import 'react-calendar/dist/Calendar.css';
 import { useAuth } from '../hooks/useAuth';
 import { BarChart, Bar, XAxis, YAxis, CartesianGrid, Tooltip, Legend } from 'recharts';
+import ChartComponent from "../components/ChartComponent"
 import { LineChart, Line } from 'recharts';
 import toast, { Toaster } from 'react-hot-toast';
 
@@ -15,6 +16,7 @@ const Dashboard = () => {
   const [analytics, setAnalytics] = useState([]);
   const { user } = useAuth();
   const [examAttempts, setExamAttempts] = useState({});
+
 
   useEffect(() => {
     const fetchExamAttempts = async () => {
@@ -52,10 +54,10 @@ const Dashboard = () => {
   }
 
   const tileClassName = ({ date, view }) => {
-    const LOW_CONSISTENCY_CLASS = 'bg-gray-200 text-gray-600 hover:text-black';
-const MEDIUM_CONSISTENCY_CLASS = 'bg-blue-200 text-blue-600 hover:text-black';
-const HIGH_CONSISTENCY_CLASS = 'bg-green-400 text-white dark:text-gray-200 dark:bg-cyan-600 underline hover:text-black';
-const DEFAULT_CLASS = 'bg-gray-400 text-gray-200 dark:text-black dark:bg-red-200 rounded-full hover:text-black';
+    const LOW_CONSISTENCY_CLASS = 'bg-gray-100 text-gray-600 hover:text-black rounded-full';
+const MEDIUM_CONSISTENCY_CLASS = ' text-yellow-600 hover:text-black rounded-full';
+const HIGH_CONSISTENCY_CLASS = 'text-green-400 dark:text-green-300 dark:bg-cyan-600 underline hover:text-black rounded-full';
+const DEFAULT_CLASS = 'bg-gray-300 text-red-500 dark:text-black dark:bg-red-200 rounded-full hover:text-black';
 
     // Example Tailwind CSS classes for consistency levels
 
@@ -67,25 +69,18 @@ const DEFAULT_CLASS = 'bg-gray-400 text-gray-200 dark:text-black dark:bg-red-200
       if (examAttempts && examAttempts[yesterdayDate]) {
         const consistencyLevel = examAttempts[yesterdayDate]; // Adjust based on your data structure
   
-        if (consistencyLevel < 2 ) {
+        if (consistencyLevel < 1 ) {
           return LOW_CONSISTENCY_CLASS;
-        } else if (consistencyLevel == 3) {
+        } else if (consistencyLevel == 2) {
           return MEDIUM_CONSISTENCY_CLASS;
-        } else if (consistencyLevel > 3) {
+        } else if (consistencyLevel > 2) {
           return HIGH_CONSISTENCY_CLASS;
         } else {
           return DEFAULT_CLASS; // Fallback to default class if consistency level is not recognized
         }
       } else {
         return DEFAULT_CLASS; // Return default class if no data found
-      }
-
-      // Assuming examAttempts is accessible in your component
-      // if (examAttempts && examAttempts[yesterdayDate]) {
-      //   return 'bg-green-400 rounded-full text-white dark:text-gray-200 dark:bg-cyan-600 underline';
-      // } else {
-      //   return 'bg-gray-400 text-gray-200 dark:text-black dark:bg-red-200 rounded-full';
-      // }
+      } 
     }
     return '';
   };
@@ -93,12 +88,22 @@ const DEFAULT_CLASS = 'bg-gray-400 text-gray-200 dark:text-black dark:bg-red-200
 
 
 
+  // const formatDate = (dateStr) => {
+  //   // Assuming dateStr is in ISO format, e.g., "2024-07-16T00:00:00.000Z"
+  //   const date = new Date(dateStr);
+  //   return date.toLocaleDateString(); // Format date as per browser's locale
+  // };
+
   const formatDate = (dateStr) => {
     // Assuming dateStr is in ISO format, e.g., "2024-07-16T00:00:00.000Z"
     const date = new Date(dateStr);
-    return date.toLocaleDateString(); // Format date as per browser's locale
+    const day = date.getDate();
+    const month = date.toLocaleString('default', { month: 'short' }); // Abbreviated month name, e.g., 'Jul'
+  
+    return `${day} ${month}`;
   };
 
+  
   return (
     <>
 
@@ -157,6 +162,7 @@ const DEFAULT_CLASS = 'bg-gray-400 text-gray-200 dark:text-black dark:bg-red-200
         </p>
           <Calendar tileClassName={tileClassName} />
       </div>
+      <ChartComponent/>
 
     </>
 

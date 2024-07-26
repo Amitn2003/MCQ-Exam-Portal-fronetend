@@ -1,6 +1,7 @@
 import React, {useEffect} from 'react'
 import { useAuth } from '../hooks/useAuth';
 import { Link } from 'react-router-dom';
+import ShareComponent from '../components/ShareComponent';
 
 
 
@@ -89,6 +90,11 @@ const Profile = () => {
     >
       Send me a WhatsApp message
     </button>
+    <br />
+    <br />
+    <br />
+    <br />
+    <ShareComponent/>
 
     </div>
 </>

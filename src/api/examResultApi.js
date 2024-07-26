@@ -1,9 +1,9 @@
 // const API_URL = 'https://mcq-portal-vercel.vercel.app/api/examResults';
-const API_URL = `${import.meta.env.REACT_APP_BACKEND_URL}/api/examResults`;
+const API_URL = `${import.meta.env.REACT_APP_BACKEND_URL}`;
 
 export const addExamResult = async (resultData, token) => {
     console.log(resultData, token)
-    const response = await fetch(API_URL, {
+    const response = await fetch(API_URL + "/api/examResults", {
         method: 'POST',
         headers: {
             'Content-Type': 'application/json',
@@ -20,7 +20,7 @@ export const addExamResult = async (resultData, token) => {
 };
 
 export const getUserExamResults = async (token) => {
-    const response = await fetch(API_URL, {
+    const response = await fetch(API_URL + "/api/examResults", {
         method: 'GET',
         headers: {
             'Content-Type': 'application/json',
@@ -35,3 +35,24 @@ export const getUserExamResults = async (token) => {
 
     return await response.json();
 };
+
+
+
+export const getAverageTimePerQuestion = async (token) => {
+    const response = await fetch(`${API_URL}/api/examResults/averageTimePerQuestion`, {
+        method: 'GET',
+        headers: {
+            'Content-Type': 'application/json',
+            'Authorization': `Bearer ${token}`,
+        },
+    });
+    console.log("getAverageTimePerQuestion : ",response)
+
+    if (!response.ok) {
+        throw new Error('Failed to fetch average time per question');
+    }
+
+    return await response.json();
+};
+
+

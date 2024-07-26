@@ -119,7 +119,7 @@ const DetailedAnalysis = () => {
             <p className="text-gray-600 dark:text-gray-300 mb-4">Accuracy: {accuracy}%</p>
             <div className="bg-gray-200 w-full h-8 rounded-lg overflow-hidden">
                 <div className="bg-green-500 h-full text-center text-white font-bold" style={{ width: `${result.accuracy.toFixed(2)}%` }}>
-                    {result.accuracy.toFixed(2)}%
+                    {accuracy}%
                 </div>
             </div>
             <br />
