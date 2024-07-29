@@ -58,40 +58,72 @@ const AverageTimeChart = () => {
 
 
 
+    //     <div className="w-full max-w-4xl mx-auto p-4 text-black bg-gray-100 dark:bg-gray-800 dark:text-white rounded-lg shadow-lg">
+    //         <div className="w-full h-80 md:h-96 lg:h-[500px]">
+    //             <h2 className="text-2xl font-bold mb-4 ">Average Time Per Question</h2>
+    //             {chartData ? ( <>
+    //                 <Bar
+    //                     data={chartData}
+    //                     options={{
+    //                         maintainAspectRatio: false,
+    //                         responsive: true,
+    //                         plugins: {
+    //                             legend: {
+    //                                 display: true,
+    //                             },
+    //                         },
+    //                         scales: {
+    //                             x: {
+    //                                 beginAtZero: true
+    //                             },
+    //                             y: {
+    //                                 beginAtZero: true,
+    //                             },
+    //                         },
+    //                     }}
+    //                     className="w-full h-full p-8" // Ensure the chart takes up full container size
+    //                 />
+
+
+    //   </>
+    //             ) : (
+    //                 <Skeleton height={400}  /> 
+    //             )}
+    //         </div>
+    //     </div>
     return (
         <div className="w-full max-w-4xl mx-auto p-4 text-black bg-gray-100 dark:bg-gray-800 dark:text-white rounded-lg shadow-lg">
-            <div className="w-full h-80 md:h-96 lg:h-[500px]">
-                <h2 className="text-2xl font-bold mb-4 ">Average Time Per Question</h2>
-                {chartData ? ( <>
-                    <Bar
-                        data={chartData}
-                        options={{
-                            maintainAspectRatio: false,
-                            responsive: true,
-                            plugins: {
-                                legend: {
-                                    display: true,
-                                },
-                            },
-                            scales: {
-                                x: {
-                                    beginAtZero: true
-                                },
-                                y: {
-                                    beginAtZero: true,
-                                },
-                            },
-                        }}
-                        className="w-full h-full p-8" // Ensure the chart takes up full container size
-                    />
-
-
-      </>
-                ) : (
-                    <Skeleton height={400}  /> 
-                )}
-            </div>
-        </div>
+      <div className="w-full h-80 md:h-96 lg:h-[500px]">
+        <h2 className="text-2xl font-bold mb-4">Average Time Per Question</h2>
+        {chartData ? (
+          <div className="w-full h-full relative">
+            <Bar
+              data={chartData}
+              options={{
+                maintainAspectRatio: false,
+                responsive: true,
+                plugins: {
+                  legend: {
+                    display: true,
+                  },
+                },
+                scales: {
+                  x: {
+                    beginAtZero: true,
+                  },
+                  y: {
+                    beginAtZero: true,
+                  },
+                },
+              }}
+              className="w-full h-full"
+            />
+          </div>
+        ) : (
+          <Skeleton height={400} />
+        )}
+      </div>
+    </div>
     );
 };
 

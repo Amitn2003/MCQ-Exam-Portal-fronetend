@@ -2,6 +2,7 @@ import React, {useEffect} from 'react'
 import { useAuth } from '../hooks/useAuth';
 import { Link } from 'react-router-dom';
 import ShareComponent from '../components/ShareComponent';
+import InstallPromptComponent from '../components/InstallPromptComponent';
 
 
 
@@ -11,18 +12,18 @@ const Profile = () => {
 
     
 
-    useEffect(() => {
-        const fetchUser = async () => {
-            try {
-                const data = await getUserById(user._id, user.token);
-                console.log(data)
-            } catch (error) {
-                console.error('Failed to fetch user');
-            }
-        };
+    // useEffect(() => {
+    //     const fetchUser = async () => {
+    //         try {
+    //             const data = await getUserById(user._id, user.token);
+    //             console.log(data)
+    //         } catch (error) {
+    //             console.error('Failed to fetch user', error);
+    //         }
+    //     };
 
-        fetchUser();
-    }, [user.token, user]);
+    //     fetchUser();
+    // }, [user.token, user]);
 
     const phoneNumber = '918910856469'; 
     const openWhatsAppChat = () => {
@@ -95,6 +96,7 @@ const Profile = () => {
     <br />
     <br />
     <ShareComponent/>
+    <InstallPromptComponent/>
 
     </div>
 </>

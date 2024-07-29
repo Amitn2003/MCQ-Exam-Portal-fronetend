@@ -8,6 +8,7 @@ import { BarChart, Bar, XAxis, YAxis, CartesianGrid, Tooltip, Legend } from 'rec
 import ChartComponent from "../components/ChartComponent"
 import { LineChart, Line } from 'recharts';
 import toast, { Toaster } from 'react-hot-toast';
+import AnalyticsCharts from '../components/AnalyticsCharts';
 
 
 
@@ -108,7 +109,7 @@ const DEFAULT_CLASS = 'bg-gray-300 text-red-500 dark:text-black dark:bg-red-200 
     <>
 
       <div className='w-full h-full  text-blue-800 mb-4 dark:text-white '>
-        <div className="px-4 py-8 bg-white dark:bg-gray-800 dark:text-white">
+        {/* <div className="px-4 py-8 bg-white dark:bg-gray-800 dark:text-white">
           <h2 className="text-3xl font-bold text-gray-800 mb-4 dark:text-white">Exam Performance Analytics</h2>
           <div className="bg-white dark:bg-gray-800 rounded-lg shadow-md p-4  overflow-x-auto">
             <div className="overflow-x-auto">
@@ -151,8 +152,15 @@ const DEFAULT_CLASS = 'bg-gray-300 text-red-500 dark:text-black dark:bg-red-200 
               </LineChart>
             </div>
           </div>
-        </div>
+        </div> */}
       </div>
+
+
+
+
+      <AnalyticsCharts analytics={analytics} formatDate={formatDate}/>
+
+
       <div className='bg-white text-black dark:bg-gray-800 rounded-lg shadow-md p-4 overflow-x-auto flex flex-col justify-center items-center'>
         <h2 className="text-3xl font-bold text-gray-800 dark:text-white mb-4">
           Daily Stick:
