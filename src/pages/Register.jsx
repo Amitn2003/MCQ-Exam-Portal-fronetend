@@ -166,7 +166,7 @@ const Register = () => {
             <div className="md:block hidden w-1/2">
                 <img
                     className="rounded-2xl"
-                    src="https://images.unsplash.com/photo-1557989048-03456d01a26e?q=80&w=1335&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
+                    src="/register-img.jpeg"
                     alt="Registration"
                 />
             </div>
