@@ -33,7 +33,7 @@ import AdminViewResults from './pages/AdminViewResults';
 import PrivacyPolicy from './pages/PrivacyPolicy';
 import AdminViewAllResults from './pages/AdminViewAllResults';
 import AdminQuestionManagement from './pages/AdminQuestionManagement';
-
+import Payment from './pages/Payment'
 
 
 
@@ -64,6 +64,7 @@ function App() {
               <Route path="/profile" element={<Profile />} />
               <Route path="/exam" element={<AvailableExams />} />
               <Route path="/subscription" element={<PremiumSubscriptionPage />} />
+              <Route path="/payment" element={<Payment />} />
               <Route path="/exam/:examId" element={<StartExam />} />
               <Route path="/admin/users" element={<AdminUsers />} />
               <Route path="/admin/manage-exams" element={<AdminManageExams />} />

@@ -78,11 +78,11 @@ self.addEventListener('fetch', (event) => {
 
   if (request.url.includes('/api/')) {
     // Handle API requests
-    console.log("Api req")
+    // console.log("Api req")
     event.respondWith(
       caches.open(CACHE_NAME).then(async (cache) => {
         try {
-          console.log("Cache open")
+          // console.log("Cache open")
           // Attempt to fetch from network
           const networkResponse = await fetch(request);
           // Cache the response if successful
