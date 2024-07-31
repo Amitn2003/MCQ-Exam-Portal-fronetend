@@ -6,7 +6,7 @@ const PrivacyPolicy = () => {
       <h2 className="text-2xl font-bold mb-6">Privacy Policy</h2>
 
       <p className="text-base mb-4">
-        Effective Date: 27/7/2024
+        Effective Date: 1/08/2024
       </p>
 
       <p className="text-base mb-4">

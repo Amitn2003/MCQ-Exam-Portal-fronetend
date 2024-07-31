@@ -108,7 +108,7 @@ const DEFAULT_CLASS = 'bg-gray-300 text-red-500 dark:text-black dark:bg-red-200 
   return (
     <>
 
-      <div className='w-full h-full  text-blue-800 mb-4 dark:text-white '>
+      {/* <div className='w-full h-full  text-blue-800 mb-4 dark:text-white '> */}
         {/* <div className="px-4 py-8 bg-white dark:bg-gray-800 dark:text-white">
           <h2 className="text-3xl font-bold text-gray-800 mb-4 dark:text-white">Exam Performance Analytics</h2>
           <div className="bg-white dark:bg-gray-800 rounded-lg shadow-md p-4  overflow-x-auto">
@@ -153,7 +153,7 @@ const DEFAULT_CLASS = 'bg-gray-300 text-red-500 dark:text-black dark:bg-red-200 
             </div>
           </div>
         </div> */}
-      </div>
+      {/* </div> */}
 
 
 
@@ -171,7 +171,9 @@ const DEFAULT_CLASS = 'bg-gray-300 text-red-500 dark:text-black dark:bg-red-200 
           <Calendar tileClassName={tileClassName} />
       </div>
       <ChartComponent/>
-
+          <br />
+          <br />
+          <br />
     </>
 
   );

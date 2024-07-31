@@ -30,7 +30,25 @@ const Home = () => {
                             <h1 className="text-4xl font-bold text-center dark:text-white ">Campus Placement Exam Practice</h1>
                             <p className="mt-4 text-lg text-center dark:text-white">Prepare for your dream job with our curated MCQ practice tests.</p>
                         </header>
-                        {!user && (
+                        {user ? <>
+                            <div className="text-center mb-6">
+                                <h2 className="text-toxl font-semibold mb-2">Welcome back 🙏</h2>
+                                <div className="flex justify-center space-x-4">
+                                    <Link
+                                        to="/dashboard"
+                                        className="bg-blue-500 text-white px-6 py-2 rounded hover:bg-blue-600 transition"
+                                    >
+                                        Dashboard
+                                    </Link>
+                                    <Link
+                                        to="/questions"
+                                        className="bg-green-500 text-white px-6 py-2 rounded hover:bg-green-600 transition"
+                                    >
+                                        Start Exam
+                                    </Link>
+                                </div>
+                            </div>
+                        </> : (
                             <div className="text-center mb-6">
                                 <h2 className="text-toxl font-semibold mb-2">Log In or Register</h2>
                                 <div className="flex justify-center space-x-4">
@@ -63,6 +81,9 @@ const Home = () => {
                                         <p href="/" className="hover:text-blue-600">Technical</p>
                                     </li>
                                     <li className="text-lg mb-2">
+                                        <p href="/" className="hover:text-blue-600">Campus Placement</p>
+                                    </li>
+                                    <li className="text-lg mb-2">
                                         <p href="/" className="hover:text-blue-600">JECA</p>
                                     </li>
                                     <li className="text-lg mb-2">
@@ -74,22 +95,28 @@ const Home = () => {
                                 </ul>
                             </div>
                             <div className="bg-white rounded-lg shadow-md p-6 text-gray-900 dark:text-gray-800">
-                                <h2 className="text-xl font-semibold mb-4">Recent Exam Results</h2>
+                                <h2 className="text-xl font-semibold mb-4">Subjects & Topics</h2>
                                 <ul>
                                     <li className="text-lg mb-2">
-                                        <p href="/" className="hover:text-blue-600">Exam 1 - Aptitude</p>
+                                        <p href="/" className="hover:text-blue-600">Networking</p>
                                     </li>
                                     <li className="text-lg mb-2">
-                                        <p href="/" className="hover:text-blue-600">Exam 2 - Reasoning</p>
+                                        <p href="/" className="hover:text-blue-600">Operatng System</p>
                                     </li>
                                     <li className="text-lg mb-2">
-                                        <p href="/" className="hover:text-blue-600">Exam 3 - Technical</p>
+                                        <p href="/" className="hover:text-blue-600">DBMS</p>
                                     </li>
                                     <li className="text-lg mb-2">
-                                        <p href="/" className="hover:text-blue-600">Exam 4 - Verbal Ability (Coming soon...)</p>
+                                        <p href="/" className="hover:text-blue-600">Machine Learning</p>
                                     </li>
                                     <li className="text-lg mb-2">
-                                        <p href="/" className="hover:text-blue-600">Exam 5 - General Awareness (Coming soon...)</p>
+                                        <p href="/" className="hover:text-blue-600">Software Engineering</p>
+                                    </li>
+                                    <li className="text-lg mb-2">
+                                        <p href="/" className="hover:text-blue-600">C / C++</p>
+                                    </li>
+                                    <li className="text-lg mb-2">
+                                        <p href="/" className="hover:text-blue-600">OOPS</p>
                                     </li>
                                 </ul>
                             </div>
