@@ -29,7 +29,11 @@ const AdminQuestionManagement = () => {
     }, [searchTerm]);
 
     useEffect(() => {
-        fetchQuestions();
+        if (debouncedSearchTerm.length > 2 || category || subcategory !== 'All') {
+            fetchQuestions();
+        } else {
+            setQuestions([]); // Clear questions if search term is too short
+        }
     }, [debouncedSearchTerm, category, subcategory]);
 
     const fetchQuestions = async () => {
@@ -268,7 +272,7 @@ const AdminQuestionManagement = () => {
                 />
                 <button
                     onClick={handleAddQuestion}
-                    className="bg-blue-500 hover:bg-blue-600 text-white p-2 rounded text-black"
+                    className="bg-blue-500 hover:bg-blue-600  text-black  dark:text-white p-2 rounded"
                 >
                     Add Question
                 </button>

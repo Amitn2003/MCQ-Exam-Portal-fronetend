@@ -123,6 +123,48 @@ self.addEventListener('fetch', (event) => {
 
 
 
+// In service worker
+self.addEventListener('message', (event) => {
+  if (event.data.action === 'skipWaiting') {
+    self.skipWaiting();
+  }
+});
+
+
+// Function to check for updates
+function checkForUpdates() {
+  if ('serviceWorker' in navigator) {
+    navigator.serviceWorker.ready.then((registration) => {
+      registration.update();
+    });
+  }
+}
+
+
+// Check for updates every 30 minutes
+setInterval(checkForUpdates, 30 * 60 * 1000);
+
+
+
+
+// Function to show a custom update banner
+function showUpdateBanner() {
+  const banner = document.createElement('div');
+  banner.innerHTML = 'A new version is available. <button id="refreshBtn">Refresh</button>';
+  banner.style.position = 'fixed';
+  banner.style.bottom = '0';
+  banner.style.left = '0';
+  banner.style.width = '100%';
+  banner.style.background = '#333';
+  banner.style.color = '#fff';
+  banner.style.textAlign = 'center';
+  banner.style.padding = '10px';
+  document.body.appendChild(banner);
+
+  document.getElementById('refreshBtn').addEventListener('click', () => {
+    window.location.reload();
+  });
+}
 
 
 
@@ -130,133 +172,23 @@ self.addEventListener('fetch', (event) => {
 
 
 
+// In your web app
+if ('serviceWorker' in navigator) {
+  navigator.serviceWorker.addEventListener('controllerchange', () => {
+    window.location.reload();
+  });
 
-
-
-
-
-
-
-
-
-
-
-
-
-// Fetch event to handle API data caching
-// self.addEventListener('fetch', (event) => {
-//   const { request } = event;
-
-//   // Check if the request is to the dashboard API
-//   if (request.url.includes('/api/dashboard')) {
-//     event.respondWith(
-//       caches.open(CACHE_NAME).then(async (cache) => {
-//         const cachedResponse = await cache.match(request);
-//         const fetchPromise = fetch(request)
-//           .then((networkResponse) => {
-//             // Only cache successful responses
-//             if (networkResponse.status === 200) {
-//               cache.put(request, networkResponse.clone());
-//             }
-//             return networkResponse;
-//           })
-//           .catch((error) => {
-//             console.error('Network request failed:', error);
-//             // Fallback to cached response if network request fails
-//             return cachedResponse || Promise.reject('No cache match and fetch failed');
-//           });
-//         return cachedResponse || fetchPromise;
-//       })
-//     );
-//   } else {
-//     // For non-API requests, use default caching strategy
-//     event.respondWith(
-//       caches.match(request).then((cachedResponse) => {
-//         return cachedResponse || fetch(request);
-//       })
-//     );
-//   }
-// });
-
-
-
-// self.addEventListener('fetch', (event) => {
-//   event.respondWith(
-//     caches.match(event.request).then((cachedResponse) => {
-//       // If a cached response is found, return it
-//       if (cachedResponse) {
-//         return cachedResponse;
-//       }
-
-//       // Clone the request as fetch consumes it
-//       const fetchRequest = event.request.clone();
-
-//       // Perform a network fetch and cache the response if successful
-//       return fetch(fetchRequest)
-//         .then((networkResponse) => {
-//           // Check if we received a valid response
-//           if (!networkResponse || networkResponse.status !== 200 || networkResponse.type !== 'basic') {
-//             return networkResponse;
-//           }
-
-//           // Clone the response as it is consumed by the cache and return
-//           const responseToCache = networkResponse.clone();
-
-//           // Open the cache and put the network response in it
-//           caches.open(CACHE_NAME).then((cache) => {
-//             cache.put(event.request, responseToCache);
-//           });
-
-//           return networkResponse;
-//         })
-//         .catch((error) => {
-//           // Log any fetch errors to the console for debugging
-//           console.error('Fetch failed:', event.request.url, error);
-//           throw error;
-//         });
-//     })
-//   );
-// });
-
-
-// self.addEventListener('activate', (event) => {
-//   const cacheWhitelist = [CACHE_NAME];
-//   event.waitUntil(
-//     caches.keys().then((cacheNames) => {
-//       return Promise.all(
-//         cacheNames.map((cacheName) => {
-//           if (!cacheWhitelist.includes(cacheName)) {
-//             return caches.delete(cacheName);
-//           }
-//         })
-//       );
-//     })
-//   );
-// });
-
-
-
-
-// self.addEventListener('fetch', (event) => {
-//   if (event.request.url.includes('/api/')) {
-//     event.respondWith(
-//       caches.open(CACHE_NAME).then(async (cache) => {
-//         const response = await cache.match(event.request);
-//         const fetchPromise = fetch(event.request).then((networkResponse) => {
-//           cache.put(event.request, networkResponse.clone());
-//           return networkResponse;
-//         });
-//         return response || fetchPromise;
-//       })
-//     );
-//   } else {
-//     event.respondWith(
-//       caches.match(event.request).then((response) => {
-//         return response || fetch(event.request);
-//       })
-//     );
-//   }
-// });
-
-
-
+  navigator.serviceWorker.ready.then((registration) => {
+    registration.addEventListener('updatefound', () => {
+      const installingWorker = registration.installing;
+      if (installingWorker) {
+        installingWorker.addEventListener('statechange', () => {
+          if (installingWorker.state === 'installed' && navigator.serviceWorker.controller) {
+            // Show update banner
+            showUpdateBanner();
+          }
+        });
+      }
+    });
+  });
+}

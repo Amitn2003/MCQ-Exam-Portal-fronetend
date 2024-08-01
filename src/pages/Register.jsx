@@ -2,6 +2,13 @@ import { useState } from 'react';
 import { useAuth } from '../hooks/useAuth';
 import toast, { Toaster } from 'react-hot-toast';
 import { Link } from 'react-router-dom';
+import TextField from '@mui/material/TextField';
+import Button from '@mui/material/Button';
+import { Container, Box, Typography, Grid, IconButton, InputAdornment, Checkbox, FormControlLabel } from '@mui/material';
+import Visibility from '@mui/icons-material/Visibility';
+import VisibilityOff from '@mui/icons-material/VisibilityOff';
+
+
 
 const Register = () => {
     const [name, setName] = useState('');
@@ -10,6 +17,7 @@ const Register = () => {
     const [password, setPassword] = useState('');
     const [college, setCollege] = useState('');
     const [phone, setPhone] = useState('');
+    const [showPassword, setShowPassword] = useState(false);
     const { register } = useAuth();
 
     const handleSubmit = async (e) => {
@@ -28,16 +36,20 @@ const Register = () => {
             }
         } catch (error) {
             console.log(error)
-            console.log(error.message)
-            console.log(error.issues[0].message)
+            // console.log(error.message)
+            // console.log(error.issues[0].message)
             // console.log(JSON.parse(error.message)[0].message)
             // If registration fails, show an error toast
             // toast.error('Registration failed. Please try again.');
             // toast.error(error.message)
             toast.error(error.message)
-            toast.error(error.issues[0].message)
+            toast.error(error.issues[0].message || 'Registration failed. Please try again.')
         }
     };
+
+    const handleClickShowPassword = () => setShowPassword(!showPassword);
+
+
 
     //         <div className="p-6 max-w-md mx-auto bg-white text-black dark:bg-gray-800 rounded-md shadow-md">
     //     <h2 className="text-2xl font-bold mb-4 dark:text-white">Register</h2>
@@ -80,105 +92,209 @@ const Register = () => {
     //         </button>
     //     </form>
     // </div>
+
+
+
+
+
+
+    // <section className="bg-gray-50 min-h-screen flex items-center justify-center">
+    //     {/* registration container */}
+    //     <div className="bg-gray-100 flex rounded-2xl shadow-lg max-w-3xl p-5 items-center">
+    //         {/* form */}
+    //         <div className="md:w-1/2 px-8 md:px-16">
+    //             <h2 className="font-bold text-2xl text-[#002D74]">Register</h2>
+    //             <p className="text-xs mt-4 text-[#002D74]">Create a new account</p>
+    //             <form onSubmit={handleSubmit} className="flex flex-col gap-4">
+    //                 <input
+    //                     className="p-2 mt-8 rounded-xl border text-black"
+    //                     id="name"
+    //                     type="text"
+    //                     name="name"
+    //                     placeholder="Name"
+    //                     value={name}
+    //                     required
+    //                     onChange={(e) => setName(e.target.value)}
+    //                 />
+    //                 <input
+    //                     className="p-2 rounded-xl border w-full text-black"
+    //                     id="email"
+    //                     type="email"
+    //                     name="email"
+    //                     placeholder="Email"
+    //                     value={email}
+    //                     required
+    //                     onChange={(e) => setEmail(e.target.value)}
+    //                 />
+    //                 <input
+    //                     className="p-2 rounded-xl border w-full text-black"
+    //                     id="address"
+    //                     type="text"
+    //                     name="address"
+    //                     placeholder="Address (Optional)"
+    //                     value={address}
+    //                     onChange={(e) => setAddress(e.target.value)}
+    //                 />
+    //                 <input
+    //                     className="p-2 rounded-xl border w-full text-black"
+    //                     id="college"
+    //                     type="text"
+    //                     name="college"
+    //                     placeholder="College (Optional)"
+    //                     value={college}
+    //                     onChange={(e) => setCollege(e.target.value)}
+    //                 />
+    //                 <input
+    //                     className="p-2 rounded-xl border w-full text-black"
+    //                     id="phone"
+    //                     type="number"
+    //                     name="phone"
+    //                     placeholder="Phone Number"
+    //                     value={phone}
+    //                     onChange={(e) => setPhone(e.target.value)}
+    //                 />
+    //                 <div className="relative">
+    //                     <input
+    //                         className="p-2 rounded-xl border w-full text-black"
+    //                         id="password"
+    //                         type="password"
+    //                         name="password"
+    //                         placeholder="Password"
+    //                         value={password}
+    //                         required
+    //                         onChange={(e) => setPassword(e.target.value)}
+    //                     />
+
+    //                     <svg
+    //                         xmlns="http://www.w3.org/2000/svg"
+    //                         width={16}
+    //                         height={16}
+    //                         fill="gray"
+    //                         className="bi bi-eye absolute top-1/2 right-3 -translate-y-1/2"
+    //                         viewBox="0 0 16 16"
+    //                     >
+    //                         <path d="M16 8s-3-5.5-8-5.5S0 8 0 8s3 5.5 8 5.5S16 8 16 8zM1.173 8a13.133 13.133 0 0 1 1.66-2.043C4.12 4.668 5.88 3.5 8 3.5c2.12 0 3.879 1.168 5.168 2.457A13.133 13.133 0 0 1 14.828 8c-.058.087-.122.183-.195.288-.335.48-.83 1.12-1.465 1.755C11.879 11.332 10.119 12.5 8 12.5c-2.12 0-3.879-1.168-5.168-2.457A13.134 13.134 0 0 1 1.172 8z" />
+    //                         <path d="M8 5.5a2.5 2.5 0 1 0 0 5 2.5 2.5 0 0 0 0-5zM4.5 8a3.5 3.5 0 1 1 7 0 3.5 3.5 0 0 1-7 0z" />
+    //                     </svg>
+    //                 </div>
+    //                 <div className="flex items-center">
+    //                     <input id="link-checkbox" type="checkbox" value="" className="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600" required />
+    //                         <label htmlFor="link-checkbox" className="ms-2 text-sm font-medium text-gray-900 dark:text-gray-300">I agree with the <Link to="/privacy" className="text-blue-600 dark:text-blue-500 hover:underline">terms and conditions</Link>.</label>
+    //                 </div>
+    //                 <button className="bg-[#002D74] rounded-xl text-white py-2 hover:scale-105 duration-300">Register</button>
+    //             </form>
+    //         </div>
+    //         {/* image */}
+    //         <div className="md:block hidden w-1/2">
+    //             <img
+    //                 className="rounded-2xl"
+    //                 src="/register-img.jpeg"
+    //                 alt="Registration"
+    //             />
+    //         </div>
+    //     </div>
+    // </section>
     return (
-        <section className="bg-gray-50 min-h-screen flex items-center justify-center">
-            {/* registration container */}
-            <div className="bg-gray-100 flex rounded-2xl shadow-lg max-w-3xl p-5 items-center">
-                {/* form */}
-                <div className="md:w-1/2 px-8 md:px-16">
-                    <h2 className="font-bold text-2xl text-[#002D74]">Register</h2>
-                    <p className="text-xs mt-4 text-[#002D74]">Create a new account</p>
-                    <form onSubmit={handleSubmit} className="flex flex-col gap-4">
-                        <input
-                            className="p-2 mt-8 rounded-xl border text-black"
-                            id="name"
-                            type="text"
-                            name="name"
-                            placeholder="Name"
-                            value={name}
-                            required
-                            onChange={(e) => setName(e.target.value)}
-                        />
-                        <input
-                            className="p-2 rounded-xl border w-full text-black"
-                            id="email"
-                            type="email"
-                            name="email"
-                            placeholder="Email"
-                            value={email}
-                            required
-                            onChange={(e) => setEmail(e.target.value)}
-                        />
-                        <input
-                            className="p-2 rounded-xl border w-full text-black"
-                            id="address"
-                            type="text"
-                            name="address"
-                            placeholder="Address (Optional)"
-                            value={address}
-                            onChange={(e) => setAddress(e.target.value)}
-                        />
-                        <input
-                            className="p-2 rounded-xl border w-full text-black"
-                            id="college"
-                            type="text"
-                            name="college"
-                            placeholder="College (Optional)"
-                            value={college}
-                            onChange={(e) => setCollege(e.target.value)}
-                        />
-                        <input
-                            className="p-2 rounded-xl border w-full text-black"
-                            id="phone"
-                            type="number"
-                            name="phone"
-                            placeholder="Phone Number"
-                            value={phone}
-                            onChange={(e) => setPhone(e.target.value)}
-                        />
-                        <div className="relative">
-                            <input
-                                className="p-2 rounded-xl border w-full text-black"
-                                id="password"
-                                type="password"
-                                name="password"
-                                placeholder="Password"
-                                value={password}
+        <Container component="section" maxWidth="lg" sx={{ minHeight: '100vh', display: 'flex', alignItems: 'center', justifyContent: 'center'}}  className='bg-gray-100 dark:bg-gray-700'>
+            <Grid container spacing={2} alignItems="center" >
+                <Grid item xs={12} md={6} sx={{ display: { xs: 'none', md: 'block' } }}>
+                    <img src="/register-img.jpeg" alt="Registration" style={{ borderRadius: '16px', width: '100%' }} />
+                </Grid>
+                <Grid item xs={12} md={6}>
+                    <Box sx={{ backgroundColor: '#ffffff', p: 4, borderRadius: 2, boxShadow: 3 }}>
+                        <Typography variant="h5" gutterBottom color="#002D74">Register</Typography>
+                        <Typography variant="body2" color="#002D74" mb={2}>Create a new account</Typography>
+                        <form onSubmit={handleSubmit}>
+                            <TextField
+                                variant="standard"
+                                label="Name"
+                                fullWidth
+                                margin="normal"
+                                value={name}
+                                onChange={(e) => setName(e.target.value)}
                                 required
-                                onChange={(e) => setPassword(e.target.value)}
                             />
-
-                            <svg
-                                xmlns="http://www.w3.org/2000/svg"
-                                width={16}
-                                height={16}
-                                fill="gray"
-                                className="bi bi-eye absolute top-1/2 right-3 -translate-y-1/2"
-                                viewBox="0 0 16 16"
+                            <TextField
+                                variant="standard"
+                                label="Email"
+                                fullWidth
+                                margin="normal"
+                                type="email"
+                                value={email}
+                                onChange={(e) => setEmail(e.target.value)}
+                                required
+                            />
+                            <TextField
+                                variant="standard"
+                                label="Address (Optional)"
+                                fullWidth
+                                margin="normal"
+                                value={address}
+                                onChange={(e) => setAddress(e.target.value)}
+                            />
+                            <TextField
+                                variant="standard"
+                                label="College (Optional)"
+                                fullWidth
+                                margin="normal"
+                                value={college}
+                                onChange={(e) => setCollege(e.target.value)}
+                            />
+                            <TextField
+                                variant="standard"
+                                label="Phone Number"
+                                fullWidth
+                                margin="normal"
+                                type="tel"
+                                value={phone}
+                                onChange={(e) => setPhone(e.target.value)}
+                            />
+                            <TextField
+                                variant="standard"
+                                label="Password"
+                                fullWidth
+                                margin="normal"
+                                type={showPassword ? 'text' : 'password'}
+                                value={password}
+                                onChange={(e) => setPassword(e.target.value)}
+                                required
+                                InputProps={{
+                                    endAdornment: (
+                                        <InputAdornment position="end">
+                                            <IconButton
+                                                aria-label="toggle password visibility"
+                                                onClick={handleClickShowPassword}
+                                                edge="end"
+                                            >
+                                                {showPassword ? <VisibilityOff /> : <Visibility />}
+                                            </IconButton>
+                                        </InputAdornment>
+                                    ),
+                                }}
+                            />
+                            <FormControlLabel
+                                control={
+                                    <Checkbox
+                                        required
+                                    />
+                                }
+                                label={<span className='text-black'>I agree with the <Link to="/privacy" className='text-blue-600'>terms and conditions</Link>.</span>}
+                                sx={{ mt: 2 }}
+                            />
+                            <Button
+                                type="submit"
+                                variant="contained"
+                                color="primary"
+                                fullWidth
+                                sx={{ mt: 2 }}
                             >
-                                <path d="M16 8s-3-5.5-8-5.5S0 8 0 8s3 5.5 8 5.5S16 8 16 8zM1.173 8a13.133 13.133 0 0 1 1.66-2.043C4.12 4.668 5.88 3.5 8 3.5c2.12 0 3.879 1.168 5.168 2.457A13.133 13.133 0 0 1 14.828 8c-.058.087-.122.183-.195.288-.335.48-.83 1.12-1.465 1.755C11.879 11.332 10.119 12.5 8 12.5c-2.12 0-3.879-1.168-5.168-2.457A13.134 13.134 0 0 1 1.172 8z" />
-                                <path d="M8 5.5a2.5 2.5 0 1 0 0 5 2.5 2.5 0 0 0 0-5zM4.5 8a3.5 3.5 0 1 1 7 0 3.5 3.5 0 0 1-7 0z" />
-                            </svg>
-                        </div>
-                        <div className="flex items-center">
-                            <input id="link-checkbox" type="checkbox" value="" className="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600" required />
-                                <label htmlFor="link-checkbox" className="ms-2 text-sm font-medium text-gray-900 dark:text-gray-300">I agree with the <Link to="/privacy" className="text-blue-600 dark:text-blue-500 hover:underline">terms and conditions</Link>.</label>
-                        </div>
-                        <button className="bg-[#002D74] rounded-xl text-white py-2 hover:scale-105 duration-300">Register</button>
-                    </form>
-                </div>
-                {/* image */}
-                <div className="md:block hidden w-1/2">
-                    <img
-                        className="rounded-2xl"
-                        src="/register-img.jpeg"
-                        alt="Registration"
-                    />
-                </div>
-            </div>
-        </section>
-
-
+                                Register
+                            </Button>
+                        </form>
+                    </Box>
+                </Grid>
+            </Grid>
+        </Container>
     );
 };
 

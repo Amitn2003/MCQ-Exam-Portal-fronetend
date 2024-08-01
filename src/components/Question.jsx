@@ -78,7 +78,7 @@ const Question = ({ question, userAnswer, handleOptionChange }) => {
       <br /> */}
 
 
-<pre className="text-gray-900 dark:text-white font-sans whitespace-pre-wrap text-xl font-semibold">{question.question}</pre>
+<pre className="text-gray-900 dark:text-white font-sans whitespace-pre-wrap text-xl font-semibold ">{question.question}</pre>
 <p className="text-sm text-gray-400 dark:text-gray-200">Category: {question.category}</p>
   <span className="text-sm text-gray-300 dark:text-gray-500">{question.subcategory}</span>
   {/* <span className="text-sm text-gray-300 dark:text-gray-500">{question.topic}</span> */}
@@ -94,11 +94,11 @@ const Question = ({ question, userAnswer, handleOptionChange }) => {
         >
           {question.options.map((option, index) => (
             <FormControlLabel
-            className='p- m- text-gray-600'
+            className='p- m-1 text-gray-600'
               key={index}
               value={index}
               control={<Radio />}
-              label={<span className="text-md" >{option}</span>} 
+              label={<span className="text-md dark:text-white" >{option}</span>} 
             />
           ))}
         </RadioGroup>

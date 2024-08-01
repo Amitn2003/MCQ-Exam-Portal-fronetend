@@ -50,7 +50,7 @@ const DuringExam = ({
                     </div>
                 )
             ) : (
-                <div className="relative mb-4 text-black">
+                <div className="relative mb-4  text-black dark:text-white">
                     <Timer timeLeft={timeLeft} formatTime={formatTime} />
                     <div className="absolute top-0 right-0 mt-2 mr-2 cursor-help	  ">
                             <CircularProgressWithLabel value={progress} />
@@ -93,7 +93,7 @@ const DuringExam = ({
                             </button>
                         ) : (
                             <button
-                                className="bg-blue-500 hover:bg-green-600 text-white py-2 px-4 rounded-md mr-2"
+                                className="bg-green-500 hover:bg-green-600 text-white py-2 px-4 rounded-md mr-2"
                                 onClick={handleSubmitClick}
                             >
                                 Submit Exam
