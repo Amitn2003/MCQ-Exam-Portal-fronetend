@@ -50,9 +50,9 @@ const DuringExam = ({
                     </div>
                 )
             ) : (
-                <div className="relative mb-4">
+                <div className="relative mb-4 text-black">
                     <Timer timeLeft={timeLeft} formatTime={formatTime} />
-                    <div className="absolute top-0 right-0 mt-2 mr-2 ">
+                    <div className="absolute top-0 right-0 mt-2 mr-2 cursor-help	  ">
                             <CircularProgressWithLabel value={progress} />
                         </div>
                         <br />
@@ -62,13 +62,28 @@ const DuringExam = ({
                         handleOptionChange={handleAnswerSelection}
                     />
                     <div className="mt-4 flex justify-around">
-                        <button
+                        {
+                            currentQuestionIndex != 0 ? <button
                             className="bg-blue-500 hover:bg-blue-600 text-white py-2 px-4 rounded-md"
                             onClick={handlePreviousClick}
                             disabled={currentQuestionIndex === 0}
                         >
                             Previous
+                        </button> :<button
+                            className="bg-gray-500 hover:bg-gray-600 text-white py-2 px-4 rounded-md cursor-no-drop	"
+                            onClick={handlePreviousClick}
+                            disabled={currentQuestionIndex === 0}
+                        >
+                            Previous
                         </button>
+                        }
+                        {/* <button
+                            className="bg-blue-500 hover:bg-blue-600 text-white py-2 px-4 rounded-md"
+                            onClick={handlePreviousClick}
+                            disabled={currentQuestionIndex === 0}
+                        >
+                            Previous
+                        </button> */}
                         {currentQuestionIndex < questions.length - 1 ? (
                             <button
                                 className="bg-blue-500 hover:bg-blue-600 text-white py-2 px-4 rounded-md mr-2"
@@ -78,7 +93,7 @@ const DuringExam = ({
                             </button>
                         ) : (
                             <button
-                                className="bg-blue-500 hover:bg-blue-600 text-white py-2 px-4 rounded-md mr-2"
+                                className="bg-blue-500 hover:bg-green-600 text-white py-2 px-4 rounded-md mr-2"
                                 onClick={handleSubmitClick}
                             >
                                 Submit Exam

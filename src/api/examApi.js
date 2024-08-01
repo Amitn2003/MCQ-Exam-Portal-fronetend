@@ -153,7 +153,7 @@ export const getUserExamAttemptsByDate = async (userId, token) => {
             'Authorization': `Bearer ${token}`,
         },
     });
-    console.log(response)
+    // console.log(response)
 
     if (!response.ok) {
         throw new Error('Failed to fetch user exam attempts');

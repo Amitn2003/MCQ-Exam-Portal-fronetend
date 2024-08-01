@@ -47,7 +47,7 @@ const Login = () => {
                 <div className="md:w-1/2 px-8 md:px-16">
                     <h2 className="font-bold text-2xl text-[#002D74]">Login</h2>
                     <p className="text-xs mt-4 text-[#002D74]">If you are already a member, easily log in</p>
-                    <form action className="flex flex-col gap-4"  onSubmit={handleSubmit} >
+                    <form action="true" className="flex flex-col gap-4"  onSubmit={handleSubmit} >
                         <input className="p-2 mt-8 rounded-xl border text-black" id='email' type="email" name="email" placeholder="Email"
                             value={email} required
                             onChange={(e) => setEmail(e.target.value)} />

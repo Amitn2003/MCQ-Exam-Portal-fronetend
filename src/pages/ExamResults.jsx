@@ -79,8 +79,11 @@ const ExamResults = () => {
                         </li>
                     ))}
                 </ul>
-            ) : results.length === 0 ? (
+            ) : results.length === 0 ? (<>
                 <p className="text-gray-600 dark:text-white">No exam results available.</p>
+                <br />
+                <img src="https://cdn-icons-png.flaticon.com/512/17134/17134606.png" title="no data icons" />
+                </>
             ) : (
                 <ul className="divide-y divide-gray-300 dark:divide-gray-600">
                     {results.map((result) => {

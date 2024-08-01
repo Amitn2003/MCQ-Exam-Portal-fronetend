@@ -115,7 +115,7 @@ const GetQuestions = () => {
     };
 
     const handleAnswerSelection = (selectedOptionIndex) => {
-        console.log(`Selected option: ${selectedOptionIndex} for question index: ${currentQuestionIndex}`);
+        // console.log(`Selected option: ${selectedOptionIndex} for question index: ${currentQuestionIndex}`);
         setUserAnswers((prevAnswers) => {
             const newAnswers = [...prevAnswers];
             newAnswers[currentQuestionIndex] = selectedOptionIndex;
@@ -171,7 +171,7 @@ const GetQuestions = () => {
             await addExamResult(resultData, user.token);
             toast.success("Exam completed😊")
         } catch (error) {
-            console.error('Failed to save exam result');
+            console.error('Failed to save exam result', error);
             toast.error("Failed to store your exam result😢")
         }
     };

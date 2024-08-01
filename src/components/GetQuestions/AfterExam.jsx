@@ -2,9 +2,9 @@ import React from 'react';
 // import { Navigate } from 'react-router-dom';
 const ExamReport = ({ questions, userAnswers, score, accuracy, resetExam, navigate }) => {
     return (
-        <div>
+        <div className='px-2'>
             <h2 className="text-2xl font-bold mb-4 text-gray-900 dark:text-gray-100">Exam Report</h2>
-            <div className="mt-4">
+            <div className="mt-4 px-3">
                 <p className="text-lg font-medium text-gray-800 dark:text-gray-100">Score: {score}/{questions.length}</p>
                 <p className="text-lg font-medium text-gray-800 dark:text-gray-100">Accuracy: {accuracy.toFixed(2)}%</p>
             </div> 
@@ -36,7 +36,7 @@ const ExamReport = ({ questions, userAnswers, score, accuracy, resetExam, naviga
                     View Results
                 </button>
                 <button
-                    className="bg-blue-500 hover:bg-blue-600 text-white py-2 px-4 rounded-md"
+                    className="bg-blue-500 hover:bg-green-600 text-white py-2 px-4 rounded-md"
                     onClick={resetExam}
                 >
                     Retake Exam

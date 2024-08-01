@@ -1,22 +1,80 @@
 {
-    "name": "XaMawo",
-    "short_name": "XaMawo",
-    "start_url": "/dashboard",
-    "display": "standalone",
-    "background_color": "#ffffff",
-    "theme_color": "#4a90e2",
-    "description": "The best app for practicing MCQs and mock exams.",
-    "icons": [
-      {
-        "src": "logo.png",
-        "type": "image/png",
-        "sizes": "192x192"
-      },
-      {
-        "src": "logo2.png",
-        "type": "image/png",
-        "sizes": "512x512"
-      }
-    ]
-  }
-  
+  "name": "XaMawo",
+  "short_name": "XaMawo",
+  "start_url": "/dashboard",
+  "display": "standalone",
+  "background_color": "#546371",
+  "theme_color": "#5782F4",
+  "description": "The best app for practicing MCQs and mock exams.",
+  "icons": [
+    {
+      "src": "logo.png",
+      "type": "image/png",
+      "sizes": "192x192"
+    },
+    {
+      "src": "logo2.png",
+      "type": "image/png",
+      "sizes": "512x512"
+    }
+  ],
+  "id": "XaMawo",
+  "lang": "en",
+  "orientation": "any",
+  "categories": [
+    "books",
+    "education",
+    "personalization",
+    "productivity"
+  ],
+  "shortcuts": [
+    {
+      "name": "Dashboard",
+      "url": "/dashboard",
+      "description": "View Dashboard",
+      "icons": [
+        {
+          "src": "dashboard.512x512.png",
+          "sizes": "512x512",
+          "type": "image/png"
+        }
+      ]
+    },
+    {
+      "name": "Start Exam",
+      "url": "/questions",
+      "description": "Start your practic mock exam.",
+      "icons": [
+        {
+          "src": "start-exam-icon.png",
+          "sizes": "192x192",
+          "type": "image/png"
+        }
+      ]
+    },
+    {
+      "name": "Result",
+      "url": "/results",
+      "description": "View your most recent results.",
+      "icons": [
+        {
+          "src": "exam-results-icon.png",
+          "sizes": "512x512",
+          "type": "image/png"
+        }
+      ]
+    }
+  ],
+  "handle_links": "preferred",
+  "scope_extensions": [
+    {
+      "origin": "*.mcq-practice.vercel.app/"
+    },
+    {
+      "origin": "mcq-practice.vercel.app/"
+    },
+    {
+      "origin": "*.mcq-practice.vercel.app"
+    }
+  ]
+}

@@ -46,7 +46,7 @@ export const getAverageTimePerQuestion = async (token) => {
             'Authorization': `Bearer ${token}`,
         },
     });
-    console.log("getAverageTimePerQuestion : ",response)
+    // console.log("getAverageTimePerQuestion : ",response)
 
     if (!response.ok) {
         throw new Error('Failed to fetch average time per question');

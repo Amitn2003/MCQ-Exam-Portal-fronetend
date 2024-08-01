@@ -17,14 +17,16 @@ const Dashboard = () => {
   const [analytics, setAnalytics] = useState([]);
   const { user } = useAuth();
   const [examAttempts, setExamAttempts] = useState({});
+  const [loading, setLoading] = useState(true)
 
 
   useEffect(() => {
     const fetchExamAttempts = async () => {
       try {
         const data = await getUserExamAttemptsByDate(user._id, user.token);
-        console.log("Fetch exam attempts ", data)
+        // console.log("Fetch exam attempts ", data)
         setExamAttempts(data);
+        setLoading(false)
       } catch (error) {
         toast.error('Failed to fetch exam attempts');
       }
@@ -55,8 +57,8 @@ const Dashboard = () => {
   }
 
   const tileClassName = ({ date, view }) => {
-    const LOW_CONSISTENCY_CLASS = 'bg-gray-100 text-gray-600 hover:text-black rounded-full';
-const MEDIUM_CONSISTENCY_CLASS = ' text-yellow-600 hover:text-black rounded-full';
+    const LOW_CONSISTENCY_CLASS = 'bg-gray-100 text-gray-600 hover:text-black rounded-full underline ';
+const MEDIUM_CONSISTENCY_CLASS = ' text-yellow-600 hover:text-black rounded-full underline ';
 const HIGH_CONSISTENCY_CLASS = 'text-green-400 dark:text-green-300 dark:bg-cyan-600 underline hover:text-black rounded-full';
 const DEFAULT_CLASS = 'bg-gray-300 text-red-500 dark:text-black dark:bg-red-200 rounded-full hover:text-black';
 
@@ -158,7 +160,7 @@ const DEFAULT_CLASS = 'bg-gray-300 text-red-500 dark:text-black dark:bg-red-200 
 
 
 
-      <AnalyticsCharts analytics={analytics} formatDate={formatDate}/>
+      <AnalyticsCharts analytics={analytics} formatDate={formatDate} loading={loading}/>
 
 
       <div className='bg-white text-black dark:bg-gray-800 rounded-lg shadow-md p-4 overflow-x-auto flex flex-col justify-center items-center'>

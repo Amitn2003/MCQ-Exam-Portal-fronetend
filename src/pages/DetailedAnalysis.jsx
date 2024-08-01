@@ -6,6 +6,7 @@ import { useParams } from 'react-router-dom';
 import toast, { Toaster } from 'react-hot-toast';
 import Skeleton from 'react-loading-skeleton';
 import 'react-loading-skeleton/dist/skeleton.css';
+import PieChartDetailedAnalysis from '../components/PieChartDetailedAnalysis';
 
 const DetailedAnalysis = () => {
     const { resultId } = useParams();
@@ -22,6 +23,7 @@ const DetailedAnalysis = () => {
             try {
                 const data = await getUserExamResults(user.token);
                 const specificResult = data.find(res => res._id === resultId);
+                console.log(specificResult)
                 setResult(specificResult);
                 setLoading(false);
             } catch (error) {
@@ -117,6 +119,7 @@ const DetailedAnalysis = () => {
             <p className="text-gray-600 dark:text-gray-300 mb-2">Score: {score}/{result.totalQuestions}</p>
             {result.timeTaken ? <p className="text-gray-600 dark:text-gray-300 mb-2">Time taken: {result.timeTaken.toFixed(2)} Seconds</p> : "" }
             <p className="text-gray-600 dark:text-gray-300 mb-4">Accuracy: {accuracy}%</p>
+            <PieChartDetailedAnalysis data={result} />
             <div className="bg-gray-200 w-full h-8 rounded-lg overflow-hidden">
                 <div className="bg-green-500 h-full text-center text-white font-bold" style={{ width: `${result.accuracy.toFixed(2)}%` }}>
                     {accuracy}%

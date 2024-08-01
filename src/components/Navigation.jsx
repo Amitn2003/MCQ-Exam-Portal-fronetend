@@ -96,7 +96,7 @@ const Navigation = () => {
                                                 key={item.name}
                                                 to={item.href}
                                                 className={classNames(
-                                                    'text-gray-300 hover:bg-gray-700 hover:text-white rounded-md px-3 py-2 text-sm font-medium',
+                                                    'text-gray-300 hover:bg-gray-700 hover:text-white rounded-md px-5 py-3 m-2 text-sm font-medium ',
                                                     location.pathname === item.href && 'bg-gray-900 text-white'
                                                 )}
                                             >
@@ -121,7 +121,7 @@ const Navigation = () => {
                                         ) : (
                                             <img
                                                 alt=""
-                                                src="/profile-avatar.png"
+                                                src="/login-img.jpeg"
                                                 className="h-8 w-8 rounded-full"
                                             />
                                         )}
