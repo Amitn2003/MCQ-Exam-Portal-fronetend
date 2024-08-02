@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {useEffect} from 'react';
 import Question from '../Question';
 import Timer from './Timer';
 import CircularProgressWithLabel from './CircularProgressWithLabel';
@@ -21,6 +21,22 @@ const DuringExam = ({
 }) => {
 
     const progress = Math.round(((currentQuestionIndex + 1) / questions.length) * 100);
+    useEffect(() => {
+        const handleBeforeUnload = (event) => {
+            // Customize your condition and message here
+            const message = 'You have unsaved changes. Are you sure you want to leave?';
+            event.returnValue = message; // Standard way to show the dialog
+            return message; // For some browsers
+        };
+
+        // Attach the event listener
+        window.addEventListener('beforeunload', handleBeforeUnload);
+
+        // Clean up the event listener on component unmount
+        return () => {
+            window.removeEventListener('beforeunload', handleBeforeUnload);
+        };
+    }, []);
 
     // console.log("handleNextClick:", handleNextClick); // Added this line to check if function is received
     return (

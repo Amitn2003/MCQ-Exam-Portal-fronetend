@@ -59,7 +59,10 @@ const ExamResults = () => {
     let options = {    
         day: '2-digit',
         month: 'long',
-        year: 'numeric'
+        // year: 'numeric',
+        hour: '2-digit',
+        minute: '2-digit',
+        hour12: true, // Use 24-hour format; set to true for 12-hour format with AM/PM
     };
 
 

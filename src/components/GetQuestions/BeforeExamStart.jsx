@@ -1,5 +1,9 @@
 import React from 'react';
+import Slider from '@mui/material/Slider'; // Import Slider from Material-UI
 
+function valuetext(value) {
+    return `${value} minutes`;
+}
 const BeforeExamStart = ({
     totalQuestions,
     selectedCategory,
@@ -9,6 +13,8 @@ const BeforeExamStart = ({
     onTotalQuestionsChange,
     onStartExam,
     subcategories,
+    examTime, // Add examTime to props
+    onTimeChange, // Add handler for time change
 }) => {
     return (
         <div className="max-w-lg mx-auto bg-white dark:bg-gray-700 p-6 rounded-lg shadow-md mb-4">
@@ -70,6 +76,22 @@ const BeforeExamStart = ({
                     </select>
                 </div>
             )}
+
+            <div className="mb-4">
+                <label className="block text-lg font-semibold text-gray-700 dark:text-white mb-2">
+                    Total Time (Minutes):
+                </label>
+                <Slider
+                    aria-label="Exam Time"
+                    value={examTime} // Bind slider to examTime
+                    getAriaValueText={valuetext}
+                    valueLabelDisplay="auto"
+                    step={10}
+                    min={10}
+                    max={100}
+                    onChange={onTimeChange} // Add this line
+                />
+            </div>
 
             <button
                 className="bg-blue-500 hover:bg-blue-600 text-white py-2 px-4 rounded-md mt-4"

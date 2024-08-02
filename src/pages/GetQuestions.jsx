@@ -44,7 +44,7 @@ const GetQuestions = () => {
     const [loading, setLoading] = useState(true)
     const [limitExhaust, setLimitExhaust] = useState(false);
     const [startTime, setStartTime] = useState(new Date());
-
+    const [examTime, setExamTime] = useState(20); // Default exam time in minutes
 
     const subcategories = {
         Aptitude: ['Average', 'Algebra', 'Profit and Loss', "LCM and HCF", "Work and Wages", "Pipes and Cisterns", "Time Speed Distance", "Trains, Boats and Streams", "Percentages", "Ratio", "Age", 'All'],
@@ -67,7 +67,7 @@ const GetQuestions = () => {
                     setUserAnswers(new Array(data.length).fill(-1));
                     setExamStarted(true); // Start the exam once questions are fetched
                     setLoading(false);
-                    setTimeLeft(totalQuestions * 2 * 60); // Set timer (in seconds)
+                    setTimeLeft(examTime * 60); // Set timer (in seconds)
                     setStartTime(new Date());
                 } catch (error) {
                     setLimitExhaust(true)
@@ -81,7 +81,6 @@ const GetQuestions = () => {
 
 
         if (examStarted && selectedCategory) {
-            setTimeLeft(totalQuestions * 2 * 60);
             fetchQuestions();
         }
     }, [selectedCategory, user.token, examStarted]);
@@ -206,19 +205,32 @@ const GetQuestions = () => {
         setTotalQuestions(parseInt(e.target.value, 10));
         // You can add additional logic here if needed
     };
+
+    const handleTimeChange = (event, newValue) => {
+        setExamTime(newValue);
+      };
+
+
     const handleStartExam = () => {
         // Logic to start the exam, fetch questions based on selectedCategory and totalQuestions
         setExamStarted(true);
-        setTimeLeft(100);
+        setTimeLeft(examTime * 60);
+        console.log(`Starting exam with ${totalQuestions} questions, ${examTime} minutes.`);
         setStartTime(new Date());
         // Example fetch logic (replace with actual fetch or API call)
         // fetchQuestions(selectedCategory, totalQuestions);
     };
 
     const formatTime = (seconds) => {
-        const minutes = Math.floor(seconds / 60);
+        const hours = Math.floor(seconds / 3600);
+        const minutes = Math.floor((seconds % 3600) / 60);
         const remainingSeconds = seconds % 60;
-        return `${minutes}:${remainingSeconds < 10 ? '0' : ''}${remainingSeconds}`;
+    
+        if (hours > 0) {
+            return `${hours}:${minutes < 10 ? '0' : ''}${minutes}:${remainingSeconds < 10 ? '0' : ''}${remainingSeconds}`;
+        } else {
+            return `${minutes}:${remainingSeconds < 10 ? '0' : ''}${remainingSeconds}`;
+        }
     };
 
 
@@ -425,37 +437,39 @@ const GetQuestions = () => {
                     onTotalQuestionsChange={handleTotalQuestionsChange}
                     onStartExam={handleStartExam}
                     subcategories={subcategories}
+                    examTime={examTime} // Pass examTime
+                    onTimeChange={handleTimeChange} // Pass handler
                 />
 
             ) : (<>
-                {(showReport) ? 
-                <AfterExam
-                    questions={questions}
-                    userAnswers={userAnswers}
-                    score={score}
-                    accuracy={accuracy}
-                    resetExam={resetExam}
-                    navigate={navigate}
-                /> : 
-                <DuringExam
-                questions={questions}
-                currentQuestionIndex={currentQuestionIndex}
-                userAnswers={userAnswers}
-                handleAnswerSelection={handleAnswerSelection}
-                handlePreviousClick={handlePreviousClick}
-                handleNextClick={handleNextClick}
-                handleSubmitClick={handleSubmitClick}
-                showReport={showReport}
-                score={score}
-                accuracy={accuracy}
-                limitExhaust={limitExhaust}
-                navigate={navigate}
-                resetExam={resetExam}
-                formatTime={formatTime}
-                timeLeft={timeLeft}
-                loading={loading}
-                />
-            }
+                {(showReport) ?
+                    <AfterExam
+                        questions={questions}
+                        userAnswers={userAnswers}
+                        score={score}
+                        accuracy={accuracy}
+                        resetExam={resetExam}
+                        navigate={navigate}
+                    /> :
+                    <DuringExam
+                        questions={questions}
+                        currentQuestionIndex={currentQuestionIndex}
+                        userAnswers={userAnswers}
+                        handleAnswerSelection={handleAnswerSelection}
+                        handlePreviousClick={handlePreviousClick}
+                        handleNextClick={handleNextClick}
+                        handleSubmitClick={handleSubmitClick}
+                        showReport={showReport}
+                        score={score}
+                        accuracy={accuracy}
+                        limitExhaust={limitExhaust}
+                        navigate={navigate}
+                        resetExam={resetExam}
+                        formatTime={formatTime}
+                        timeLeft={timeLeft}
+                        loading={loading}
+                    />
+                }
             </>)}
         </div>
     );
