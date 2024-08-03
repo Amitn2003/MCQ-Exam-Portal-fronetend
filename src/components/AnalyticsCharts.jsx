@@ -78,11 +78,7 @@ const AnalyticsCharts = ({user, formatDate}) => {
           </div>
         </div>
 
-        <div className="bg-white dark:bg-gray-800 rounded-lg shadow-md p-4 mt-8 overflow-hidden">
-          <div className="min-w-full" style={{ height: '300px' }}>
-            <Skeleton height="100%" width="100%" />
-          </div>
-        </div>
+        
       </div>
     );
   }

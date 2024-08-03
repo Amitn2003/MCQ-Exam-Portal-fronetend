@@ -17,6 +17,7 @@ const InstallPromptComponent = () => {
   }, []);
 
   const handleInstallClick = () => {
+    console.log(deferredPrompt)
     if (deferredPrompt) {
       deferredPrompt.prompt();
       deferredPrompt.userChoice.then((choiceResult) => {
@@ -34,9 +35,10 @@ const InstallPromptComponent = () => {
       toast.error('Install prompt not available. 😢');
     }
   };
-  handleInstallClick()
 
-  return (
+  return (<>
+  {
+    deferredPrompt && 
     <div className="fixed bottom-4 right-4 p-4 bg-blue-600 text-white rounded-lg shadow-lg flex items-center">
       <p className="mr-4">Install XaMawo for a better experience!</p>
       <button
@@ -46,6 +48,8 @@ const InstallPromptComponent = () => {
         Install
       </button>
     </div>
+  }
+    </>
   );
 };
 

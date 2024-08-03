@@ -1,4 +1,5 @@
 import React from 'react';
+import InstallPromptComponent from '../InstallPromptComponent';
 // import { Navigate } from 'react-router-dom';
 const ExamReport = ({ questions, userAnswers, score, accuracy, resetExam, navigate }) => {
     return (
@@ -42,6 +43,7 @@ const ExamReport = ({ questions, userAnswers, score, accuracy, resetExam, naviga
                     Retake Exam
                 </button>
             </div>
+            <InstallPromptComponent/>
         </div>
     );
 };
