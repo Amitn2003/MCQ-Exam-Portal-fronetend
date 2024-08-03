@@ -16,113 +16,86 @@ ChartJS.register(CategoryScale, LinearScale, BarElement, Title, Tooltip, Legend)
 const AverageTimeChart = () => {
     const { user } = useAuth();
     const [chartData, setChartData] = useState(null);
+    const [loading, setLoading] = useState(true);
     const chartRef = useRef(null);
 
+
+
     useEffect(() => {
-        const fetchData = async () => {
-            try {
-                const data = await getAverageTimePerQuestion(user.token);
-                // const chartLabels = data.map(result => new Date(result.createdAt).toLocaleDateString());
-                // Format the date to "D MMM" (e.g., "1 Sep")
-                const chartLabels = data.map(result => 
-                    new Date(result.createdAt).toLocaleDateString('en-US', {
-                        day: 'numeric',
-                        month: 'short'
-                    })
-                );
-                const chartValues = data.map(result => result.averageTime);
-
-                setChartData({
-                    labels: chartLabels,
-                    datasets: [
-                        {
-                            label: 'Average Time per Question (seconds)',
-                            data: chartValues,
-                            backgroundColor: 'rgba(75, 192, 192, 0.6)',
-                        },
-                    ],
-                });
-            } catch (error) {
-                toast.error('Failed to fetch average time data');
-            }
-        };
-
-        fetchData();
-        return () => {
-            // Clean up chart instance if it exists
-            if (chartRef.current) {
-                chartRef.current.destroy();
-            }
-        };
+      const fetchData = async () => {
+        try {
+          const data = await getAverageTimePerQuestion(user.token);
+          // Prepare chart data
+          setLoading(true)
+          const labels = data.map((item) => new Date(item.createdAt).toLocaleDateString());
+          const averageTimes = data.map((item) => item.averageTime);
+          const scores = data.map((item) => item.score);
+  
+          setChartData({
+            labels,
+            datasets: [
+              {
+                label: 'Average Time per Question (seconds)',
+                data: averageTimes,
+                backgroundColor: '#4A90E2',
+              },
+              {
+                label: 'Marks',
+                data: scores,
+                backgroundColor: '#FF6F61',
+              },
+            ],
+          });
+        } catch (error) {
+          console.error('Error fetching data:', error);
+        }finally {
+          setLoading(false); // Set loading to false after fetching data
+      }
+      };
+  
+      fetchData();
     }, [user.token]);
 
 
 
-    //     <div className="w-full max-w-4xl mx-auto p-4 text-black bg-gray-100 dark:bg-gray-800 dark:text-white rounded-lg shadow-lg">
-    //         <div className="w-full h-80 md:h-96 lg:h-[500px]">
-    //             <h2 className="text-2xl font-bold mb-4 ">Average Time Per Question</h2>
-    //             {chartData ? ( <>
-    //                 <Bar
-    //                     data={chartData}
-    //                     options={{
-    //                         maintainAspectRatio: false,
-    //                         responsive: true,
-    //                         plugins: {
-    //                             legend: {
-    //                                 display: true,
-    //                             },
-    //                         },
-    //                         scales: {
-    //                             x: {
-    //                                 beginAtZero: true
-    //                             },
-    //                             y: {
-    //                                 beginAtZero: true,
-    //                             },
-    //                         },
-    //                     }}
-    //                     className="w-full h-full p-8" // Ensure the chart takes up full container size
-    //                 />
 
 
-    //   </>
-    //             ) : (
-    //                 <Skeleton height={400}  /> 
-    //             )}
-    //         </div>
-    //     </div>
+
+  
+
+
+
     return (
-        <div className="w-full max-w-4xl mx-auto p-4 text-black bg-gray-100 dark:bg-gray-800 dark:text-white rounded-lg shadow-lg">
-      <div className="w-full h-80 md:h-96 lg:h-[500px]">
-        <h2 className="text-2xl font-bold mb-4">Average Time Per Question</h2>
-        {chartData ? (
-          <div className="w-full h-full relative">
-            <Bar
-              data={chartData}
-              options={{
-                maintainAspectRatio: false,
-                responsive: true,
-                plugins: {
-                  legend: {
-                    display: true,
-                  },
-                },
-                scales: {
-                  x: {
-                    beginAtZero: true,
-                  },
-                  y: {
-                    beginAtZero: true,
-                  },
-                },
-              }}
-              className="w-full h-full"
-            />
-          </div>
-        ) : (
-          <Skeleton height={400} />
-        )}
-      </div>
+      <div className="w-full h-full relative">
+      {loading ? (
+                    <Skeleton height={400} /> 
+                ) : (
+                    chartData && (
+                        <div className="w-full h-full">
+                            <Bar
+                                data={chartData}
+                                options={{
+                                    maintainAspectRatio: false,
+                                    responsive: true,
+                                    plugins: {
+                                        legend: {
+                                            display: true,
+                                        },
+                                    },
+                                    scales: {
+                                        x: {
+                                            beginAtZero: true,
+                                        },
+                                        y: {
+                                            beginAtZero: true,
+                                        },
+                                    },
+                                }}
+                                className="w-full h-full"
+                            />
+                        </div>
+                    )
+                )}
     </div>
     );
 };
