@@ -38,8 +38,8 @@ export const getUserExamResults = async (token) => {
 
 
 
-export const getAverageTimePerQuestion = async (token) => {
-    const response = await fetch(`${API_URL}/api/examResults/averageTimePerQuestion`, {
+export const getAverageTimePerQuestion = async (token, page=0) => {
+    const response = await fetch(`${API_URL}/api/examResults/averageTimePerQuestion?page=${page}`, {
         method: 'GET',
         headers: {
             'Content-Type': 'application/json',

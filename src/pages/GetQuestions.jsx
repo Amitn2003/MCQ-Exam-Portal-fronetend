@@ -203,6 +203,7 @@ const GetQuestions = () => {
     };
     const handleTotalQuestionsChange = (e) => {
         setTotalQuestions(parseInt(e.target.value, 10));
+        setExamTime(parseInt(e.target.value, 10) *2)
         // You can add additional logic here if needed
     };
 

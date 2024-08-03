@@ -57,7 +57,7 @@ const BeforeExamStart = ({
                 </select>
             </div>
 
-            {selectedCategory && (
+            {selectedCategory && (<>
                 <div className="mb-4">
                     <label htmlFor="subcategory" className="block text-lg font-semibold text-gray-700 dark:text-white mb-2">
                         Choose Subcategory:
@@ -75,9 +75,8 @@ const BeforeExamStart = ({
                         ))}
                     </select>
                 </div>
-            )}
 
-            <div className="mb-4">
+                <div className="mb-4">
                 <label className="block text-lg font-semibold text-gray-700 dark:text-white mb-2">
                     Total Time (Minutes):
                 </label>
@@ -92,6 +91,10 @@ const BeforeExamStart = ({
                     onChange={onTimeChange} // Add this line
                 />
             </div>
+                </>
+            )}
+
+            
 
             <button
                 className="bg-blue-500 hover:bg-blue-600 text-white py-2 px-4 rounded-md mt-4"

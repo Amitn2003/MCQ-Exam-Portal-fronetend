@@ -44,12 +44,12 @@ const AnalyticsCharts = ({ analytics, formatDate, loading }) => {
               <YAxis />
               <Tooltip />
               <Legend />
-              <Bar dataKey="scorePercentage" fill="#2980b9" />
+              <Bar dataKey="scorePercentage" fill="#4A90E2" />
             </BarChart>
           </ResponsiveContainer>
         </div>
       </div>
-
+{/* 
       <div className="bg-white dark:bg-gray-800 rounded-lg shadow-md p-4 mt-8 overflow-hidden">
         <div className="min-w-full" style={{ height: '300px' }}>
           <ResponsiveContainer>
@@ -62,12 +62,12 @@ const AnalyticsCharts = ({ analytics, formatDate, loading }) => {
               <YAxis />
               <Tooltip />
               <Legend />
-              {/* <Line type="monotone" dataKey="scorePercentage" stroke="#2ecc71" /> */}
               <Line type="monotone" dataKey="scorePercentage" stroke="#2980b9" />
             </LineChart>
           </ResponsiveContainer>
         </div>
       </div>
+       */}
       <br />
       
     </div>

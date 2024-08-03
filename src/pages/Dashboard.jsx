@@ -18,6 +18,7 @@ const Dashboard = () => {
   const { user } = useAuth();
   const [examAttempts, setExamAttempts] = useState({});
   const [loading, setLoading] = useState(true)
+  
 
 
   useEffect(() => {
