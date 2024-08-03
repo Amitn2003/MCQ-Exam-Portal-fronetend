@@ -16,6 +16,7 @@ import AnalyticsCharts from '../components/AnalyticsCharts';
 const Dashboard = () => {
   const [analytics, setAnalytics] = useState([]);
   const { user } = useAuth();
+  const [page, setPage] = useState(0); // Pagination state
   const [examAttempts, setExamAttempts] = useState({});
   const [loading, setLoading] = useState(true)
   
@@ -32,21 +33,8 @@ const Dashboard = () => {
         toast.error('Failed to fetch exam attempts');
       }
     };
-    const fetchAnalytics = async () => {
-      try {
-        // toast('Please wait!', {
-        //   icon: '👏',
-        // });
-        const data = await getUserAnalytics(user.token);
-        // console.log(data)
-        setAnalytics(data);
-      } catch (error) {
-        toast.error('Failed to load data');
-        console.error('Failed to fetch analytics data');
-      }
-    };
+    
 
-    fetchAnalytics();
     fetchExamAttempts();
   }, [user.token]);
 
@@ -161,7 +149,7 @@ const DEFAULT_CLASS = 'bg-gray-300 text-red-500 dark:text-black dark:bg-red-200 
 
 
 
-      <AnalyticsCharts analytics={analytics} formatDate={formatDate} loading={loading}/>
+      <AnalyticsCharts user={user} formatDate={formatDate} loading={loading}/>
 
 
       <div className='bg-white text-black dark:bg-gray-800 rounded-lg shadow-md p-4 overflow-x-auto flex flex-col justify-center items-center'>

@@ -6,6 +6,8 @@ import { getAverageTimePerQuestion } from '../api/examResultApi';
 import { useAuth } from '../hooks/useAuth';
 import { toast } from 'react-hot-toast';
 import { Chart as ChartJS, CategoryScale, LinearScale, BarElement, Title, Tooltip, Legend } from 'chart.js';
+import ArrowBackIosIcon from '@mui/icons-material/ArrowBackIos';
+import ArrowForwardIosIcon from '@mui/icons-material/ArrowForwardIos';
 
 // Register the components
 ChartJS.register(CategoryScale, LinearScale, BarElement, Title, Tooltip, Legend);
@@ -120,13 +122,13 @@ const AverageTimeChart = () => {
 
 
     return (
-      <div className="w-full h-full relative">
+      <div className="w-full h-full relative px-2">
          <div className="flex justify-between mb-4">
               <button onClick={handlePreviousPage} disabled={page === 0} className="px-4 py-2 bg-blue-500 text-white rounded">
-                Previous
+                <ArrowBackIosIcon/>
               </button>
               <button onClick={handleNextPage} className="px-4 py-2 bg-blue-500 text-white rounded">
-                Next
+                <ArrowForwardIosIcon/>
               </button>
             </div>
       {loading ? (

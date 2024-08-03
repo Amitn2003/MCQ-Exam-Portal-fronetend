@@ -3,23 +3,40 @@ import { toast } from 'react-hot-toast';
 
 const ShareComponent = () => {
     const websiteUrl = window.location.href;
+    const title = "Transform Your Exam Prep with XaMawo!";
+    const text = `🚀 Ace your exams with XaMawo! Comprehensive MCQ practice, real-time simulations, and expert guidance to help you land your dream job. Start now and join thousands of successful candidates! 🌟 ${websiteUrl} #ExamPrep #CareerSuccess #XaMawo`;
 
-    const handleShare = (platform) => {
+    const handleShare = async (platform) => {
+        if (navigator.share) {
+            try {
+                await navigator.share({
+                    title: title,
+                    text: text,
+                    url: websiteUrl,
+                });
+                toast.success('Shared successfully!');
+            } catch (error) {
+                toast.error('Failed to share.');
+            }
+            return;
+        }
+
         const encodedUrl = encodeURIComponent(`${import.meta.env.REACT_APP_BACKEND_URL}`);
-        const encodedTitle = encodeURIComponent("Check out this amazing website!");
+        const encodedTitle = encodeURIComponent(title);
+        const encodedText = encodeURIComponent(text);
 
         switch (platform) {
             case 'facebook':
                 window.open(`https://www.facebook.com/sharer/sharer.php?u=${encodedUrl}`, '_blank');
                 break;
             case 'twitter':
-                window.open(`https://twitter.com/intent/tweet?url=${encodedUrl}&text=${encodedTitle}`, '_blank');
+                window.open(`https://twitter.com/intent/tweet?url=${encodedUrl}&text=${encodedText}`, '_blank');
                 break;
             case 'linkedin':
-                window.open(`https://www.linkedin.com/shareArticle?url=${encodedUrl}&title=${encodedTitle}`, '_blank');
+                window.open(`https://www.linkedin.com/shareArticle?url=${encodedUrl}&title=${encodedTitle}&summary=${encodedText}`, '_blank');
                 break;
             case 'email':
-                window.open(`mailto:?subject=${encodedTitle}&body=${encodedUrl}`, '_self');
+                window.open(`mailto:?subject=${encodedTitle}&body=${encodedText} ${encodedUrl}`, '_self');
                 break;
             case 'copy':
                 navigator.clipboard.writeText(websiteUrl)

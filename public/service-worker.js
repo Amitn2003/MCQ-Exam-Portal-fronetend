@@ -192,3 +192,100 @@ if ('serviceWorker' in navigator) {
     });
   });
 }
+// Function to fetch updates from the server and cache them
+async function fetchAndCacheUpdates() {
+  try {
+    const response = await fetch('https://mcq-portal.vercel.app/api/updates');
+    const data = await response.json();
+    const cache = await caches.open(CACHE_NAME);
+
+    // Assuming data contains a list of URLs to update in cache
+    await Promise.all(data.map(async (url) => {
+      const updateResponse = await fetch(url);
+      if (updateResponse.ok) {
+        await cache.put(url, updateResponse);
+      }
+    }));
+  } catch (error) {
+    console.error('Failed to sync updates:', error);
+  }
+}
+
+// Periodic background sync registration (in the main app)
+if ('serviceWorker' in navigator && 'SyncManager' in window) {
+  navigator.serviceWorker.ready.then((registration) => {
+    return registration.sync.register('sync-updates');
+  }).catch(console.error);
+}
+
+
+
+
+
+
+self.addEventListener('sync', (event) => {
+  if (event.tag === 'sync-updates') {
+    event.waitUntil(fetchAndCacheUpdates());
+  }
+});
+
+async function fetchAndCacheUpdates() {
+  try {
+    const response = await fetch('/api/updates'); // Ensure this endpoint returns the updates you need
+    const data = await response.json();
+    const cache = await caches.open(CACHE_NAME);
+
+    await Promise.all(data.map(async (url) => {
+      const updateResponse = await fetch(url);
+      if (updateResponse.ok) {
+        await cache.put(url, updateResponse.clone());
+      }
+    }));
+  } catch (error) {
+    console.error('Failed to sync updates:', error);
+  }
+}
+
+
+
+
+async function fetchAndCacheUpdates() {
+  try {
+    const response = await fetch('https://mcq-portal.vercel.app/api/updates'); // Endpoint to get URLs for updates
+    if (!response.ok) {
+      throw new Error('Network response was not ok');
+    }
+    const urls = await response.json();
+    const cache = await caches.open(CACHE_NAME);
+
+    await Promise.all(urls.map(async (url) => {
+      try {
+        const updateResponse = await fetch(url);
+        if (updateResponse.ok) {
+          await cache.put(url, updateResponse.clone());
+        } else {
+          console.warn(`Failed to fetch ${url}: ${updateResponse.statusText}`);
+        }
+      } catch (fetchError) {
+        console.error(`Failed to fetch ${url}:`, fetchError);
+      }
+    }));
+  } catch (error) {
+    console.error('Failed to sync updates:', error);
+  }
+}
+
+function requestSync() {
+  if ('serviceWorker' in navigator && 'SyncManager' in window) {
+    navigator.serviceWorker.ready.then((registration) => {
+      return registration.sync.register('sync-updates');
+    }).then(() => {
+      console.log('Sync registered');
+    }).catch((err) => {
+      console.error('Sync registration failed:', err);
+    });
+  }
+}
+
+// Call this function when appropriate, e.g., after a user updates something.
+requestSync();

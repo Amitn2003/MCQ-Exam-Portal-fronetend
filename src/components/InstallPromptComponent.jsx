@@ -8,6 +8,7 @@ const InstallPromptComponent = () => {
     const handleBeforeInstallPrompt = (e) => {
       e.preventDefault();
       setDeferredPrompt(e);
+      console.log('beforeinstallprompt event fired.');
     };
 
     window.addEventListener('beforeinstallprompt', handleBeforeInstallPrompt);
@@ -25,9 +26,15 @@ const InstallPromptComponent = () => {
           toast.error('App installation was dismissed.');
         }
         setDeferredPrompt(null);
+      }).catch((error) => {
+        toast.error('Failed to handle installation prompt.');
+        console.error('Install prompt error:', error);
       });
+    } else {
+      toast.error('Install prompt not available. 😢');
     }
   };
+  handleInstallClick()
 
   return (
     <div className="fixed bottom-4 right-4 p-4 bg-blue-600 text-white rounded-lg shadow-lg flex items-center">
