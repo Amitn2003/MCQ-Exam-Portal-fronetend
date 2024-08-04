@@ -7,6 +7,12 @@ const ShareComponent = () => {
     const text = `🚀 Ace your exams with XaMawo! Comprehensive MCQ practice, real-time simulations, and expert guidance to help you land your dream job. Start now and join thousands of successful candidates! 🌟 ${websiteUrl} #ExamPrep #CareerSuccess #XaMawo`;
 
     const handleShare = async (platform) => {
+        if (platform == 'copy') {
+            navigator.clipboard.writeText(websiteUrl)
+                    .then(() => toast.success('Link copied to clipboard!'))
+                    .catch(() => toast.error('Failed to copy link.'));
+            return ;
+        }
         if (navigator.share) {
             try {
                 await navigator.share({
