@@ -9,6 +9,7 @@ import ChartComponent from "../components/ChartComponent"
 import { LineChart, Line } from 'recharts';
 import toast, { Toaster } from 'react-hot-toast';
 import AnalyticsCharts from '../components/AnalyticsCharts';
+import Divider from '@mui/material/Divider';
 
 
 
@@ -162,9 +163,7 @@ const DEFAULT_CLASS = 'bg-gray-300 text-red-500 dark:text-black dark:bg-red-200 
           <Calendar tileClassName={tileClassName} />
       </div>
       <ChartComponent/>
-          <br />
-          <br />
-          <br />
+      <Divider />
     </>
 
   );

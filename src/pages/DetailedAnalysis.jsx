@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import { getUserExamResults } from '../api/examResultApi';
+import { getExamResultById  } from '../api/examResultApi';
 import { reportQuestion } from '../api/reportedQuestionApi';
 import { useAuth } from '../hooks/useAuth';
 import { useParams } from 'react-router-dom';
@@ -21,13 +21,13 @@ const DetailedAnalysis = () => {
     useEffect(() => {
         const fetchResult = async () => {
             try {
-                const data = await getUserExamResults(user.token);
-                const specificResult = data.find(res => res._id === resultId);
-                console.log(specificResult)
-                setResult(specificResult);
+                const data = await  getExamResultById(resultId, user.token); 
+                console.log(data)
+                // console.log(specificResult)
+                setResult(data);
                 setLoading(false);
             } catch (error) {
-                console.error('Failed to fetch exam result');
+                console.error('Failed to fetch exam result', error);
                 toast.error(error.message);
                 setLoading(false);
             }
@@ -149,7 +149,7 @@ const DetailedAnalysis = () => {
                                     <input
                                         type="text"
                                         placeholder="Reason for reporting this question"
-                                        value={reportReason}
+                                        value={reportReason} autoFocus
                                         onChange={(e) => setReportReason(e.target.value)}
                                         className="p-2 rounded-lg border border-gray-600 bg-gray-800 text-white placeholder-gray-400 focus:outline-none focus:ring focus:ring-blue-500"
                                     />

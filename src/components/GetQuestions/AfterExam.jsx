@@ -1,7 +1,8 @@
 import React from 'react';
-import InstallPromptComponent from '../InstallPromptComponent';
+// import InstallPromptComponent from '../InstallPromptComponent';
+
 // import { Navigate } from 'react-router-dom';
-const ExamReport = ({ questions, userAnswers, score, accuracy, resetExam, navigate }) => {
+const ExamReport = ({ questions, userAnswers, score, accuracy, resetExam, navigate, InstallPromptComponent  }) => {
     return (
         <div className='px-2'>
             <h2 className="text-2xl font-bold mb-4 text-gray-900 dark:text-gray-100">Exam Report</h2>
@@ -42,8 +43,8 @@ const ExamReport = ({ questions, userAnswers, score, accuracy, resetExam, naviga
                 >
                     Retake Exam
                 </button>
+            <InstallPromptComponent />
             </div>
-            <InstallPromptComponent/>
         </div>
     );
 };

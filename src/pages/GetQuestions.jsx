@@ -6,7 +6,7 @@ import { useNavigate, Link } from 'react-router-dom';
 import toast, { Toaster } from 'react-hot-toast';
 import Skeleton from 'react-loading-skeleton';
 import 'react-loading-skeleton/dist/skeleton.css'
-
+import InstallPromptComponent from '../components/InstallPromptComponent';
 
 
 
@@ -451,6 +451,7 @@ const GetQuestions = () => {
                         accuracy={accuracy}
                         resetExam={resetExam}
                         navigate={navigate}
+                        InstallPromptComponent={InstallPromptComponent}
                     /> :
                     <DuringExam
                         questions={questions}

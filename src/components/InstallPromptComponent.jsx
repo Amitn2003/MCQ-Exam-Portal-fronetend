@@ -3,6 +3,7 @@ import { toast } from 'react-hot-toast';
 
 const InstallPromptComponent = () => {
   const [deferredPrompt, setDeferredPrompt] = useState(null);
+  const [count , setCount] = useState(0);
 
   useEffect(() => {
     const handleBeforeInstallPrompt = (e) => {
@@ -12,9 +13,13 @@ const InstallPromptComponent = () => {
     };
 
     window.addEventListener('beforeinstallprompt', handleBeforeInstallPrompt);
+    console.log("Differed Prompt ", deferredPrompt)
+    
+    
+    
 
     return () => window.removeEventListener('beforeinstallprompt', handleBeforeInstallPrompt);
-  }, []);
+  }, [count]);
 
   const handleInstallClick = () => {
     console.log(deferredPrompt)

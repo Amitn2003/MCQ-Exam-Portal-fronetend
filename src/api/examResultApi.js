@@ -37,6 +37,23 @@ export const getUserExamResults = async (token, page = 1, limit = 10) => {
     return await response.json();
 };
 
+// api/examResultApi.js
+export const getExamResultById = async (resultId, token) => {
+    const response = await fetch(API_URL + `/api/examResults/${resultId}`, {
+      method: 'GET',
+      headers: {
+        'Content-Type': 'application/json',
+        'Authorization': `Bearer ${token}`,
+      },
+    });
+  
+    if (!response.ok) {
+      throw new Error('Failed to fetch exam result');
+    }
+  
+    return await response.json();
+  };
+
 
 
 export const getAverageTimePerQuestion = async (token, page=0) => {

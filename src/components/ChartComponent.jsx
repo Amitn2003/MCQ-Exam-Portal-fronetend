@@ -127,6 +127,7 @@ const AverageTimeChart = () => {
         <button onClick={handlePreviousPage} disabled={page === 0} className="px-4 py-2 bg-blue-500 text-white rounded">
           <ArrowBackIosIcon />
         </button>
+        <span className='text-black dark:text-gray-300'>Past 1 week data</span>
         <button onClick={handleNextPage} className="px-4 py-2 bg-blue-500 text-white rounded">
           <ArrowForwardIosIcon />
         </button>
@@ -165,7 +166,7 @@ const AverageTimeChart = () => {
                   },
                 },
               }}
-              className="w-full h-full"
+              className="w-full h-full  min-h-[400px] "
             />
           </div>
         )
