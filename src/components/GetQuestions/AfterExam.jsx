@@ -1,8 +1,10 @@
 import React from 'react';
 // import InstallPromptComponent from '../InstallPromptComponent';
-
+import PieChartDetailedAnalysis from "../PieChartDetailedAnalysis"
 // import { Navigate } from 'react-router-dom';
 const ExamReport = ({ questions, userAnswers, score, accuracy, resetExam, navigate, InstallPromptComponent  }) => {
+    // Prepare data for the PieChartDetailedAnalysis component
+    const data = { questions, userAnswers };
     return (
         <div className='px-2'>
             <h2 className="text-2xl font-bold mb-4 text-gray-900 dark:text-gray-100">Exam Report</h2>
@@ -11,6 +13,10 @@ const ExamReport = ({ questions, userAnswers, score, accuracy, resetExam, naviga
                 <p className="text-lg font-medium text-gray-800 dark:text-gray-100">Accuracy: {accuracy.toFixed(2)}%</p>
             </div> 
             <br />
+             {/* Pie Chart Component */}
+             <div className="mt-8 px-4">
+                <PieChartDetailedAnalysis data={data} />
+            </div>
             <ul>
                 {questions.map((question, index) => (
                     <li key={index} className="mb-4 text-gray-900">

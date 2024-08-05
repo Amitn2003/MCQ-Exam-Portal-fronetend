@@ -166,7 +166,7 @@ const AverageTimeChart = () => {
                   },
                 },
               }}
-              className="w-full h-full  min-h-[400px] "
+              className="w-full h-full  min-h-[400px] cursor-help "
             />
           </div>
         )

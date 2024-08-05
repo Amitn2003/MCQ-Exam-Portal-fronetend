@@ -11,7 +11,7 @@ const BarChartComponent = ({analytics, formatDate}) => {
         <ResponsiveContainer>
           <BarChart
             data={analytics}
-            margin={{ top: 20, right: 20, left: 0, bottom: 5 }}
+            margin={{ top: 20, right: 20, left: 0, bottom: 5 , cursor: 'help' }}
           >
             <CartesianGrid strokeDasharray="3 3" />
             <XAxis dataKey="examDate" tickFormatter={formatDate} />

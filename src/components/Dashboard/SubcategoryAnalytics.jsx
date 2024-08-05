@@ -155,7 +155,7 @@ const SubcategoryAnalytics = () => {
             <p>Date Range: {startDate.toDateString()} - {endDate.toDateString()}</p>
         </div>
         
-        <div className="relative h-80 mb-4">
+        <div className="relative h-80 mb-4 cursor-help">
             <div style={{ height: '400px', overflowY: 'auto' }}>
                 <Bar data={chartData} options={{ responsive: true, maintainAspectRatio: false }} />
             </div>

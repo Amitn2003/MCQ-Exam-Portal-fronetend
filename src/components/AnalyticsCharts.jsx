@@ -9,7 +9,7 @@ import toast from 'react-hot-toast';
 
 
 
-const AnalyticsCharts = ({user, formatDate}) => {
+const  AnalyticsCharts = ({user, formatDate}) => {
   const [analytics, setAnalytics] = useState([]);
   const [page, setPage] = useState(0); // Pagination state
   const [loading, setLoading] = useState(true)
@@ -65,30 +65,30 @@ const AnalyticsCharts = ({user, formatDate}) => {
 
 
 
-  if (loading) {
-    return (
-      <div className="px-2 py-8 bg-white dark:bg-slate-900 dark:text-white">
-        <h2 className="text-3xl font-bold text-gray-800 dark:text-white mb-4">
-          <Skeleton width={250} />
-        </h2>
+  // if (loading) {
+  //   return (
+  //     <div className="px-2 py-8 bg-white dark:bg-slate-900 dark:text-white">
+  //       <h2 className="text-3xl font-bold text-gray-800 dark:text-white mb-4">
+  //         <Skeleton width={250} />
+  //       </h2>
         
-        <div className="bg-white dark:bg-gray-800 rounded-lg shadow-md p-1 overflow-hidden">
-          <div className="min-w-full" style={{ height: '300px' }}>
-            <Skeleton height="100%" width="100%" />
-          </div>
-        </div>
+  //       <div className="bg-white dark:bg-gray-800 rounded-lg shadow-md p-1 overflow-hidden">
+  //         <div className="min-w-full" style={{ height: '300px' }}>
+  //           <Skeleton height="100%" width="100%" />
+  //         </div>
+  //       </div>
 
         
-      </div>
-    );
-  }
+  //     </div>
+  //   );
+  // }
   return (
     <div className="px-2 py-8 bg-white dark:bg-slate-900 dark:text-white">
       <h2 className="text-3xl font-bold text-gray-800 dark:text-white mb-4">Exam Performance Analytics</h2>
 
-      <div className="bg-white dark:bg-gray-800 rounded-lg shadow-md p-1 overflow-hidden">
+      <div className="bg-white dark:bg-gray-800 rounded-lg shadow-md p-1 overflow-hidden cursor-help">
       
-        <div className="min-w-full" style={{ height: '300px' }}>
+        <div className="min-w-full cursor-help" style={{ height: '300px' }}>
           <ResponsiveContainer  width="100%">
             <BarChart
               data={analytics}

@@ -80,10 +80,10 @@ const Question = ({ question, userAnswer, handleOptionChange }) => {
 
 <pre className="text-gray-900 dark:text-white font-sans whitespace-pre-wrap text-xl font-semibold ">{question.question}</pre>
 <p className="text-sm text-gray-400 dark:text-gray-200">Category: {question.category}</p>
-  <span className="text-sm text-gray-300 dark:text-gray-500">{question.subcategory}</span>
+  <span className="text-sm text-gray-300 dark:text-gray-500 cursor-help">{question.subcategory}</span>
   {/* <span className="text-sm text-gray-300 dark:text-gray-500">{question.topic}</span> */}
 {
-  question.topic ? <span className="text-sm text-gray-200 dark:text-gray-600">({question.topic})</span> : ""
+  question.topic ? <span className="text-sm text-gray-200 dark:text-gray-600 cursor-help">({question.topic})</span> : ""
 }
 <br />
       <FormControl component="fieldset" variant="standard">
