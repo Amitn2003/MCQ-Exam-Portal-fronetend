@@ -10,7 +10,7 @@ import { LineChart, Line } from 'recharts';
 import toast, { Toaster } from 'react-hot-toast';
 import AnalyticsCharts from '../components/AnalyticsCharts';
 import Divider from '@mui/material/Divider';
-
+import SubcSubcategoryAnalytics from '../components/Dashboard/SubcategoryAnalytics'
 
 
 
@@ -164,6 +164,8 @@ const DEFAULT_CLASS = 'bg-gray-300 text-red-500 dark:text-black dark:bg-red-200 
       </div>
       <ChartComponent/>
       <Divider />
+      <SubcSubcategoryAnalytics />
+      
     </>
 
   );
