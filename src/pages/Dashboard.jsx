@@ -13,7 +13,6 @@ import Divider from '@mui/material/Divider';
 import SubcSubcategoryAnalytics from '../components/Dashboard/SubcategoryAnalytics'
 
 
-
 const Dashboard = () => {
   const [analytics, setAnalytics] = useState([]);
   const { user } = useAuth();
@@ -37,6 +36,7 @@ const Dashboard = () => {
     
 
     fetchExamAttempts();
+    
   }, [user.token]);
 
   function getYesterdayDate(dateString) {
@@ -150,7 +150,7 @@ const DEFAULT_CLASS = 'bg-gray-300 text-red-500 dark:text-black dark:bg-red-200 
 
 
 
-      <AnalyticsCharts user={user} formatDate={formatDate} loading={loading}/>
+      <AnalyticsCharts user={user} formatDate={formatDate} />
 
 
       <div className='bg-white text-black dark:bg-gray-800 rounded-lg shadow-md p-4 overflow-x-auto flex flex-col justify-center items-center'>

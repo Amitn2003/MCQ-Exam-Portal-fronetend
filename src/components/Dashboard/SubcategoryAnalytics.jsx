@@ -37,11 +37,15 @@ const SubcategoryAnalytics = () => {
     useEffect(() => {
         const fetchData = async () => {
             try {
-                const data = await getSubcategoryAnalytics(user.token, page);
+                const data = await getSubcategoryAnalytics(user.token, selectedCategory, page);
                 console.log(data)
-                const { analytics: fetchedAnalytics, totalPages: total, startDate: start, endDate: end } = data;
+                const { analytics: fetchedAnalytics, 
+                    totalPages: total, 
+                    startDate: start, 
+                    endDate: end } = data;
                 // Filter out entries with percentage <= 0
                 const filteredData = fetchedAnalytics.filter(a => a.percentage > 0 && subcategories.includes(a.subcategory));
+                console.log(filteredData)
 
                 // Update state with fetched data
                 setAnalytics(filteredData);

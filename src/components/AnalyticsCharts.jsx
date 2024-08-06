@@ -12,14 +12,12 @@ import toast from 'react-hot-toast';
 const  AnalyticsCharts = ({user, formatDate}) => {
   const [analytics, setAnalytics] = useState([]);
   const [page, setPage] = useState(0); // Pagination state
-  const [loading, setLoading] = useState(true)
   const [lastPage, setLastPage] = useState(false); // Track if it's the last page
 
 
 
   useEffect(() => {
     const fetchData = async () => {
-      setLoading(true);
       try {
         const data = await getUserAnalytics(user.token, page);
         if (data.length === 0) {
@@ -30,9 +28,7 @@ const  AnalyticsCharts = ({user, formatDate}) => {
         }
       } catch (error) {
         console.error('Error fetching analytics data:', error);
-      } finally {
-        setLoading(false);
-      }
+      } 
     };
 
     fetchData();
@@ -93,11 +89,23 @@ const  AnalyticsCharts = ({user, formatDate}) => {
             <BarChart
               data={analytics}
               margin={{ top: 20, right: 20, left: 0, bottom: 5 }}
+              barCategoryGap="20%"
+              barGap={4}
             >
               <CartesianGrid strokeDasharray="5 8" />
               <XAxis dataKey="examDate" tickFormatter={formatDate} />
               <YAxis />
-              <Tooltip />
+              <Tooltip
+                content={({ payload, label }) => (
+                  <div className="bg-white border border-gray-300 rounded-lg p-2 shadow-md">
+                    <p className="font-bold">{label}</p>
+                    {payload && payload.length > 0 && (
+                      <>
+                        <p className="text-gray-600">Percentage: {payload[0].value}%</p>
+                      </>
+                    )}
+                  </div>
+                )} />
               <Legend />
               <Bar dataKey="scorePercentage" fill="#4A90E2" />
             </BarChart>

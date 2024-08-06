@@ -19,8 +19,8 @@ export const getUserAnalytics = async (token, page = 0) => {
 
 
 
-export const getSubcategoryAnalytics = async (token, page = 0) => {
-    const response = await fetch(`${API_URL}/subcategory?page=${page}`, {
+export const getSubcategoryAnalytics = async (token, category = "JECA", page = 0) => {
+    const response = await fetch(`${API_URL}/subcategory?page=${page}&category=${category}`, {
         method: 'GET',
         headers: {
             'Content-Type': 'application/json',
