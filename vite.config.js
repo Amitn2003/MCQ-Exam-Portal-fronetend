@@ -16,5 +16,8 @@ export default defineConfig({
         }
       }
     }
-  }
+  },
+  // Optional: To ensure proper handling of assets
+  publicDir: 'public', // Directory for static assets
+  base: '/', // Base URL for the application
 })
