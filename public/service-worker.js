@@ -62,6 +62,9 @@ self.addEventListener('activate', (event) => {
           }
         })
       );
+    }).then(() => {
+      // Notify clients about the update
+      self.clients.claim();
     })
   );
 });
@@ -117,6 +120,11 @@ self.addEventListener('fetch', (event) => {
 
 
 
+self.addEventListener('message', (event) => {
+  if (event.data && event.data.action === 'skipWaiting') {
+    self.skipWaiting();
+  }
+});
 
 
 
