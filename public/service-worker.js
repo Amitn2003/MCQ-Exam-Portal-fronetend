@@ -1,4 +1,4 @@
-const CACHE_NAME = 'xamawo-cache-v1';
+const CACHE_NAME = 'xamawo-cache-v2';
 const urlsToCache = [
   '/',
   '/index.html',
@@ -43,10 +43,13 @@ const urlsToCache = [
 
 self.addEventListener('install', (event) => {
   event.waitUntil(
-    caches.open(CACHE_NAME).then((cache) => {
-      return cache.addAll(urlsToCache);
-    })
-  );
+    caches.open(CACHE_NAME).then(async (cache) => {
+      try {
+        return await cache.addAll(urlsToCache);
+      } catch (error) {
+        console.error('Failed to cache some resources:', error);
+      }
+    }))
 });
 
 
