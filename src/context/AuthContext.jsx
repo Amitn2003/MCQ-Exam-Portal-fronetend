@@ -87,8 +87,69 @@ const AuthProvider = ({ children }) => {
     };
     const isLoggedIn = () => !!user;
 
+
+
+    const googleLogin = async (token) => {
+        console.log(token)
+        console.log(`${URL}/api/auth/google`, JSON.stringify({token}))
+        try {
+        const response = await fetch(`${URL}/api/auth/google`, {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+            },
+            body: JSON.stringify({token}),
+        });
+        console.log(response)
+
+        if (!response.ok) {
+            throw new Error('Google login failed');
+        }
+
+        const data = await response.json();
+        console.log(data)
+        // Extract token and user from response
+        // const { token, ...user } = data;
+
+        // Check if data contains a token and user details
+        if (data.token && data._id) {
+            localStorage.setItem('token', data.token);
+            localStorage.setItem('user', JSON.stringify({
+                _id: data._id,
+                name: data.name,
+                email: data.email,
+                address: data.address,
+                college: data.college,
+                phone: data.phone,
+                isAdmin: data.isAdmin,
+                avatar: data.avatar,
+                isPremium: data.isPremium,
+                token: data.token, // Store the token within the user object
+            }));
+
+            setUser({
+                _id: data._id,
+                name: data.name,
+                email: data.email,
+                isAdmin: data.isAdmin,
+                isPremium: data.isPremium,
+                token: data.token, // Include token in context/state
+            }); // Set user in context or state
+        } else {
+            throw new Error('Invalid response data');
+        }
+        // setUser(user);
+        return data;
+    } catch (error) {
+        console.error('Error during Google login:', error);
+        throw error;
+    }
+    };
+
+
+
     return (
-        <AuthContext.Provider value={{ user, register, login, logout, isAdmin, isLoggedIn }}>
+        <AuthContext.Provider value={{ user, register, login, logout, isAdmin, isLoggedIn, googleLogin }}>
             {children}
         </AuthContext.Provider>
     );

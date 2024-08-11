@@ -37,6 +37,7 @@ const Navigation = () => {
     const navigate = useNavigate();
     const location = useLocation();
 
+
     useEffect(() => {
         const logInInfo = () => {
             if (isLoggedIn()) {
@@ -44,6 +45,7 @@ const Navigation = () => {
                 if (isAdmin()) {
                     setAdmin(true);
                 }
+                
             }
         }
         logInInfo();
@@ -112,7 +114,11 @@ const Navigation = () => {
                                <div>
                                     <MenuButton className="relative flex rounded-full bg-gray-800 text-sm focus:outline-none focus:ring-2 focus:ring-white focus:ring-offset-2 focus:ring-offset-gray-800">
                                         <span className="sr-only m-1">Open Users menu</span>
-                                        {userAvailable ? (
+                                        {userAvailable ? ( user.avatar ? <img
+                                                alt=""
+                                                src={`${user.avatar}`}
+                                                className="h-8 w-8 rounded-full"
+                                            /> : 
                                             <img
                                                 alt=""
                                                 src={`https://ui-avatars.com/api/?name=${user.name}&background=random&rounded=true&size=250`}

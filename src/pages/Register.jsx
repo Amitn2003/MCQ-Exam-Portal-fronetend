@@ -7,7 +7,7 @@ import Button from '@mui/material/Button';
 import { Container, Box, Typography, Grid, IconButton, InputAdornment, Checkbox, FormControlLabel } from '@mui/material';
 import Visibility from '@mui/icons-material/Visibility';
 import VisibilityOff from '@mui/icons-material/VisibilityOff';
-
+import GoogleAuth from "../components/GoogleAuth"
 
 
 const Register = () => {
@@ -291,6 +291,9 @@ const Register = () => {
                                 Register
                             </Button>
                         </form>
+                    <Box sx={{ mt: 3, display: 'flex', justifyContent: 'center', alignItems: 'center' }}>
+                        <GoogleAuth/>
+                        </Box>
                     </Box>
                 </Grid>
             </Grid>
