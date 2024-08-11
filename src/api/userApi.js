@@ -68,3 +68,44 @@ export const deleteUser = async (userId, token) => {
 
     return await response.json();
 };
+
+
+// Profile ...............................
+
+// Get Profile
+export const getProfile = async (token) => {
+    const response = await fetch(`${import.meta.env.REACT_APP_BACKEND_URL}/api/users/profile`, {
+        method: 'GET',
+        headers: {
+            'Content-Type': 'application/json',
+            'Authorization': `Bearer ${token}`,
+        },
+    });
+    // console.log(response)
+
+    if (!response.ok) {
+        throw new Error('Failed to fetch profile');
+    }
+
+    return await response.json();
+};
+
+// Update Profile
+export const updateProfile = async (profileData, token) => {
+    console.log(profileData)
+    const response = await fetch(`${import.meta.env.REACT_APP_BACKEND_URL}/api/users/profile`, {
+        method: 'PUT',
+        headers: {
+            'Content-Type': 'application/json',
+            'Authorization': `Bearer ${token}`,
+        },
+        body: JSON.stringify(profileData),
+    });
+    // console.log(response)
+
+    if (!response.ok) {
+        throw new Error('Failed to update profile');
+    }
+
+    return await response.json();
+};
