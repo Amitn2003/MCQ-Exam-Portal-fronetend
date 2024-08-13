@@ -75,6 +75,15 @@
     },
     {
       "origin": "*.mcq-practice.vercel.app"
+    },
+    {
+      "origin": "*.xamawo.vercel.app/"
+    },
+    {
+      "origin": "xamawo.vercel.app/"
+    },
+    {
+      "origin": "*.xamawo.vercel.app"
     }
   ]
 }

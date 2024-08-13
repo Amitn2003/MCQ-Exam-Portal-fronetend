@@ -203,8 +203,8 @@ export const getAllUsersResults = async (token) => {
 
 
 
-export const getAllUserExamResults = async (token) => {
-    const response = await fetch(`${API_URL}/results/mock`, {
+export const getAllUserExamResults = async (token, page = 1, limit = 10) => {
+    const response = await fetch(`${API_URL}/results/mock?page=${page}&limit=${limit}`, {
         method: 'GET',
         headers: {
             'Content-Type': 'application/json',

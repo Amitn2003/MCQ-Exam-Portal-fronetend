@@ -6,13 +6,15 @@ import { getUserAnalytics } from '../api/analyticsApi';
 import ArrowBackIosIcon from '@mui/icons-material/ArrowBackIos';
 import ArrowForwardIosIcon from '@mui/icons-material/ArrowForwardIos';
 import toast from 'react-hot-toast';
-
+import { Link } from 'react-router-dom';
 
 
 const  AnalyticsCharts = ({user, formatDate}) => {
   const [analytics, setAnalytics] = useState([]);
   const [page, setPage] = useState(0); // Pagination state
-  const [lastPage, setLastPage] = useState(false); // Track if it's the last page
+  const [lastPage, setLastPage] = useState(false); 
+  const [examBtn, setExamBtn] = useState(true);
+  
 
 
 
@@ -22,7 +24,9 @@ const  AnalyticsCharts = ({user, formatDate}) => {
         const data = await getUserAnalytics(user.token, page);
         if (data.length === 0) {
           setLastPage(true); // Mark as last page if no data is returned
+          setExamBtn(true);
         } else {
+          setExamBtn(false)
           setAnalytics(data);
           setLastPage(false); // Reset last page flag when data is returned
         }
@@ -140,6 +144,17 @@ const  AnalyticsCharts = ({user, formatDate}) => {
             <ArrowBackIosIcon />
             <span className="ml-2">Previous</span>
           </button>
+
+          {
+            (examBtn || page === 0) && 
+            <Link
+            to="/questions"
+            className="bg-green-500 text-white px-6 py-3 rounded-lg shadow-md hover:shadow-xl hover:bg-green-600 transition-all duration-300 font-sans font-semibold tracking-wider transform hover:scale-105"
+            >
+            Start Exam
+        </Link>
+        }
+
           <button
             onClick={handleNextPage}
             disabled={lastPage}

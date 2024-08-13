@@ -34,7 +34,8 @@ import PrivacyPolicy from './pages/PrivacyPolicy';
 import AdminViewAllResults from './pages/AdminViewAllResults';
 import AdminQuestionManagement from './pages/AdminQuestionManagement';
 import Payment from './pages/Payment'
-
+import TermsOfService from './pages/TermsOfService';
+import UserGuide from './pages/UserGuide';
 
 
 function App() {
@@ -75,6 +76,8 @@ function App() {
               <Route path="/admin/reported-questions" element={<ReportedQuestions />} />
               <Route path="/admin/manage-questions" element={<ManageQuestions />} />
               <Route path="/admin/create-exam" element={<AdminPushExam />} />
+              <Route path="/terms-of-service" element={<TermsOfService />} />
+              <Route path="/user-guide" element={<UserGuide />} />
               <Route path="/*" element={<PageNotFound />} />
               <Route path="*" element={<PageNotFound />} />
               <Route element={<PageNotFound />} />

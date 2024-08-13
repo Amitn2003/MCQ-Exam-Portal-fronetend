@@ -1,4 +1,4 @@
-const CACHE_NAME = 'xamawo-cache-v2';
+const CACHE_NAME = 'xamawo-cache-v4';
 const urlsToCache = [
   '/',
   '/index.html',
@@ -14,28 +14,18 @@ const urlsToCache = [
   '/logo.png',
   '/xamawo-favicon.svg',
   'https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css',
-  // Routes to cache
   '/contact',
   '/register',
   '/about',
   '/login',
   '/privacy',
-  '/add-question',
   '/questions',
   '/results',
   '/exam-results',
   '/dashboard',
   '/profile',
   '/exam',
-  '/subscription',
-  '/admin/users',
-  '/admin/manage-exams',
-  '/admin/manage-questions',
-  '/admin/manage-results',
-  '/admin/manage-results/mock',
-  '/admin/reported-questions',
-  '/admin/create-exam',
-  '/admin/users/:userId', // Dynamic routes may need additional handling
+  '/subscription',  
   '/exam/:examId', // Dynamic routes may need additional handling
   '/results/:resultId', // Dynamic routes may need additional handling
   '/page-not-found', // Not a route but ensures handling

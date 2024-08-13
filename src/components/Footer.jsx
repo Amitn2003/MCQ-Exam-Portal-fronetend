@@ -11,6 +11,9 @@ const Footer = () => {
             <Link to="/about" className="px-3 py-1 text-sm text-gray-300 hover:text-white">About Us</Link>
             <Link to="/contact" className="px-3 py-1 text-sm text-gray-300 hover:text-white">Contact</Link>
             <Link to="/privacy" className="px-3 py-1 text-sm text-gray-300 hover:text-white">Privacy Policy</Link>
+            <Link to="/terms-of-service" className="px-3 py-1 text-sm text-gray-300 hover:text-white">Terms of Service</Link>
+            <Link to="/user-guide" className="px-3 py-1 text-sm text-gray-300 hover:text-white">User Guide</Link>
+       
         </div>
     </div>
 </footer>
