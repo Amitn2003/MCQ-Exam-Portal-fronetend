@@ -2,7 +2,7 @@ import React from 'react';
 import { toast } from 'react-hot-toast';
 
 const ShareComponent = () => {
-    const websiteUrl = window.location.href;
+    const websiteUrl = "https://xamawo.vercel.app/";
     const title = "Transform Your Exam Prep with XaMawo!";
     const text = `🚀 Ace your exams with XaMawo! Comprehensive MCQ practice, real-time simulations, and expert guidance to help you land your dream job. Start now and join thousands of successful candidates! 🌟 ${websiteUrl} #ExamPrep #CareerSuccess #XaMawo`;
 

@@ -31,3 +31,34 @@ body {
     color: #000000;
   }
   
+
+
+  .update-notification {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    background: #000;
+    color: #fff;
+    padding: 10px;
+    width: 100%;
+    text-align: center;
+    z-index: 1000;
+  }
+  
+  .update-notification .notification-content {
+    display: inline-block;
+    background: #333;
+    padding: 10px;
+    border-radius: 5px;
+  }
+  .update-notification button {
+    background: #4CAF50;
+    color: white;
+    border: none;
+    padding: 5px 10px;
+    cursor: pointer;
+  }
+  
+  .update-notification button:hover {
+    background: #45a049;
+  }

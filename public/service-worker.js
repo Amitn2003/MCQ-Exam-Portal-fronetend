@@ -1,4 +1,4 @@
-const CACHE_NAME = 'xamawo-cache-v5';
+const CACHE_NAME = 'xamawo-cache-v6';
 const urlsToCache = [
   '/',
   '/index.html',
@@ -58,11 +58,15 @@ self.addEventListener('activate', (event) => {
     }).then(() => {
       // Notify clients about the update
       self.clients.claim();
+      // Notify all clients about the update
+      self.clients.matchAll({ type: 'window' }).then(clients => {
+        clients.forEach(client => {
+          client.postMessage({ type: 'UPDATE_READY' });
+        });
+      });
     })
   );
 });
-
-
 
 
 

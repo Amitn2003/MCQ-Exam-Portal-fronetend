@@ -1,12 +1,17 @@
-import { Link } from 'react-router-dom';
+import { Link, useNavigate  } from 'react-router-dom';
 import { useAuth } from '../context/AuthContext';
 import { useEffect, useState } from 'react';
+
+
 
 
 const Home = () => {
     const { isLoggedIn, isAdmin } = useAuth();
     const [user, setUser] = useState(false)
     const [admin, setAdmin] = useState(false)
+    const [activeSubject, setActiveSubject] = useState(null);
+    const navigate = useNavigate();
+
     useEffect(() => {
         const logInInfo = () => {
             // console.log(isLoggedIn())
@@ -19,6 +24,18 @@ const Home = () => {
         }
         logInInfo()
     }, [])
+
+    const handleToggle = (subject) => {
+        setActiveSubject(activeSubject === subject ? null : subject);
+      };
+
+      const handleClick = (path) => {
+        if (user) {
+          navigate('/questions'); // Redirect to /questions if the user is logged in
+        } else {
+          navigate('/register'); // Redirect to /register if the user is not logged in
+        }
+      };
 
 
     return (
@@ -72,29 +89,105 @@ const Home = () => {
                                 <h2 className="text-xl font-semibold mb-4">Categories</h2>
                                 <ul>
                                     <li className="text-lg mb-2">
-                                        <p href="/" className="hover:text-blue-600">Aptitude</p>
+                                        <p onClick={() => handleClick('/questions')}  className="hover:text-blue-600">Aptitude</p>
                                     </li>
                                     <li className="text-lg mb-2">
-                                        <p href="/" className="hover:text-blue-600">Reasoning</p>
+                                        <p onClick={() => handleClick('/questions')} className="hover:text-blue-600">Reasoning</p>
                                     </li>
                                     <li className="text-lg mb-2">
-                                        <p href="/" className="hover:text-blue-600">Technical</p>
+                                        <p onClick={() => handleClick('/questions')} className="hover:text-blue-600">Programming Language</p>
                                     </li>
                                     <li className="text-lg mb-2">
-                                        <p href="/" className="hover:text-blue-600">Campus Placement</p>
+                                        <p onClick={() => handleClick('/questions')} className="hover:text-blue-600">Campus Placement</p>
                                     </li>
                                     <li className="text-lg mb-2">
-                                        <p href="/" className="hover:text-blue-600">JECA</p>
+                                        <p onClick={() => handleClick('/questions')} className="hover:text-blue-600">JECA</p> 
                                     </li>
                                     <li className="text-lg mb-2">
-                                        <p href="/" className="hover:text-blue-600">Verbal Ability (Coming soon...)</p>
+                                        <p onClick={() => handleClick('/questions')} className="hover:text-blue-600">Verbal Ability (Coming soon...)</p>
                                     </li>
                                     <li className="text-lg mb-2">
-                                        <p href="/" className="hover:text-blue-600">General Awareness (Coming soon...)</p>
+                                        <p onClick={() => handleClick('/questions')} className="hover:text-blue-600">General Awareness (Coming soon...)</p>
                                     </li>
                                 </ul>
                             </div>
-                            <div className="bg-white rounded-lg shadow-md p-6 text-gray-900 dark:text-gray-800">
+                            
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+                            {/* <div className="p-6 bg-gray-100 min-h-screen"> */}
+      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 mb-10">
+        {/* Subjects & Topics Section */}
+        <div className="bg-white rounded-lg shadow-md p-6 text-gray-900 dark:text-gray-800 col-span-1 md:col-span-2 lg:col-span-3">
+          <h2 className="text-xl font-semibold mb-4 text-center">Subjects & Topics</h2>
+          <ul>
+            {Object.keys(subjects).map(subject => (
+              <li key={subject} className="mb-4">
+                <button
+                  onClick={() => handleToggle(subject)}
+                  className="w-full text-left text-lg font-medium hover:text-blue-600 focus:outline-none"
+                >
+                  {subject}
+                </button>
+                <div
+                  className={`transition-max-height duration-300 ease-out overflow-hidden ${
+                    activeSubject === subject ? 'max-h-screen' : 'max-h-0'
+                  }`}
+                >
+                  <ul className="list-disc pl-5 mt-2">
+                    {subjects[subject].map(topic => (
+                      <li key={topic} className="text-sm">
+                        {user ? <Link to="/questions" className="hover:text-blue-600">{topic}</Link> : <li key={topic} className="text-sm">
+                        <Link to="/register" className="hover:text-blue-600">{topic}</Link>
+                      </li>}
+                      </li>
+                    ))}
+                  </ul>
+                </div>
+              </li>
+            ))}
+          </ul>
+        </div>
+
+      </div>
+    {/* </div> */}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+                            
+                            {/* <div className="bg-white rounded-lg shadow-md p-6 text-gray-900 dark:text-gray-800">
                                 <h2 className="text-xl font-semibold mb-4">Subjects & Topics</h2>
                                 <ul>
                                     <li className="text-lg mb-2">
@@ -119,7 +212,7 @@ const Home = () => {
                                         <p href="/" className="hover:text-blue-600">OOPS</p>
                                     </li>
                                 </ul>
-                            </div>
+                            </div> */}
                             <div className="bg-white rounded-lg shadow-md p-6 text-gray-900 dark:text-gray-800">
                                 <h2 className="text-xl font-semibold mb-4">Why Practice With Us?</h2>
                                 <p className="text-lg">
@@ -274,5 +367,244 @@ const Home = () => {
         </>
     );
 };
+
+
+
+
+
+
+
+
+const subjects = {
+    "C Programming": [
+      "Variables and Data types",
+      "IO Operations",
+      "Operators and Expressions",
+      "Control Flow statements",
+      "Functions",
+      "Array",
+      "Pointers",
+      "String Handling",
+      "Structures and Unions",
+      "Files Handling",
+      "Pre-Processor Directives",
+      "Command Line Arguments",
+    ],
+    "Object Oriented Programming": [
+      "Data Types",
+      "If / Else If / Else",
+      "Loops",
+      "Function",
+      "Switch case",
+      "Pointer",
+      "Structure",
+      "Array",
+      "String",
+      "Function Overloading",
+      "Function templates",
+      "SCOPE of variable",
+      "Type aliases (typedef / using)",
+      "Unions",
+      "Enumerated types (enum)",
+      "Class",
+      "Constructors",
+      "Overloading Constructors",
+      "Member initialization in constructors",
+      "Pointers to classes",
+      "Overloading Operators",
+      "Keyword ‘this’",
+      "Static Members",
+      "Const Member Functions",
+      "Class Templates",
+      "Template Specialization",
+      "Namespace",
+      "Friendship (Friend Functions & Friend Classes)",
+      "Inheritance",
+      "Polymorphism",
+      "Virtual Members",
+      "Abstract base class",
+    ],
+    "Unix": [
+      "Is",
+      "ps",
+      "pwd",
+      "mv",
+      "cp",
+      "touch",
+      "cat",
+      "time",
+      "cal",
+      "bc",
+      "sort",
+      "diff",
+      "wc",
+      "comm",
+      "In",
+      "du",
+      "kill",
+      "sleep",
+      "chmod",
+      "chown",
+      "chgrp",
+      "top",
+      "nice",
+      "renice",
+      "cut",
+      "paste",
+      "grep",
+      "file",
+      "whereis",
+      "which",
+      "echo",
+      "env",
+      "PATH",
+      "CLASSPATH",
+      "find",
+      "vi editor",
+      "shell",
+      "wildcard",
+      "shell script",
+    ],
+    "Data Structure": [
+      "Searching",
+      "Sorting",
+      "Stack",
+      "Queue",
+      "Linked List",
+      "Tree",
+      "Graph",
+    ],
+    "Introduction of Computers": [
+      "Bus structure",
+      "Basic I/O",
+      "Subroutines",
+      "Interrupt",
+      "DMA",
+      "RAM",
+      "ROM",
+      "Pipeline",
+      "System calls",
+    ],
+    "Operating System": [
+      "Process",
+      "Thread",
+      "CPU Scheduling",
+      "Deadlock",
+      "Synchronization",
+      "Memory Management",
+      "Disk Management",
+      "File Management",
+    ],
+    "Computer Network": [
+      "Concepts of networking",
+      "Application areas",
+      "Classification",
+      "Reference models",
+      "Transmission environment & technologies",
+      "Routing algorithms",
+      "IP, UDP & TCP protocols",
+      "IPv4 and IPv6",
+      "Reliable data transferring methods",
+      "Application protocols",
+      "Network Security",
+      "Management systems",
+      "Perspectives of communication networks",
+    ],
+    "Database Management System": [
+      "Introductions to Databases",
+      "ER diagram",
+      "Relational Algebra",
+      "Relational Calculus",
+      "SQL",
+      "Normalization",
+      "Transactions",
+      "Indexing",
+      "Query optimization",
+    ],
+    "Software Engineering": [
+      "Introduction to Software Engineering",
+      "A Generic view of process",
+      "Process models",
+      "Software Requirements",
+      "Requirements engineering process",
+      "System models",
+      "Design Engineering",
+      "Testing Strategies",
+      "Product metrics",
+      "Metrics for Process & Products",
+      "Risk management",
+      "Quality Management",
+    ],
+    "Machine Learning": [
+      "Classification",
+      "Decision Tree Learning",
+      "Artificial Neural Networks",
+      "Support Vector Machines",
+      "Bayesian Learning",
+      "Clustering",
+      "Hidden Markov Models",
+    ],
+    "C / C++": [
+      "Variables and Data types",
+      "IO Operations",
+      "Operators and Expressions",
+      "Control Flow statements",
+      "Functions",
+      "Array",
+      "Pointers",
+      "String Handling",
+      "Structures and Unions",
+      "Files Handling",
+      "Pre-Processor Directives",
+      "Command Line Arguments",
+    ],
+    "OOPS": [
+      "Data Types",
+      "If / Else If / Else",
+      "Loops",
+      "Function",
+      "Switch case",
+      "Pointer",
+      "Structure",
+      "Array",
+      "String",
+      "Function Overloading",
+      "Function templates",
+      "Scope of variable",
+      "Type aliases (typedef / using)",
+      "Unions",
+      "Enumerated types (enum)",
+      "Class",
+      "Constructors",
+      "Overloading Constructors",
+      "Member initialization in constructors",
+      "Pointers to classes",
+      "Overloading Operators",
+      "Keyword ‘this’",
+      "Static Members",
+      "Const Member Functions",
+      "Class Templates",
+      "Template Specialization",
+      "Namespace",
+      "Friendship (Friend Functions & Friend Classes)",
+      "Inheritance",
+      "Polymorphism",
+      "Virtual Members",
+      "Abstract base class",
+    ]
+  };
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 export default Home;
